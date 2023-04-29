@@ -6,6 +6,7 @@ public class Automobile extends Veicolo {
         this.numeroPorte = numeroPorte;
     }
 
+    // Getter dell'attributo numeroPorte
     public int getNumeroPorte() {
         return this.numeroPorte;
     }

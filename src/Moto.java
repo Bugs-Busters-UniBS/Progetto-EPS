@@ -6,6 +6,7 @@ public class Moto extends Veicolo {
         this.cilindrata = cilindrata;
     }
 
+    // Getter dell'attributo cilindrata
     public int getCilindrata() {
         return this.cilindrata;
     }

@@ -6,6 +6,7 @@ public class Camion extends Veicolo {
         this.portataCarico = portata;
     }
 
+    // Getter dell'attributo portata
     public double getPortata() {
         return this.portataCarico;
     }
