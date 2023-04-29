@@ -9,5 +9,10 @@ public class Moto extends Veicolo {
     public int getCilindrata() {
         return this.cilindrata;
     }
+
+    @Override
+    public String getTipo() {
+        return "Moto";
+    }
     
 }

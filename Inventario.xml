@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Inventario>
+    <Veicolo tipo="Automobile" marca="Fiat" modello="500" Numero_Porte="5">
+        <Targa numero="AA000AA" paese="Italia"></Targa>  
+    </Veicolo>
+
+    <Veicolo tipo="Camion" marca="Volvo" modello="FH16" portata="5000">
+        <Targa numero="AA000AB" paese="Italia"></Targa>   
+    </Veicolo>
+    
+    <Veicolo tipo="Moto" marca="Honda" modello="CBR" cilindrata="125">
+        <Targa numero="AA00000" paese="Italia"></Targa>     
+    </Veicolo>
+
+</Inventario>

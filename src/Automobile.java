@@ -9,4 +9,9 @@ public class Automobile extends Veicolo {
     public int getNumeroPorte() {
         return this.numeroPorte;
     }
+
+    @Override
+    public String getTipo() {
+        return "Automobile";
+    }
 }

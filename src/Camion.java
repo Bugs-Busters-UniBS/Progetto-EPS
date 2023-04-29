@@ -9,4 +9,9 @@ public class Camion extends Veicolo {
     public double getPortata() {
         return this.portataCarico;
     }
+
+    @Override
+    public String getTipo() {
+        return "Camion";
+    }
 }
