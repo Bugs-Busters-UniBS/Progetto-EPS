@@ -1,24 +1,20 @@
 public class Targa {
     public enum Paese {
-        ITALIA
+        ITALIA,
+        GERMANIA
         // Future implementazioni degli altri paesi
     }
 
     private Paese paese;
     private String numero;
 
-    public Targa(String numero, Paese paese) {
+    public Targa(String numero, String paese) {
         this.numero = numero;
-        this.paese = paese;
-        //TODO implementare il costruttore
+        this.paese = Paese.valueOf(paese.toUpperCase());
     }
 
     public String toString() {
-        //TODO IMPLEMENTARE TOSTRING()
-        return "TODO";
+        return "Numero: "+numero+" Paese: "+paese.name();
     }
 
-    public static Targa.Paese stringToPaese(String str) {
-        return Targa.Paese.ITALIA;
-    }
 }

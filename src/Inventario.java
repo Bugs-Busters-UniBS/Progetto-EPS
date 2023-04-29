@@ -19,7 +19,7 @@ public class Inventario {
     }
 
     public void salvaInventario(String filename) {
-        //TODO chiama i metodi intoXML dei veicoli e li salva in un file
+        //TODO converte i veicoli in entry XML e li salva in un file
     }
 
     public void caricaInventario(String filename) {
@@ -46,7 +46,7 @@ public class Inventario {
                 Element targaElement = (Element)elementVeicolo.getElementsByTagName("Targa").item(0);
                 String numeroTarga = targaElement.getAttribute("numero");
                 String paeseTarga = targaElement.getAttribute("paese");
-                targa = new Targa(numeroTarga, Targa.stringToPaese(paeseTarga));
+                targa = new Targa(numeroTarga, paeseTarga);
 
                 String tipo = elementVeicolo.getAttribute("tipo");
 

@@ -25,8 +25,5 @@ public class Veicolo {
     public String getTipo() {
         return "Veicolo";
     }
-
-    public void intoXML() {
-        //TODO metodo che trasforma l'oggetto in un entry XML
-    }
+    
 }
