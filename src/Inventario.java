@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -23,10 +23,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Inventario {
-    private ArrayList<Veicolo> listaVeicoli;
+    private LinkedList<Veicolo> listaVeicoli;
 
     public Inventario() {
-        listaVeicoli = new ArrayList<Veicolo>();
+        listaVeicoli = new LinkedList<Veicolo>();
     }
 
     // Salva la lista dei veicolo in un file XML
@@ -200,14 +200,18 @@ public class Inventario {
         this.listaVeicoli.add(vec);
     }
 
-
     public void rimuoviVeicolo(String targa) {
-        //TODO trova il veicolo dalla targa e lo rimuove
+        //trova il veicolo con la stessa targa e lo elimina
+        for(Veicolo vec : this.listaVeicoli){
+            if(vec.getTarga().getNumero().equalsIgnoreCase(targa)){
+                this.listaVeicoli.remove(vec);
+            }
+        } 
     }
 
     // Getter della lista listaVeicoli
     // Utile per il testing e per la GUI
-    public ArrayList<Veicolo> getLista() {
+    public LinkedList<Veicolo> getLista() {
         return this.listaVeicoli;
     }
 }
