@@ -9,7 +9,7 @@
     <Veicolo marca="Coso" modello="modello1" portata="40.23" tipo="Camion">
         <Targa numero="AAAAAV" paese="ITALIA"/>
     </Veicolo>
-    <Veicolo cilindrata="1235" marca="Honda" modello="nonoloso" tipo="Moto">
+    <Veicolo cilindrata="1235.0" marca="Honda" modello="nonoloso" tipo="Moto">
         <Targa numero="QWERTY" paese="GERMANIA"/>
     </Veicolo>
 </Inventario>

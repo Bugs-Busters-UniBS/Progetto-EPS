@@ -1,3 +1,5 @@
+import org.w3c.dom.Element;
+
 public class Targa {
     public enum Paese {
         ITALIA,
@@ -5,6 +7,8 @@ public class Targa {
         // Future implementazioni degli altri paesi
     }
 
+    public static final String NUMERO_TARGA_XML_STRING = "numero";
+    public static final String PAESE_XML_STRING = "paese";
     private Paese paese;
     private String numero;
 
@@ -23,6 +27,11 @@ public class Targa {
     // Per avere il valore in string si può usare Paese.toString()
     public Paese getPaese() {
         return this.paese;
+    }
+
+    public void targaToXml(Element targa) {
+        targa.setAttribute(NUMERO_TARGA_XML_STRING, this.getNumero());
+        targa.setAttribute(PAESE_XML_STRING, this.getPaese().toString());
     }
 
 }

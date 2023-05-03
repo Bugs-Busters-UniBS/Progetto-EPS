@@ -25,7 +25,7 @@ public class Tester {
         inv.aggiungiVeicolo(camion);
         inv.aggiungiVeicolo(moto);
 
-        inv.rimuoviVeicolo("QWERTY");
+        // inv.rimuoviVeicolo("QWERTY");
 
         inv.salvaInventario("inventario_generato.xml");
     }

@@ -55,34 +55,16 @@ public class Inventario {
             for(Veicolo vec : listaVeicoli) {
                 // Crea una entry XML <Veicolo>
                 Element veicolo = doc.createElement(Veicolo.TIPO_VEICOLO);
+                
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
-                veicolo.setAttribute(TIPO_XML_STRING, vec.getTipo());
-                veicolo.setAttribute(MARCA_XML_STRING, vec.getMarca());
-                veicolo.setAttribute(MODELLO_XML_STRING, vec.getModello());
+                vec.veicoloToXmlElement(veicolo);
 
-                // Setta gli attributi unici per tipo di Veicolo controllando di quale classe è istanza
-                if(vec instanceof Automobile) {
-                    Automobile auto = (Automobile)vec;
-                    veicolo.setAttribute(NUMERO_PORTE_XML_STRING, Integer.toString(auto.getNumeroPorte()));
-                }
-
-                if(vec instanceof Camion) {
-                    Camion camion = (Camion)vec;
-                    veicolo.setAttribute(PORTATA_XML_STRING, Double.toString(camion.getPortata()));
-                }
-
-                if(vec instanceof Moto) {
-                    Moto moto = (Moto)vec;
-                    veicolo.setAttribute(CILINDRATA_XML_STRING, Integer.toString(moto.getCilindrata()));
-                }
 
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
                 Element targa = doc.createElement(TARGA_XML_STRING);
-                targa.setAttribute(NUMERO_TARGA_XML_STRING, vec.getTarga().getNumero());
-                targa.setAttribute(PAESE_XML_STRING, vec.getTarga().getPaese().toString());
+                vec.getTarga().targaToXml(targa);
                 // Aggiunge la targa come elemento figlio del veicolo
                 veicolo.appendChild(targa);
-
                 // Aggiunge il veicolo come elemento figlio di root (l'origine del documento)
                 root.appendChild(veicolo);
             }

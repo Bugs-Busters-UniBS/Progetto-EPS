@@ -1,5 +1,10 @@
+import org.w3c.dom.Element;
+
 public class Veicolo {
+    public static final String TIPO_XML_STRING = "tipo";
+    public static final String MARCA_XML_STRING = "marca";
     public static final String TIPO_VEICOLO = "Veicolo";
+    public static final String MODELLO_XML_STRING = "modello";
     private String marca;
     private Targa targa;
     private String modello;
@@ -31,4 +36,10 @@ public class Veicolo {
         return TIPO_VEICOLO;
     }
     
+    public void veicoloToXmlElement (Element veicolo) {
+        // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
+        veicolo.setAttribute(TIPO_XML_STRING, this.getTipo());
+        veicolo.setAttribute(MARCA_XML_STRING, this.getMarca());
+        veicolo.setAttribute(MODELLO_XML_STRING, this.getModello());
+    }
 }
