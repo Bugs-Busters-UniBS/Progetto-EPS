@@ -181,6 +181,7 @@ public class Inventario {
         for(Veicolo vec : this.listaVeicoli){
             if(vec.getTarga().getNumero().equalsIgnoreCase(targa)){
                 this.listaVeicoli.remove(vec);
+                return;
             }
         } 
     }
