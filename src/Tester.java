@@ -28,5 +28,11 @@ public class Tester {
         // inv.rimuoviVeicolo("QWERTY");
 
         inv.salvaInventario("inventario_generato.xml");
+
+        Inventario inv2 = new Inventario();
+        inv2.caricaInventario("inventario_generato.xml");
+        inv2.rimuoviVeicolo("FFFSAB");
+        inv2.salvaInventario("prova.xml");
+       
     }
 }

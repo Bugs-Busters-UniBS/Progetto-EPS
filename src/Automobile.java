@@ -11,6 +11,11 @@ public class Automobile extends Veicolo {
         this.numeroPorte = numeroPorte;
     }
 
+    public Automobile(Element auto) {
+        super(auto);
+        this.numeroPorte = Integer.parseInt(auto.getAttribute(NUMERO_PORTE_XML_STRING));
+    }
+
     // Getter dell'attributo numeroPorte
     public int getNumeroPorte() {
         return this.numeroPorte;

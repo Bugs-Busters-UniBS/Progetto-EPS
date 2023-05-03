@@ -5,6 +5,8 @@ public class Veicolo {
     public static final String MARCA_XML_STRING = "marca";
     public static final String TIPO_VEICOLO = "Veicolo";
     public static final String MODELLO_XML_STRING = "modello";
+    public static final String TARGA_XML_STRING = "Targa";
+
     private String marca;
     private Targa targa;
     private String modello;
@@ -13,6 +15,13 @@ public class Veicolo {
         this.marca = marca;
         this.modello = modello;
         this.targa = targa;
+    }
+
+    public Veicolo(Element veicolo) {
+        this.modello = veicolo.getAttribute(MODELLO_XML_STRING);
+        this.marca = veicolo.getAttribute(MARCA_XML_STRING);
+        Element targaElement = (Element)veicolo.getElementsByTagName(TARGA_XML_STRING).item(0);
+        this.targa = new Targa(targaElement);
     }
 
     // Getter oggetto targa

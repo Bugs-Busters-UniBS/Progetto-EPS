@@ -18,6 +18,10 @@ public class Targa {
         this.paese = Paese.valueOf(paese.toUpperCase());
     }
 
+    public Targa(Element targa) {
+        this(targa.getAttribute(NUMERO_TARGA_XML_STRING), targa.getAttribute(PAESE_XML_STRING));
+    }
+
     // Getter numero della targa
     public String getNumero() {
         return this.numero;
@@ -33,5 +37,7 @@ public class Targa {
         targa.setAttribute(NUMERO_TARGA_XML_STRING, this.getNumero());
         targa.setAttribute(PAESE_XML_STRING, this.getPaese().toString());
     }
+
+
 
 }

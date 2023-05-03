@@ -11,6 +11,11 @@ public class Camion extends Veicolo {
         this.portataCarico = portata;
     }
 
+    public Camion(Element camion) {
+        super(camion);
+        this.portataCarico = Double.parseDouble(camion.getAttribute(PORTATA_XML_STRING));
+    }
+
     // Getter dell'attributo portata
     public double getPortata() {
         return this.portataCarico;

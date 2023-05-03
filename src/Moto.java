@@ -10,6 +10,12 @@ public class Moto extends Veicolo {
         this.cilindrata = cilindrata;
     }
 
+    public Moto(Element moto) {
+        super(moto);
+        this.cilindrata = Integer.parseInt(moto.getAttribute(CILINDRATA_XML_STRING));
+
+    }
+
     // Getter dell'attributo cilindrata
     public int getCilindrata() {
         return this.cilindrata;
@@ -23,7 +29,7 @@ public class Moto extends Veicolo {
     @Override
     public void veicoloToXmlElement(Element veicolo) {
         super.veicoloToXmlElement(veicolo);
-        veicolo.setAttribute(CILINDRATA_XML_STRING, Double.toString(this.getCilindrata()));
+        veicolo.setAttribute(CILINDRATA_XML_STRING, Integer.toString(this.getCilindrata()));
     }
 }
     

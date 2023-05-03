@@ -40,6 +40,10 @@ public class Inventario {
         listaVeicoli = new LinkedList<Veicolo>();
     }
 
+    // public Inventario() {
+
+    // }
+
     // Salva la lista dei veicolo in un file XML
     public void salvaInventario(String filename) {
         // Utilizzata per ottenere un oggetto Document
@@ -121,48 +125,27 @@ public class Inventario {
             NodeList veicoliList = inventario.getElementsByTagName(Veicolo.TIPO_VEICOLO);
 
             // Itera su tutti gli element <veicolo> nel file inventario
+
+            // for
             for(int i = 0; i < veicoliList.getLength(); i++) {
                 Node nodeVeicolo = veicoliList.item(i);
                 // Casta l'oggetto nodeVeicolo di classe Node in un oggetto di classe Element
                 Element elementVeicolo = (Element)nodeVeicolo;
 
-                // Dichiara le variabili che verranno utilizzate per inizializzare i veicoli della lista listaVeicoli dell'inventario
-                Targa targa;
-                Veicolo veicoloEntry;
-                String modello = elementVeicolo.getAttribute(MODELLO_XML_STRING);
-                String marca = elementVeicolo.getAttribute(MARCA_XML_STRING);
-
-                // Ottiene il primo elemento con il TagName Targa (ossia l'unica targa del veicolo)
-                Element targaElement = (Element)elementVeicolo.getElementsByTagName(TARGA_XML_STRING).item(0);
-                // Ottiene gli attributi della targa
-                String numeroTarga = targaElement.getAttribute(NUMERO_TARGA_XML_STRING);
-                String paeseTarga = targaElement.getAttribute(PAESE_XML_STRING);
-                // Inizializza la targa del veicolo
-                targa = new Targa(numeroTarga, paeseTarga);
-
-                // Crea la variabile 'tipo' che verrà utilizata per capire di che tipo è il veicolo
-                // in base al tipo si leggeranno gli attributi unici della classe e si inizializzerà la classe corretta
                 String tipo = elementVeicolo.getAttribute(TIPO_XML_STRING);
-                if(tipo.compareTo(Automobile.TIPO_VEICOLO) == 0) {
-                    int numeroPorte = Integer.parseInt(elementVeicolo.getAttribute(NUMERO_PORTE_XML_STRING));
-                    
-                    veicoloEntry = new Automobile(marca, modello, targa, numeroPorte);
-                    aggiungiVeicolo(veicoloEntry);
+                if(tipo.equals(Automobile.TIPO_VEICOLO)) {
+                    aggiungiVeicolo(new Automobile(elementVeicolo));
                 }
 
-                if (tipo.compareTo(Camion.TIPO_VEICOLO) == 0) {
-                    double portata = Double.parseDouble(elementVeicolo.getAttribute(PORTATA_XML_STRING));
-
-                    veicoloEntry = new Camion(marca, modello, targa, portata);
-                    aggiungiVeicolo(veicoloEntry);
+                if (tipo.equals(Camion.TIPO_VEICOLO)) {
+                    aggiungiVeicolo(new Camion(elementVeicolo));
                 }
 
-                if (tipo.compareTo(Moto.TIPO_VEICOLO) == 0) {
-                    int cilindrata = Integer.parseInt(elementVeicolo.getAttribute(CILINDRATA_XML_STRING));
-
-                    veicoloEntry = new Moto(marca, modello, targa, cilindrata);
-                    aggiungiVeicolo(veicoloEntry);
+                if (tipo.equals(Moto.TIPO_VEICOLO)) {
+                    aggiungiVeicolo(new Moto(elementVeicolo));
                 }
+
+   
 
             }
 
