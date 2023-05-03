@@ -1,4 +1,5 @@
 public class Camion extends Veicolo {
+    public final static String TIPO_VEICOLO = "Camion";
     private double portataCarico;
 
     public Camion(String marca, String modello, Targa targa, double portata) {
@@ -13,6 +14,6 @@ public class Camion extends Veicolo {
 
     @Override
     public String getTipo() {
-        return "Camion";
+        return TIPO_VEICOLO;
     }
 }

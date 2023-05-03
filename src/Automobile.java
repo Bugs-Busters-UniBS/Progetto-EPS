@@ -1,4 +1,5 @@
 public class Automobile extends Veicolo {
+    public final static String TIPO_VEICOLO = "Automobile";
     private int numeroPorte;
 
     public Automobile(String marca, String modello, Targa targa, int numeroPorte) {
@@ -13,6 +14,6 @@ public class Automobile extends Veicolo {
 
     @Override
     public String getTipo() {
-        return "Automobile";
+        return TIPO_VEICOLO;
     }
 }

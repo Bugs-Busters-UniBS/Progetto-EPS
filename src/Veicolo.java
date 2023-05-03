@@ -1,4 +1,5 @@
 public class Veicolo {
+    public static final String TIPO_VEICOLO = "Veicolo";
     private String marca;
     private Targa targa;
     private String modello;
@@ -27,7 +28,7 @@ public class Veicolo {
     // Getter del tipo del veicolo
     // Funzione utilizzata per facilitare la scrittura degli attributi XML
     public String getTipo() {
-        return "Veicolo";
+        return TIPO_VEICOLO;
     }
     
 }

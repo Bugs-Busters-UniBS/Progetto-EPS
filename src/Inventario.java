@@ -23,6 +23,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Inventario {
+    public static final String INVENTARIO_XML_STRING = "Inventario";
+    public static final String TIPO_XML_STRING = "tipo";
+    public static final String MARCA_XML_STRING = "marca";
+    public static final String MODELLO_XML_STRING = "modello";
+    public static final String NUMERO_PORTE_XML_STRING = "Numero_Porte";
+    public static final String PORTATA_XML_STRING = "portata";
+    public static final String CILINDRATA_XML_STRING = "cilindrata";
+    public static final String TARGA_XML_STRING = "Targa";
+    public static final String NUMERO_TARGA_XML_STRING = "numero";
+    public static final String PAESE_XML_STRING = "paese";
+
     private LinkedList<Veicolo> listaVeicoli;
 
     public Inventario() {
@@ -38,37 +49,37 @@ public class Inventario {
             Document doc = builder.newDocument();
             
             // Crea l'elemento root ossia l'origine dell'inventario
-            Element root = doc.createElement("Inventario");
+            Element root = doc.createElement(INVENTARIO_XML_STRING);
 
             // Itera su tutti i veicoli dell'inventario
             for(Veicolo vec : listaVeicoli) {
                 // Crea una entry XML <Veicolo>
-                Element veicolo = doc.createElement("Veicolo");
+                Element veicolo = doc.createElement(Veicolo.TIPO_VEICOLO);
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
-                veicolo.setAttribute("tipo", vec.getTipo());
-                veicolo.setAttribute("marca", vec.getMarca());
-                veicolo.setAttribute("modello", vec.getModello());
+                veicolo.setAttribute(TIPO_XML_STRING, vec.getTipo());
+                veicolo.setAttribute(MARCA_XML_STRING, vec.getMarca());
+                veicolo.setAttribute(MODELLO_XML_STRING, vec.getModello());
 
                 // Setta gli attributi unici per tipo di Veicolo controllando di quale classe è istanza
                 if(vec instanceof Automobile) {
                     Automobile auto = (Automobile)vec;
-                    veicolo.setAttribute("Numero_Porte", Integer.toString(auto.getNumeroPorte()));
+                    veicolo.setAttribute(NUMERO_PORTE_XML_STRING, Integer.toString(auto.getNumeroPorte()));
                 }
 
                 if(vec instanceof Camion) {
                     Camion camion = (Camion)vec;
-                    veicolo.setAttribute("portata", Double.toString(camion.getPortata()));
+                    veicolo.setAttribute(PORTATA_XML_STRING, Double.toString(camion.getPortata()));
                 }
 
                 if(vec instanceof Moto) {
                     Moto moto = (Moto)vec;
-                    veicolo.setAttribute("cilindrata", Integer.toString(moto.getCilindrata()));
+                    veicolo.setAttribute(CILINDRATA_XML_STRING, Integer.toString(moto.getCilindrata()));
                 }
 
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
-                Element targa = doc.createElement("Targa");
-                targa.setAttribute("numero", vec.getTarga().getNumero());
-                targa.setAttribute("paese", vec.getTarga().getPaese().toString());
+                Element targa = doc.createElement(TARGA_XML_STRING);
+                targa.setAttribute(NUMERO_TARGA_XML_STRING, vec.getTarga().getNumero());
+                targa.setAttribute(PAESE_XML_STRING, vec.getTarga().getPaese().toString());
                 // Aggiunge la targa come elemento figlio del veicolo
                 veicolo.appendChild(targa);
 
@@ -125,7 +136,7 @@ public class Inventario {
             // Normalizza la struttura XML (facoltativa (probabilmente))
             // inventario.getDocumentElement().normalize();
             // Ottiene una lista di tutti gli elementi con tag "Veicolo"
-            NodeList veicoliList = inventario.getElementsByTagName("Veicolo");
+            NodeList veicoliList = inventario.getElementsByTagName(Veicolo.TIPO_VEICOLO);
 
             // Itera su tutti gli element <veicolo> nel file inventario
             for(int i = 0; i < veicoliList.getLength(); i++) {
@@ -136,36 +147,36 @@ public class Inventario {
                 // Dichiara le variabili che verranno utilizzate per inizializzare i veicoli della lista listaVeicoli dell'inventario
                 Targa targa;
                 Veicolo veicoloEntry;
-                String modello = elementVeicolo.getAttribute("modello");
-                String marca = elementVeicolo.getAttribute("marca");
+                String modello = elementVeicolo.getAttribute(MODELLO_XML_STRING);
+                String marca = elementVeicolo.getAttribute(MARCA_XML_STRING);
 
                 // Ottiene il primo elemento con il TagName Targa (ossia l'unica targa del veicolo)
-                Element targaElement = (Element)elementVeicolo.getElementsByTagName("Targa").item(0);
+                Element targaElement = (Element)elementVeicolo.getElementsByTagName(TARGA_XML_STRING).item(0);
                 // Ottiene gli attributi della targa
-                String numeroTarga = targaElement.getAttribute("numero");
-                String paeseTarga = targaElement.getAttribute("paese");
+                String numeroTarga = targaElement.getAttribute(NUMERO_TARGA_XML_STRING);
+                String paeseTarga = targaElement.getAttribute(PAESE_XML_STRING);
                 // Inizializza la targa del veicolo
                 targa = new Targa(numeroTarga, paeseTarga);
 
                 // Crea la variabile 'tipo' che verrà utilizata per capire di che tipo è il veicolo
                 // in base al tipo si leggeranno gli attributi unici della classe e si inizializzerà la classe corretta
-                String tipo = elementVeicolo.getAttribute("tipo");
-                if(tipo.compareTo("Automobile") == 0) {
-                    int numeroPorte = Integer.parseInt(elementVeicolo.getAttribute("Numero_Porte"));
+                String tipo = elementVeicolo.getAttribute(TIPO_XML_STRING);
+                if(tipo.compareTo(Automobile.TIPO_VEICOLO) == 0) {
+                    int numeroPorte = Integer.parseInt(elementVeicolo.getAttribute(NUMERO_PORTE_XML_STRING));
                     
                     veicoloEntry = new Automobile(marca, modello, targa, numeroPorte);
                     aggiungiVeicolo(veicoloEntry);
                 }
 
-                if (tipo.compareTo("Camion") == 0) {
-                    double portata = Double.parseDouble(elementVeicolo.getAttribute("portata"));
+                if (tipo.compareTo(Camion.TIPO_VEICOLO) == 0) {
+                    double portata = Double.parseDouble(elementVeicolo.getAttribute(PORTATA_XML_STRING));
 
                     veicoloEntry = new Camion(marca, modello, targa, portata);
                     aggiungiVeicolo(veicoloEntry);
                 }
 
-                if (tipo.compareTo("Moto") == 0) {
-                    int cilindrata = Integer.parseInt(elementVeicolo.getAttribute("cilindrata"));
+                if (tipo.compareTo(Moto.TIPO_VEICOLO) == 0) {
+                    int cilindrata = Integer.parseInt(elementVeicolo.getAttribute(CILINDRATA_XML_STRING));
 
                     veicoloEntry = new Moto(marca, modello, targa, cilindrata);
                     aggiungiVeicolo(veicoloEntry);

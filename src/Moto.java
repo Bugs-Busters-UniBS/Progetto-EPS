@@ -1,5 +1,6 @@
 public class Moto extends Veicolo {
     private int cilindrata;
+    public final static String TIPO_VEICOLO = "Moto";
 
     public Moto(String marca, String modello, Targa targa, int cilindrata) {
         super(marca, modello, targa);
@@ -13,7 +14,7 @@ public class Moto extends Veicolo {
 
     @Override
     public String getTipo() {
-        return "Moto";
+        return TIPO_VEICOLO;
     }
     
 }
