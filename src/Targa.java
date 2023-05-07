@@ -1,3 +1,4 @@
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Targa {
@@ -33,9 +34,12 @@ public class Targa {
         return this.paese;
     }
 
-    public void targaToXml(Element targa) {
+    public Element targaToXml(Document fileInventario, String tag) {
+        Element targa = fileInventario.createElement(tag);
         targa.setAttribute(NUMERO_TARGA_XML_STRING, this.getNumero());
         targa.setAttribute(PAESE_XML_STRING, this.getPaese().toString());
+
+        return targa;
     }
 
 

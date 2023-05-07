@@ -1,3 +1,4 @@
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 
@@ -27,8 +28,10 @@ public class Automobile extends Veicolo {
     }
 
     @Override
-    public void veicoloToXmlElement(Element veicolo) {
-        super.veicoloToXmlElement(veicolo);
+    public Element veicoloToXmlElement(Document fileInventario, String tipo) {
+        Element veicolo = super.veicoloToXmlElement(fileInventario, tipo);
         veicolo.setAttribute(NUMERO_PORTE_XML_STRING, Integer.toString(this.getNumeroPorte()));
+
+        return veicolo;
     }
 }
