@@ -1,5 +1,9 @@
+import javax.swing.JFrame;
+
 public class Tester {
     public static void main(String[] args) {
+
+        //=============================TESTING LETTURA=============================================================================
         /* Inventario inventario = new Inventario();
         inventario.caricaInventario("Inventario.xml");
 
@@ -8,7 +12,8 @@ public class Tester {
             System.out.printf("Ha targa: %s del paese: %s\n", vec.getTarga().getNumero(), vec.getTarga().getPaese().toString());
         } */
 
-        Inventario inv = new Inventario();
+        //============================TESTING SCRITTURA============================================================================
+        /* Inventario inv = new Inventario();
 
         Targa targa1 = new Targa("ADGSBS", "Italia");
         Targa targa2 = new Targa("FFFSAB", "Germania");
@@ -32,7 +37,12 @@ public class Tester {
         Inventario inv2 = new Inventario();
         inv2.caricaInventario("inventario_generato.xml");
         inv2.rimuoviVeicolo("FFFSAB");
-        inv2.salvaInventario("prova.xml");
-       
+        inv2.salvaInventario("prova.xml"); */
+
+
+        //==================================TESTING GUI================================================================
+        GUI finestra = new GUI("Gestionale Veicoli");
+        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        finestra.setVisible(true);
     }
 }

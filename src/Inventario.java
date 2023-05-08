@@ -40,10 +40,6 @@ public class Inventario {
         listaVeicoli = new LinkedList<Veicolo>();
     }
 
-    // public Inventario() {
-
-    // }
-
     // Salva la lista dei veicolo in un file XML
     public void salvaInventario(String filename) {
         // Utilizzata per ottenere un oggetto Document
@@ -62,7 +58,6 @@ public class Inventario {
                 
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
                 vec.veicoloToXmlElement(veicolo);
-
 
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
                 Element targa = doc.createElement(TARGA_XML_STRING);
@@ -125,8 +120,6 @@ public class Inventario {
             NodeList veicoliList = inventario.getElementsByTagName(Veicolo.TIPO_VEICOLO);
 
             // Itera su tutti gli element <veicolo> nel file inventario
-
-            // for
             for(int i = 0; i < veicoliList.getLength(); i++) {
                 Node nodeVeicolo = veicoliList.item(i);
                 // Casta l'oggetto nodeVeicolo di classe Node in un oggetto di classe Element
