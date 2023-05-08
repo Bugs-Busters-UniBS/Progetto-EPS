@@ -17,7 +17,7 @@ public class TabellaInventarioModel extends DefaultTableModel {
         this.setDataVector(rows, NOMI_COLONNE);
     }
 
-    /* public void refresh(Inventario inv) {
+    public void refresh(Inventario inv) {
         Vector<Vector<String>> rows = new Vector<>();
 
         for(Veicolo veic : inv.getLista()) {
@@ -25,7 +25,7 @@ public class TabellaInventarioModel extends DefaultTableModel {
         }
 
         this.setDataVector(rows, NOMI_COLONNE);
-    } */
+    } 
 
     public void addRow(Veicolo v) {
         super.addRow(v.toVector());
