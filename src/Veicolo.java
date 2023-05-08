@@ -46,9 +46,9 @@ public class Veicolo {
         return TIPO_VEICOLO;
     }
     
-    public Element veicoloToXmlElement (Document fileInventario, String tipo) {
+    public Element veicoloToXmlElement (Document fileInventario, String tag) {
         // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
-        Element veicolo = fileInventario.createElement(tipo);
+        Element veicolo = fileInventario.createElement(tag);
         veicolo.setAttribute(TIPO_XML_STRING, this.getTipo());
         veicolo.setAttribute(MARCA_XML_STRING, this.getMarca());
         veicolo.setAttribute(MODELLO_XML_STRING, this.getModello());

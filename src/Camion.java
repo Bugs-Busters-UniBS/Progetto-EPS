@@ -28,8 +28,8 @@ public class Camion extends Veicolo {
     }
 
     @Override
-    public Element veicoloToXmlElement(Document fileInventario, String tipo) {
-        Element veicolo = super.veicoloToXmlElement(fileInventario, tipo);
+    public Element veicoloToXmlElement(Document fileInventario, String tag) {
+        Element veicolo = super.veicoloToXmlElement(fileInventario, tag);
         veicolo.setAttribute(PORTATA_XML_STRING, Double.toString(this.getPortata()));
 
         return veicolo;

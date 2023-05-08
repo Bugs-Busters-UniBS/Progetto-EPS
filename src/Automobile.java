@@ -28,8 +28,8 @@ public class Automobile extends Veicolo {
     }
 
     @Override
-    public Element veicoloToXmlElement(Document fileInventario, String tipo) {
-        Element veicolo = super.veicoloToXmlElement(fileInventario, tipo);
+    public Element veicoloToXmlElement(Document fileInventario, String tag) {
+        Element veicolo = super.veicoloToXmlElement(fileInventario, tag);
         veicolo.setAttribute(NUMERO_PORTE_XML_STRING, Integer.toString(this.getNumeroPorte()));
 
         return veicolo;

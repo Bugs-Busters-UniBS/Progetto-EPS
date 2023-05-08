@@ -25,14 +25,12 @@ public class Tester {
         inv.aggiungiVeicolo(camion);
         inv.aggiungiVeicolo(moto);
 
-        // inv.rimuoviVeicolo("QWERTY");
-
-        inv.salvaInventario("inventario_generato.xml");
+        inv.salvaInventario("Inv1.xml");
 
         Inventario inv2 = new Inventario();
-        inv2.caricaInventario("inventario_generato.xml");
+        inv2.caricaInventario("Inv1.xml");
         inv2.rimuoviVeicolo("FFFSAB");
-        inv2.salvaInventario("prova.xml");
+        inv2.salvaInventario("Inv2.xml");
        
     }
 }
