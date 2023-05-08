@@ -18,7 +18,7 @@ public class GUI extends JFrame{
         super(titolo);
 
         this.inVeicoli = new Inventario();
-        inVeicoli.caricaInventario("databasepy.xml");
+        inVeicoli.caricaInventario("database.xml");
         /* Veicolo coso = new Automobile("Honda", "qualcosa", new Targa("STOCAZZO", "Italia"), 50);
         inVeicoli.aggiungiVeicolo(coso); */
 
