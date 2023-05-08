@@ -1,5 +1,6 @@
 public class Tester {
     public static void main(String[] args) {
+        //=================TESTING CARICAMENTO==========================================================
         /* Inventario inventario = new Inventario();
         inventario.caricaInventario("Inventario.xml");
 
@@ -8,6 +9,8 @@ public class Tester {
             System.out.printf("Ha targa: %s del paese: %s\n", vec.getTarga().getNumero(), vec.getTarga().getPaese().toString());
         } */
 
+
+        //================TESTING SALVATAGGIO===========================================================
         Inventario inv = new Inventario();
 
         Targa targa1 = new Targa("ADGSBS", "Italia");
