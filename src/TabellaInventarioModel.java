@@ -4,7 +4,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class TabellaInventarioModel extends DefaultTableModel {
-    private static final Vector<String> NOMI_COLONNE = new Vector<>(Arrays.asList("Tipo Veicolo", "Marca", "Modello", "Numero Targa", "Paese"));
+    private static final Vector<String> NOMI_COLONNE = new Vector<>(Arrays.asList("Tipo Veicolo", "Marca", "Modello", "Numero Targa", "Paese", "Dettagli", "Elimina"));
 
     public TabellaInventarioModel(Inventario inv) {
         super(NOMI_COLONNE, inv.getLista().size());

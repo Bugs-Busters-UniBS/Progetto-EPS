@@ -66,7 +66,8 @@ public class Veicolo {
         vec.add(this.getModello());
         vec.add(this.targa.getNumero());
         vec.add(this.targa.getPaese().toString());
-
+        vec.add("Dettagli");
+        vec.add("Elimina");
         return vec;
     }
 }
