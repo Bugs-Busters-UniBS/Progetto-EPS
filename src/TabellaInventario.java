@@ -31,6 +31,14 @@ public class TabellaInventario extends JTable {
     public void addRow(Veicolo vec) {
         this.modello.addRow(vec);
     }
+
+    public void updateTable(Inventario inv) {
+        this.modello.refresh(inv);
+    }
+
+    public void removeRow(int i) {
+        this.modello.removeRow(i);
+    }
     
     /*
     * Azioni del bottone

@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -6,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GUI extends JFrame{
-
+    public int targaDEBUG = 0;
     private Inventario inVeicoli;
 
     private JPanel logoPanel = new JPanel();
@@ -16,7 +18,7 @@ public class GUI extends JFrame{
         super(titolo);
 
         this.inVeicoli = new Inventario();
-        inVeicoli.caricaInventario("database.xml");
+        inVeicoli.caricaInventario("databasepy.xml");
         /* Veicolo coso = new Automobile("Honda", "qualcosa", new Targa("STOCAZZO", "Italia"), 50);
         inVeicoli.aggiungiVeicolo(coso); */
 
@@ -42,6 +44,9 @@ public class GUI extends JFrame{
         logoPanel.add(titoloProg);
 
         JButton botAggiungi = new JButton("Aggiungi nuovo veicolo");
+        //DEBUG
+        JButton botRimuovi = new JButton("Rimuovi veicolo DEBUG");
+
         JButton botSalva = new JButton("Salva modifiche all'inventario");
         botSalva.addActionListener(ev -> inVeicoli.salvaInventario("database.xml"));
     
@@ -49,6 +54,7 @@ public class GUI extends JFrame{
         JTextField barraRicerca = new JTextField("", 15);
 
         bottoniPanel.add(botAggiungi);
+        bottoniPanel.add(botRimuovi);
         bottoniPanel.add(botSalva);
         bottoniPanel.add(filtroText);
         bottoniPanel.add(barraRicerca);
@@ -56,6 +62,15 @@ public class GUI extends JFrame{
         //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
         TabellaInventario tabella = new TabellaInventario(inVeicoli);
         tabella.setEnabled(false);
+        //DEBUG
+        botRimuovi.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                inVeicoli.rimuoviVeicolo(String.format("AA%03dAA", targaDEBUG));
+                tabella.updateTable(inVeicoli);
+                targaDEBUG+=1;
+            }
+        });
+
         JScrollPane tabellaPanel = new JScrollPane(tabella);
         //---------------------------------------------------------------------------------------------------------------
 
