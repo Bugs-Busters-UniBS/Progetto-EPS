@@ -13,7 +13,7 @@ public class Tester {
 
 
         //================TESTING SALVATAGGIO===========================================================
-        Inventario inv = new Inventario();
+        /* Inventario inv = new Inventario();
 
         Targa targa1 = new Targa("ADGSBS", "Italia");
         Targa targa2 = new Targa("FFFSAB", "Germania");
@@ -35,7 +35,12 @@ public class Tester {
         Inventario inv2 = new Inventario();
         inv2.caricaInventario("Inv1.xml");
         inv2.rimuoviVeicolo("FFFSAB");
-        inv2.salvaInventario("Inv2.xml");
+        inv2.salvaInventario("Inv2.xml"); */
        
+        //======================TESTING GUI=================================================================
+        GUI myGui = new GUI("Gestionale Veicoli");
+        myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myGui.setVisible(true);
+
     }
 }

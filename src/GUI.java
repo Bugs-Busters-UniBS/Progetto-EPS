@@ -16,6 +16,9 @@ public class GUI extends JFrame{
         super(titolo);
 
         this.inVeicoli = new Inventario();
+        inVeicoli.caricaInventario("database.xml");
+        /* Veicolo coso = new Automobile("Honda", "qualcosa", new Targa("STOCAZZO", "Italia"), 50);
+        inVeicoli.aggiungiVeicolo(coso); */
 
         this.setSize(1000,800);
         this.setLayout(new GridLayout(4,1));
@@ -38,21 +41,28 @@ public class GUI extends JFrame{
         titoloProg.setFont(new Font("Lucida Grande", Font.ITALIC, 30));
         logoPanel.add(titoloProg);
 
-        JButton botAggiungi = new JButton("Aggiungi veicolo");
-        JButton botRimuovi = new JButton("Rimuovi veicolo");
-        JButton botCerca = new JButton("Cerca");
+        JButton botAggiungi = new JButton("Aggiungi nuovo veicolo");
+        JButton botSalva = new JButton("Salva modifiche all'inventario");
+        botSalva.addActionListener(ev -> inVeicoli.salvaInventario("database.xml"));
+    
+        JLabel filtroText = new JLabel("Cerca:");
         JTextField barraRicerca = new JTextField("", 15);
 
         bottoniPanel.add(botAggiungi);
-        bottoniPanel.add(botRimuovi);
+        bottoniPanel.add(botSalva);
+        bottoniPanel.add(filtroText);
         bottoniPanel.add(barraRicerca);
-        bottoniPanel.add(botCerca);
 
-        String[] nomiColonne = {"Tipo Veicolo", "Marca", "Modello", "Numero Targa", "Paese Targa"};
-        Object[][] data = {{"Moto", "Marca1", "Modello1", "AAAAGGGG", "IT"}, {"Camion", "Marca2", "Modello2", "AAAAAA", "DE"}};
-        JTable tabella = new JTable(data, nomiColonne);
+        //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
+        TabellaInventario tabella = new TabellaInventario(inVeicoli);
         tabella.setEnabled(false);
         JScrollPane tabellaPanel = new JScrollPane(tabella);
+        //---------------------------------------------------------------------------------------------------------------
+
+        // TEST AGGIUNTA RIGA
+        /* Veicolo v = new Camion("marca", "modello", new Targa("ASIFHB", "Germania"), 150.0);
+        tabella.addRow(v);
+        inVeicoli.aggiungiVeicolo(v); */
 
         this.add(logoPanel);
         this.add(bottoniPanel);

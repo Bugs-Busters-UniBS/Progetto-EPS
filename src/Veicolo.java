@@ -1,7 +1,10 @@
+import java.util.Vector;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Veicolo {
+    //Stringhe utilizzate per dare il nome alle tag XML
     public static final String TIPO_XML_STRING = "tipo";
     public static final String MARCA_XML_STRING = "marca";
     public static final String TIPO_VEICOLO = "Veicolo";
@@ -54,5 +57,16 @@ public class Veicolo {
         veicolo.setAttribute(MODELLO_XML_STRING, this.getModello());
 
         return veicolo;
+    }
+
+    public Vector<String> toVector() {
+        Vector<String> vec = new Vector<String>();
+        vec.add(this.getTipo());
+        vec.add(this.getMarca());
+        vec.add(this.getModello());
+        vec.add(this.targa.getNumero());
+        vec.add(this.targa.getPaese().toString());
+
+        return vec;
     }
 }

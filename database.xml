@@ -12,4 +12,10 @@
     <Veicolo cilindrata="1235" marca="Honda" modello="nonoloso" tipo="Moto">
         <Targa numero="QWERTY" paese="GERMANIA"/>
     </Veicolo>
+    <Veicolo Numero_Porte="50" marca="Honda" modello="qualcosa" tipo="Automobile">
+        <Targa numero="STOCAZZO" paese="ITALIA"/>
+    </Veicolo>
+    <Veicolo marca="marca" modello="modello" portata="150.0" tipo="Camion">
+        <Targa numero="ASIFHB" paese="GERMANIA"/>
+    </Veicolo>
 </Inventario>
