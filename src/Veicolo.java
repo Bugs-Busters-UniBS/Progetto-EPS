@@ -1,3 +1,4 @@
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Veicolo {
@@ -45,10 +46,13 @@ public class Veicolo {
         return TIPO_VEICOLO;
     }
     
-    public void veicoloToXmlElement (Element veicolo) {
+    public Element veicoloToXmlElement (Document fileInventario, String tag) {
         // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
+        Element veicolo = fileInventario.createElement(tag);
         veicolo.setAttribute(TIPO_XML_STRING, this.getTipo());
         veicolo.setAttribute(MARCA_XML_STRING, this.getMarca());
         veicolo.setAttribute(MODELLO_XML_STRING, this.getModello());
+
+        return veicolo;
     }
 }

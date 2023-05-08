@@ -1,3 +1,4 @@
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Moto extends Veicolo {
@@ -27,9 +28,11 @@ public class Moto extends Veicolo {
     }
 
     @Override
-    public void veicoloToXmlElement(Element veicolo) {
-        super.veicoloToXmlElement(veicolo);
+    public Element veicoloToXmlElement(Document fileInventario, String tag) {
+        Element veicolo = super.veicoloToXmlElement(fileInventario, tag);
         veicolo.setAttribute(CILINDRATA_XML_STRING, Integer.toString(this.getCilindrata()));
+
+        return veicolo;
     }
 }
     

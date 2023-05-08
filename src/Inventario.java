@@ -57,18 +57,13 @@ public class Inventario {
 
             // Itera su tutti i veicoli dell'inventario
             for(Veicolo vec : listaVeicoli) {
-                // Crea una entry XML <Veicolo>
-                Element veicolo = doc.createElement(Veicolo.TIPO_VEICOLO);
-                
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
-                vec.veicoloToXmlElement(veicolo);
-
-
+                Element veicolo = vec.veicoloToXmlElement(doc, Veicolo.TIPO_VEICOLO);
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
-                Element targa = doc.createElement(TARGA_XML_STRING);
-                vec.getTarga().targaToXml(targa);
+                Element targa = vec.getTarga().targaToXml(doc, TARGA_XML_STRING);
                 // Aggiunge la targa come elemento figlio del veicolo
                 veicolo.appendChild(targa);
+
                 // Aggiunge il veicolo come elemento figlio di root (l'origine del documento)
                 root.appendChild(veicolo);
             }
@@ -144,8 +139,6 @@ public class Inventario {
                 if (tipo.equals(Moto.TIPO_VEICOLO)) {
                     aggiungiVeicolo(new Moto(elementVeicolo));
                 }
-
-   
 
             }
 
