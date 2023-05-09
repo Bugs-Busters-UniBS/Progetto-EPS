@@ -103,6 +103,7 @@ class ButtonEditor extends DefaultCellEditor {
             String targa = table.getModel().getValueAt(row, 3).toString();
             System.out.println(targa);
         }
+        
         //premuto bottone elimina veicolo
         if(column == 6){
             TabellaInventario tabella = (TabellaInventario) table;

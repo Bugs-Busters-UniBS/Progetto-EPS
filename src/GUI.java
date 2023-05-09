@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -18,7 +20,7 @@ public class GUI extends JFrame{
         super(titolo);
 
         this.inVeicoli = new Inventario();
-        inVeicoli.caricaInventario("databasepy.xml");
+        inVeicoli.caricaInventario("database.xml");
         /* Veicolo coso = new Automobile("Honda", "qualcosa", new Targa("STOCAZZO", "Italia"), 50);
         inVeicoli.aggiungiVeicolo(coso); */
 
@@ -43,11 +45,29 @@ public class GUI extends JFrame{
         titoloProg.setFont(new Font("Lucida Grande", Font.ITALIC, 30));
         logoPanel.add(titoloProg);
 
+        //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
+        TabellaInventario tabella = new TabellaInventario(inVeicoli);
+        JScrollPane tabellaPanel = new JScrollPane(tabella);
+
+        //---------------------------------------------------------------------------------------------------------------
+
+
         JButton botAggiungi = new JButton("Aggiungi nuovo veicolo");
-        
+        botAggiungi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                GUIVeicolo addGUI = new GUIVeicolo("Aggiunta Veicoli", inVeicoli);
+                //aggiorna la tabella dopo aver aggiunto il veicolo
+                addGUI.addWindowListener(new WindowAdapter() {
+                    public void windowClosed(WindowEvent e) {
+                        tabella.updateTable();
+                    }
+                });
+                addGUI.setVisible(true);
+            }
+        });
 
         JButton botSalva = new JButton("Salva modifiche all'inventario");
-        botSalva.addActionListener(ev -> inVeicoli.salvaInventario("databasepy.xml"));
+        botSalva.addActionListener(ev -> inVeicoli.salvaInventario("database.xml"));
     
         JLabel filtroText = new JLabel("Cerca:");
         JTextField barraRicerca = new JTextField("", 15);
@@ -56,12 +76,6 @@ public class GUI extends JFrame{
         bottoniPanel.add(botSalva);
         bottoniPanel.add(filtroText);
         bottoniPanel.add(barraRicerca);
-
-        //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
-        TabellaInventario tabella = new TabellaInventario(inVeicoli);
-        JScrollPane tabellaPanel = new JScrollPane(tabella);
-
-        //---------------------------------------------------------------------------------------------------------------
 
         // TEST AGGIUNTA RIGA
         /* Veicolo v = new Camion("marca", "modello", new Targa("ASIFHB", "Germania"), 150.0);

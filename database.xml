@@ -18,4 +18,7 @@
     <Veicolo marca="marca" modello="modello" portata="150.0" tipo="Camion">
         <Targa numero="ASIFHB" paese="GERMANIA"/>
     </Veicolo>
+    <Veicolo Numero_Porte="3" marca="a" modello="a" tipo="Automobile">
+        <Targa numero="56" paese="ITALIA"/>
+    </Veicolo>
 </Inventario>
