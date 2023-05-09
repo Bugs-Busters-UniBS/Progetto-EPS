@@ -18,14 +18,10 @@ public class TabellaInventario extends JTable {
     public TabellaInventario(Inventario inv) {
         super();
         modello = new TabellaInventarioModel(inv);
+        setCellSelectionEnabled(false);
         this.setModel(modello);
-        this.getTableHeader().setReorderingAllowed(false);
-        
-        this.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
-        this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox()));
-
-        this.getColumn("Dettagli").setCellRenderer(new ButtonRenderer());
-        this.getColumn("Dettagli").setCellEditor(new ButtonEditor(new JCheckBox()));
+        this.tableHeader.setReorderingAllowed(false);
+        setBottoni();
     }
 
     public void addRow(Veicolo vec) {
@@ -34,10 +30,19 @@ public class TabellaInventario extends JTable {
 
     public void updateTable(Inventario inv) {
         this.modello.refresh(inv);
+        setBottoni();
     }
 
     public void removeRow(int i) {
         this.modello.removeRow(i);
+    }
+
+    private void setBottoni(){
+        this.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
+        this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox()));
+
+        this.getColumn("Dettagli").setCellRenderer(new ButtonRenderer());
+        this.getColumn("Dettagli").setCellEditor(new ButtonEditor(new JCheckBox()));
     }
     
     /*
@@ -89,7 +94,7 @@ class ButtonEditor extends DefaultCellEditor {
     public ButtonEditor(JCheckBox checkBox) {
         super(checkBox);
         button = new JButton();
-        button.setOpaque(true);
+        // button.setOpaque(true);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,4 +133,6 @@ class ButtonEditor extends DefaultCellEditor {
         isPushed = false;
         return super.stopCellEditing();
     }
+
+
 }

@@ -30,4 +30,10 @@ public class TabellaInventarioModel extends DefaultTableModel {
     public void addRow(Veicolo v) {
         super.addRow(v.toVector());
     }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        //Only the third column
+        return column==5 || column==6;
+    }
 }
