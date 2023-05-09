@@ -1,5 +1,5 @@
 import javax.swing.JFrame;
-// import javax.swing.UIManager;
+import javax.swing.UIManager;
 // import javax.swing.UnsupportedLookAndFeelException;
 
 // import com.formdev.flatlaf.FlatDarculaLaf;
@@ -44,10 +44,10 @@ public class Tester {
        
         //======================TESTING GUI=================================================================
         
-        // FlatLightLaf.setup();
+        // FlatDarculaLaf.setup();
 
         // try {
-        //     UIManager.setLookAndFeel(new FlatLightLaf());
+        //     UIManager.setLookAndFeel(new FlatDarculaLaf());
         // } catch (UnsupportedLookAndFeelException e) {
         //     throw new RuntimeException(e);
         // }

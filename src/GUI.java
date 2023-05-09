@@ -47,7 +47,7 @@ public class GUI extends JFrame{
         
 
         JButton botSalva = new JButton("Salva modifiche all'inventario");
-        botSalva.addActionListener(ev -> inVeicoli.salvaInventario("database.xml"));
+        botSalva.addActionListener(ev -> inVeicoli.salvaInventario("databasepy.xml"));
     
         JLabel filtroText = new JLabel("Cerca:");
         JTextField barraRicerca = new JTextField("", 15);
@@ -60,7 +60,7 @@ public class GUI extends JFrame{
         //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
         TabellaInventario tabella = new TabellaInventario(inVeicoli);
         JScrollPane tabellaPanel = new JScrollPane(tabella);
-        
+
         //---------------------------------------------------------------------------------------------------------------
 
         // TEST AGGIUNTA RIGA
