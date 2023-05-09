@@ -99,6 +99,7 @@ class ButtonEditor extends DefaultCellEditor {
 
         //premuto bottone mostra dettagli
         if(column == 5){
+            new FinestraRiepilogoDatiVeicolo();
             String targa = table.getModel().getValueAt(row, 3).toString();
             System.out.println(targa);
         }
