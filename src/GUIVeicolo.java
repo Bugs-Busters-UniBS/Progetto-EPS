@@ -5,6 +5,8 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class GUIVeicolo extends JFrame implements ActionListener{
  
@@ -29,6 +31,7 @@ public class GUIVeicolo extends JFrame implements ActionListener{
     private JTextField inserimentoNumeroTarga;
     private JTextField inserimentoPortata;
     private JTextField inserimentoCilindrata;
+    private JButton salvaVeicolo;
 
     
     public GUIVeicolo(String titolo, Inventario inv){
@@ -75,6 +78,7 @@ public class GUIVeicolo extends JFrame implements ActionListener{
 
         insertionPanel.add(labelTipoVeicolo);
         insertionPanel.add(dropdownVeicolo);
+        dropdownVeicolo.addActionListener(this);
 
         insertionPanel.add(labelMarca);
         insertionPanel.add(inserimentoMarca);
@@ -93,12 +97,18 @@ public class GUIVeicolo extends JFrame implements ActionListener{
         
         insertionPanel.add(labelPortata);
         insertionPanel.add(inserimentoPortata);
+        inserimentoPortata.setEditable(false);
 
         insertionPanel.add(labelCilindrata);
         insertionPanel.add(inserimentoCilindrata);
+        inserimentoCilindrata.setEditable(false);
+
+        //standart automobile
+        labelPortata.setForeground(Color.lightGray);
+        labelCilindrata.setForeground(Color.lightGray);
 
         //definizione pulsantiera
-        JButton salvaVeicolo = new JButton("Salva veicolo");
+        salvaVeicolo = new JButton("Salva veicolo");
 
         // JButton aggiungiFoto = new JButton("aggiungi foto");
         pulsantiera.add(salvaVeicolo);
@@ -117,24 +127,55 @@ public class GUIVeicolo extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String veicolo = (String)dropdownVeicolo.getSelectedItem();
-        String marca = inserimentoMarca.getText();
-        String modello = inserimentoModello.getText();
-        String paese = (String)dropdownPaese.getSelectedItem();
-        String numeroTarga = inserimentoNumeroTarga.getText();
-        String porte = (String)dropdownPorte.getSelectedItem();
-        String portata = inserimentoPortata.getText();
-        String cilindrata = inserimentoCilindrata.getText();
-        System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
+        if(e.getSource()==salvaVeicolo){
+            String veicolo = (String)dropdownVeicolo.getSelectedItem();
+            String marca = inserimentoMarca.getText();
+            String modello = inserimentoModello.getText();
+            String paese = (String)dropdownPaese.getSelectedItem();
+            String numeroTarga = inserimentoNumeroTarga.getText();
+            String porte = (String)dropdownPorte.getSelectedItem();
+            String portata = inserimentoPortata.getText();
+            String cilindrata = inserimentoCilindrata.getText();
+            System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
-        //TODO aggiungere controllo sui valori di portata e cilindrata per fare in modo che siano numeri
-        if(veicolo.equalsIgnoreCase("Automobile"))
-           inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
-        else if(veicolo.equalsIgnoreCase("Camion"))
-            inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(portata)));
-        else
-            inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
-        this.dispose();
+            //TODO aggiungere controllo sui valori di portata e cilindrata per fare in modo che siano numeri
+            if(veicolo.equalsIgnoreCase("Automobile"))
+            inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+            else if(veicolo.equalsIgnoreCase("Camion"))
+                inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(portata)));
+            else
+                inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
+            this.dispose();
+        }
+        //disitabilazione spazi non necessari all inserimento del particolare veicolo
+        else if(e.getSource()==dropdownVeicolo){
+            switch(dropdownVeicolo.getSelectedIndex()){
+                case 0:
+                dropdownPorte.setEnabled(true);
+                inserimentoPortata.setEditable(false);
+                inserimentoCilindrata.setEditable(false);
+                labelPorte.setForeground(Color.black);
+                labelPortata.setForeground(Color.lightGray);
+                labelCilindrata.setForeground(Color.lightGray);
+                break;
+                case 1:
+                dropdownPorte.setEnabled(false);
+                inserimentoPortata.setEditable(true);
+                inserimentoCilindrata.setEditable(false);
+                labelPorte.setForeground(Color.lightGray);
+                labelPortata.setForeground(Color.black);
+                labelCilindrata.setForeground(Color.lightGray);
+                break;
+                case 2:
+                dropdownPorte.setEnabled(false);
+                inserimentoPortata.setEditable(false);
+                inserimentoCilindrata.setEditable(true);
+                labelPorte.setForeground(Color.lightGray);
+                labelPortata.setForeground(Color.lightGray);
+                labelCilindrata.setForeground(Color.black);
+                break;
+            }
+
+        }
     }   
-    
 }
