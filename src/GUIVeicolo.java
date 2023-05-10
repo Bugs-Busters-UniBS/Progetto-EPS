@@ -138,13 +138,28 @@ public class GUIVeicolo extends JFrame implements ActionListener{
             String cilindrata = inserimentoCilindrata.getText();
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
-            //TODO aggiungere controllo sui valori di portata e cilindrata per fare in modo che siano numeri
             if(veicolo.equalsIgnoreCase("Automobile"))
             inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
-            else if(veicolo.equalsIgnoreCase("Camion"))
-                inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(portata)));
-            else
+            else if(veicolo.equalsIgnoreCase("Camion")){
+                //creazione stringa portata e apparizione messaggio di errore se non e' un double 
+                try {
+                    Double.parseDouble(portata);
+                }
+                catch (NumberFormatException errorPortata) {
+                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
+                }
+                inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
+            }
+            else{
+                //creazione stringa portata e apparizione messaggio di errore se non e' un int 
+                try {
+                    Integer.parseInt(cilindrata);
+                }
+                catch (NumberFormatException errorPortata) {
+                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
+                }
                 inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
+            }
             this.dispose();
         }
         //disitabilazione spazi non necessari all inserimento del particolare veicolo
