@@ -162,6 +162,7 @@ public class Inventario {
     public void aggiungiVeicolo(Veicolo vec) {
         this.listaVeicoli.add(vec);
     }
+    
 
     public void rimuoviVeicolo(String targa) {
         //trova il veicolo con la stessa targa e lo elimina
@@ -177,5 +178,14 @@ public class Inventario {
     // Utile per il testing e per la GUI
     public LinkedList<Veicolo> getLista() {
         return this.listaVeicoli;
+    }
+
+    public Veicolo getVeicoloDaTarga(String targa) {
+        Veicolo trovato=null;
+        for(Veicolo veic : listaVeicoli){
+            if(veic.getTarga().getNumero().equalsIgnoreCase(targa))
+                trovato=veic;
+        }
+        return trovato;
     }
 }

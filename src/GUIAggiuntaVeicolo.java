@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class GUIVeicolo extends JFrame implements ActionListener{
+public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
  
     private Inventario inv;
 
@@ -34,7 +34,7 @@ public class GUIVeicolo extends JFrame implements ActionListener{
     private JButton salvaVeicolo;
 
     
-    public GUIVeicolo(String titolo, Inventario inv){
+    public GUIAggiuntaVeicolo(String titolo, Inventario inv){
         super(titolo);
         this.inv=inv;
 
@@ -139,18 +139,18 @@ public class GUIVeicolo extends JFrame implements ActionListener{
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
             if(veicolo.equalsIgnoreCase("Automobile"))
-            inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+                inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
             else if(veicolo.equalsIgnoreCase("Camion")){
                 //creazione stringa portata e apparizione messaggio di errore se non e' un double 
                 try {
                     Double.parseDouble(portata);
                 }
                 catch (NumberFormatException errorPortata) {
-                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero (la virgola non e' accettata usare il .)","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
                 }
                 inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
             }
-            else{
+            else if(veicolo.equalsIgnoreCase("Moto")){
                 //creazione stringa portata e apparizione messaggio di errore se non e' un int 
                 try {
                     Integer.parseInt(cilindrata);

@@ -57,7 +57,11 @@ public class Tester {
         myGui.setVisible(true);
 
         // GUIVeicolo addGUI = new GUIVeicolo();
-        //         addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //         addGUI.setVisible(true);
+        // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // addGUI.setVisible(true);
+        
+        // GUIRiepilogo riepGUI = new GUIRiepilogo("Test");
+        // riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // riepGUI.setVisible(true);
     }
 }

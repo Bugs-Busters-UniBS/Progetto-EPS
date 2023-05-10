@@ -45,10 +45,10 @@ public class TabellaInventario extends JTable {
 
     private void setBottoni(){
         this.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
-        this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox()));
+        this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox(), inv));
 
         this.getColumn("Dettagli").setCellRenderer(new ButtonRenderer());
-        this.getColumn("Dettagli").setCellEditor(new ButtonEditor(new JCheckBox()));
+        this.getColumn("Dettagli").setCellEditor(new ButtonEditor(new JCheckBox(), inv));
     }
     
 }
@@ -78,10 +78,12 @@ class ButtonEditor extends DefaultCellEditor {
 
     protected JButton button;
     private String label;
+    private Inventario inv;
 
-    public ButtonEditor(JCheckBox checkBox) {
+    public ButtonEditor(JCheckBox checkBox, Inventario inv) {
         super(checkBox);
         button = new JButton();
+        this.inv=inv;
     }
 
     @Override
@@ -99,16 +101,18 @@ class ButtonEditor extends DefaultCellEditor {
 
         //premuto bottone mostra dettagli
         if(column == 5){
-            new FinestraRiepilogoDatiVeicolo();
+            String titolo=table.getModel().getValueAt(row, 1).toString()+" "+table.getModel().getValueAt(row, 2).toString();
             String targa = table.getModel().getValueAt(row, 3).toString();
-            System.out.println(targa);
+            Veicolo veicolo= inv.getVeicoloDaTarga(targa);
+            GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo(titolo, veicolo);
+            riepGUI.setVisible(true);
         }
         
         //premuto bottone elimina veicolo
         if(column == 6){
             TabellaInventario tabella = (TabellaInventario) table;
             String targa = tabella.getModel().getValueAt(row, 3).toString();
-            int scelta = JOptionPane.showConfirmDialog(null,"Are you sure?");  
+            int scelta = JOptionPane.showConfirmDialog(null,"Sei sicuro?");  
             //int scelta = JOptionPane.showConfirmDialog(null,"Are you sure?","Conferma",0, JOptionPane.QUESTION_MESSAGE,null);`
             if(scelta==JOptionPane.YES_OPTION){
                 tabella.getInventario().rimuoviVeicolo(targa);
