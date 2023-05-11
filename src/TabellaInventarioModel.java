@@ -4,7 +4,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class TabellaInventarioModel extends DefaultTableModel {
-    private static final Vector<String> NOMI_COLONNE = new Vector<>(Arrays.asList("Tipo Veicolo", "Marca", "Modello", "Numero Targa", "Paese", "Dettagli", "Elimina"));
+    private static final Vector<String> NOMI_COLONNE = new Vector<>(Arrays.asList("Tipo Veicolo", "Marca", "Modello", "Numero Targa", "Paese", "Elimina"));
 
     public TabellaInventarioModel(Inventario inv) {
         super(NOMI_COLONNE, inv.getLista().size());
@@ -31,9 +31,8 @@ public class TabellaInventarioModel extends DefaultTableModel {
         super.addRow(v.toVector());
     }
 
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        //Only the third column
-        return column==5 || column==6;
-    }
+    // public boolean isCellEditable(int row, int column) {
+    //     //Only the third column
+    //     return column==5 || column==6;
+    // }
 }

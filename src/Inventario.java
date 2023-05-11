@@ -191,7 +191,6 @@ public class Inventario {
         return this.listaVeicoli;
     }
 
-<<<<<<< HEAD
     public Veicolo getVeicoloDaTarga(String targa) {
         Veicolo trovato=null;
         for(Veicolo veic : listaVeicoli){
@@ -200,15 +199,4 @@ public class Inventario {
         }
         return trovato;
     }
-=======
-    /* public Veicolo getVeicoloByTarga(String targa) {
-        for(Veicolo v : listaVeicoli) {
-            if(v.getTarga().getNumero().equalsIgnoreCase(targa)) {
-                return v;
-            }
-            else {
-            }
-        }
-    } */
->>>>>>> implementa-immagini-xml
 }

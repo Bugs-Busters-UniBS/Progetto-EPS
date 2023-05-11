@@ -8,11 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-<<<<<<<< HEAD:src/GUIAggiuntaVeicolo.java
 public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
-========
-public class FinestraAggiungi extends JFrame implements ActionListener{
->>>>>>>> implementa-immagini-xml:src/FinestraAggiungi.java
  
     private Inventario inv;
 
@@ -37,12 +33,8 @@ public class FinestraAggiungi extends JFrame implements ActionListener{
     private JTextField inserimentoCilindrata;
     private JButton salvaVeicolo;
 
-    
-<<<<<<<< HEAD:src/GUIAggiuntaVeicolo.java
-    public GUIAggiuntaVeicolo(String titolo, Inventario inv){
-========
-    public FinestraAggiungi(String titolo, Inventario inv){
->>>>>>>> implementa-immagini-xml:src/FinestraAggiungi.java
+
+    public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
         super(titolo);
         this.inv=inv;
 

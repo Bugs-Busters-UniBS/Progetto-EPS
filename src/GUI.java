@@ -77,11 +77,7 @@ public class GUI extends JFrame{
         JButton botAggiungi = new JButton("Aggiungi nuovo veicolo");
         botAggiungi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-<<<<<<< HEAD
                 GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta Veicoli", inVeicoli);
-=======
-                FinestraAggiungi addGUI = new FinestraAggiungi("Aggiunta Veicoli", inVeicoli);
->>>>>>> implementa-immagini-xml
                 //aggiorna la tabella dopo aver aggiunto il veicolo
                 addGUI.addWindowListener(new WindowAdapter() {
                     public void windowClosed(WindowEvent e) {
