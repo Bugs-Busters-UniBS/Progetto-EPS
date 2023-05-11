@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.DialogOwner;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -78,7 +77,7 @@ public class GUIRiepilogoVeicolo extends JFrame {
 
         //aggiunta dell'immagine al panel
         try {
-            BufferedImage immagineAuto = ImageIO.read(new File("auto_place_holder.png"));
+            BufferedImage immagineAuto = ImageIO.read(new File("immagini/auto_place_holder.png"));
             Image immagineScal = immagineAuto.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
             JLabel labelImmagine = new JLabel(new ImageIcon(immagineScal));
             pannelloImmagine.add(labelImmagine);

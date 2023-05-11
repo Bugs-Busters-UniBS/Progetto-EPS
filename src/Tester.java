@@ -51,13 +51,13 @@ public class Tester {
         //     throw new RuntimeException(e);
         // }
 
-        // GUI myGui = new GUI("Gestionale Veicoli");
-        // myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // myGui.setVisible(true);
+        GUI myGui = new GUI("Gestionale Veicoli");
+        myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myGui.setVisible(true);
 
-        GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo();
-        addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        addGUI.setVisible(true);
+        // GUIVeicolo addGUI = new GUIVeicolo();
+        // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // addGUI.setVisible(true);
         
         // GUIRiepilogo riepGUI = new GUIRiepilogo("Test");
         // riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
