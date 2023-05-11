@@ -6,8 +6,8 @@ public class Moto extends Veicolo {
     public final static String TIPO_VEICOLO = "Moto";
     private int cilindrata;
    
-    public Moto(String marca, String modello, Targa targa, int cilindrata) {
-        super(marca, modello, targa);
+    public Moto(String marca, String modello, Targa targa, int cilindrata, String filename) {
+        super(marca, modello, targa, filename);
         this.cilindrata = cilindrata;
     }
 

@@ -7,8 +7,8 @@ public class Camion extends Veicolo {
 
     private double portataCarico;
 
-    public Camion(String marca, String modello, Targa targa, double portata) {
-        super(marca, modello, targa);
+    public Camion(String marca, String modello, Targa targa, double portata, String filename) {
+        super(marca, modello, targa, filename);
         this.portataCarico = portata;
     }
 

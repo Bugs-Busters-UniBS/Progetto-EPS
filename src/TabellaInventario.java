@@ -34,6 +34,7 @@ public class TabellaInventario extends JTable {
     public void updateTable() {
         this.modello.refresh(inv);
         setBottoni();
+
     }
     public Inventario getInventario(){
         return inv;
@@ -99,7 +100,7 @@ class ButtonEditor extends DefaultCellEditor {
 
         //premuto bottone mostra dettagli
         if(column == 5){
-            new FinestraRiepilogoDatiVeicolo();
+            new FinestraDettagli("placeholder.png");
             String targa = table.getModel().getValueAt(row, 3).toString();
             System.out.println(targa);
         }

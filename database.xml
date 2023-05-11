@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Inventario>
     <Veicolo Numero_Porte="5" marca="Fiat" modello="500" tipo="Automobile">
-        <Targa numero="ADGSBS" paese="ITALIA"/>
+        <Targa numero="AAAAAAA" paese="ITALIA"/>
+        <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="150" marca="Audi" modello="boh" tipo="Automobile">
-        <Targa numero="FFFSAB" paese="GERMANIA"/>
+    <Veicolo marca="Volkswagen" modello="Modellowagen" portata="1433.0" tipo="Camion">
+        <Targa numero="RRRRRRR" paese="GERMANIA"/>
+        <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo marca="Coso" modello="modello1" portata="40.23" tipo="Camion">
-        <Targa numero="AAAAAV" paese="ITALIA"/>
+    <Veicolo Numero_Porte="5" marca="Renault" modello="Qualcosa" tipo="Automobile">
+        <Targa numero="ERWFAS" paese="ITALIA"/>
+        <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo cilindrata="1235" marca="Honda" modello="nonoloso" tipo="Moto">
-        <Targa numero="QWERTY" paese="GERMANIA"/>
+    <Veicolo Numero_Porte="5" marca="MarcaFrancese" modello="Boh" tipo="Automobile">
+        <Targa numero="AREWQSD" paese="FRANCIA"/>
+        <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="50" marca="Honda" modello="qualcosa" tipo="Automobile">
-        <Targa numero="STOCAZZO" paese="ITALIA"/>
+    <Veicolo Numero_Porte="3" marca="Ferrari" modello="Boh" tipo="Automobile">
+        <Targa numero="ASFAASF" paese="ITALIA"/>
+        <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo marca="marca" modello="modello" portata="150.0" tipo="Camion">
-        <Targa numero="ASIFHB" paese="GERMANIA"/>
-    </Veicolo>
-    <Veicolo Numero_Porte="3" marca="a" modello="a" tipo="Automobile">
-        <Targa numero="56" paese="ITALIA"/>
+    <Veicolo Numero_Porte="3" marca="Volvo" modello="HHHSH" tipo="Automobile">
+        <Targa numero="AsdAWw" paese="GERMANIA"/>
+        <immagine filename="placeholder.png"/>
     </Veicolo>
 </Inventario>

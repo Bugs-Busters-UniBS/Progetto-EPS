@@ -10,15 +10,19 @@ public class Veicolo {
     public static final String TIPO_VEICOLO = "Veicolo";
     public static final String MODELLO_XML_STRING = "modello";
     public static final String TARGA_XML_STRING = "Targa";
+    public static final String IMMAGINE_XML_TAG = "immagine";
+    public static final String FILENAME_XML_TAG = "filename";
 
     private String marca;
     private Targa targa;
     private String modello;
+    private String imgFilename;
 
-    public Veicolo(String marca, String modello, Targa targa) {
+    public Veicolo(String marca, String modello, Targa targa, String imgFilename) {
         this.marca = marca;
         this.modello = modello;
         this.targa = targa;
+        this.imgFilename = imgFilename;
     }
 
     public Veicolo(Element veicolo) {
@@ -26,6 +30,8 @@ public class Veicolo {
         this.marca = veicolo.getAttribute(MARCA_XML_STRING);
         Element targaElement = (Element)veicolo.getElementsByTagName(TARGA_XML_STRING).item(0);
         this.targa = new Targa(targaElement);
+        Element imgElement = (Element)veicolo.getElementsByTagName(IMMAGINE_XML_TAG).item(0);
+        this.imgFilename = imgElement.getAttribute(FILENAME_XML_TAG);
     }
 
     // Getter oggetto targa
@@ -48,6 +54,12 @@ public class Veicolo {
     public String getTipo() {
         return TIPO_VEICOLO;
     }
+
+    // Getter del filename associato alla foto del veicolo
+    public String getImgFilename() {
+        return this.imgFilename;
+    }
+
     
     public Element veicoloToXmlElement (Document fileInventario, String tag) {
         // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista

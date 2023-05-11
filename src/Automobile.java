@@ -7,8 +7,8 @@ public class Automobile extends Veicolo {
     public static final String NUMERO_PORTE_XML_STRING = "Numero_Porte";
     private int numeroPorte;
 
-    public Automobile(String marca, String modello, Targa targa, int numeroPorte) {
-        super(marca, modello, targa);
+    public Automobile(String marca, String modello, Targa targa, int numeroPorte, String filename) {
+        super(marca, modello, targa, filename);
         this.numeroPorte = numeroPorte;
     }
 
