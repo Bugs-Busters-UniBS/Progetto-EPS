@@ -7,13 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Scanner;
 
 public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
  
     private Inventario inv;
 
     private JPanel insertionPanel = new JPanel();
+    private JPanel pulsantieraLabel = new JPanel();
     private JPanel pulsantiera = new JPanel();
+    private JPanel label = new JPanel();
     
     private JLabel labelTipoVeicolo;
     private JLabel labelMarca;
@@ -23,6 +28,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JLabel labelPorte;
     private JLabel labelPortata;
     private JLabel labelCilindrata;
+    private JLabel labelFileSelezionato;
     private JComboBox<String> dropdownVeicolo;
     private JComboBox<String> dropdownPaese;
     private JComboBox<String> dropdownPorte;
@@ -32,11 +38,13 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JTextField inserimentoPortata;
     private JTextField inserimentoCilindrata;
     private JButton salvaVeicolo;
+    private JButton aggiungiImmagine;
 
-    
-    public GUIAggiuntaVeicolo(String titolo, Inventario inv){
-        super(titolo);
-        this.inv=inv;
+
+    //da riaggiungere String titolo, Inventario inv   
+    public GUIAggiuntaVeicolo(){
+        // super(titolo);
+        // this.inv=inv;
 
         this.setSize(400,300);
         this.setLayout(new BorderLayout());
@@ -44,7 +52,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         
         //definizione due panel
         insertionPanel.setLayout(new GridLayout(8,2));
-        pulsantiera.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
+        pulsantieraLabel.setLayout(new GridLayout(1, 2));
 
         //titolo
         JLabel titoloGUI = new JLabel("Aggiunta Veicoli",  SwingConstants.CENTER);
@@ -60,6 +68,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         labelPorte = new JLabel("N Porte", SwingConstants.CENTER);
         labelPortata = new JLabel("Portata", SwingConstants.CENTER);
         labelCilindrata = new JLabel("Cilindrata", SwingConstants.CENTER);
+        labelFileSelezionato = new JLabel("Non hai selezionato nessuna immagine");
+        
 
         String[] stringVeicolo = {"Automobile", "Camion", "Moto"};
         dropdownVeicolo = new JComboBox<String>(stringVeicolo);
@@ -108,20 +118,24 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         labelCilindrata.setForeground(Color.lightGray);
 
         //definizione pulsantiera
+        aggiungiImmagine = new JButton("Aggiunta immagine");
         salvaVeicolo = new JButton("Salva veicolo");
 
         // JButton aggiungiFoto = new JButton("aggiungi foto");
+        pulsantiera.add(aggiungiImmagine);
         pulsantiera.add(salvaVeicolo);
+        label.add(labelFileSelezionato, BorderLayout.PAGE_END);
+        aggiungiImmagine.addActionListener(this);
         salvaVeicolo.addActionListener(this);
         
-
+        //aggiunta alla pulsantiera label
+        pulsantieraLabel.setLayout(new BorderLayout());
+        pulsantieraLabel.add(label, BorderLayout.PAGE_START);
+        pulsantieraLabel.add(pulsantiera, BorderLayout.PAGE_END);
+        
         //aggiunta panel
         this.add(insertionPanel, BorderLayout.CENTER);
-        this.add(pulsantiera, BorderLayout.PAGE_END);
-
-        //funzionalita bottoni pulsantiera
-        //salvaVeicolo.addActionListener(ev -> inVeicoli.salvaInventario("databasepy.xml"));
-
+        this.add(pulsantieraLabel, BorderLayout.PAGE_END);
     }
 
 
@@ -138,8 +152,13 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             String cilindrata = inserimentoCilindrata.getText();
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
-            if(veicolo.equalsIgnoreCase("Automobile"))
-                inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+            if(veicolo.equalsIgnoreCase("Automobile")){
+                if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                    inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+                else
+                    inv.aggiungiVeicolo()new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte));
+            }
+                
             else if(veicolo.equalsIgnoreCase("Camion")){
                 //creazione stringa portata e apparizione messaggio di errore se non e' un double 
                 try {
@@ -162,7 +181,20 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             }
             this.dispose();
         }
-        //disitabilazione spazi non necessari all inserimento del particolare veicolo
+        //tasto di aggiunta immagine
+        else if(e.getSource()==aggiungiImmagine){
+            final JFileChooser file = new JFileChooser();
+            file.showOpenDialog(this);
+            
+            try {
+                labelFileSelezionato.setText(file.getSelectedFile().toString());
+            }
+            catch(Exception er){
+                System.out.println("il file non è stato trovato");
+            }
+
+        }
+        //disitabilazione spazi non necessari all'inserimento del particolare veicolo
         else if(e.getSource()==dropdownVeicolo){
             switch(dropdownVeicolo.getSelectedIndex()){
                 case 0:
