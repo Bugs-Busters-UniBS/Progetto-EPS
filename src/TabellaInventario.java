@@ -1,17 +1,5 @@
 import javax.swing.JTable;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.table.TableCellRenderer;
-
 public class TabellaInventario extends JTable {
     private TabellaInventarioModel modello;
     private Inventario inv;

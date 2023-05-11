@@ -18,13 +18,23 @@ public class Veicolo {
     private String modello;
     private String imgFilename;
 
+    // ============ COSTRUTTORE DA MARCA MODELLO E TARGA ===========================
     public Veicolo(String marca, String modello, Targa targa) {
         this.marca = marca;
         this.modello = modello;
         this.targa = targa;
-        this.imgFilename = "immagini/"+marca+modello+("_"+targa.getNumero())+".png";
+
+        if(this instanceof Automobile)
+            this.imgFilename = "immagini/auto_place_holder.png";
+        
+        else if(this instanceof Camion)
+            this.imgFilename = "immagini/camion_place_holder.png";
+
+        else if(this instanceof Moto)
+            this.imgFilename = "immagini/moto_place_holder.png";
     }
 
+    // ============ COSTRUTTORE DA ELEMENTO XML ===================================
     public Veicolo(Element veicolo) {
         this.modello = veicolo.getAttribute(MODELLO_XML_STRING);
         this.marca = veicolo.getAttribute(MARCA_XML_STRING);
@@ -34,6 +44,14 @@ public class Veicolo {
 
         Element imgElement = (Element)veicolo.getElementsByTagName(IMMAGINE_XML_TAG).item(0);
         this.imgFilename = imgElement.getAttribute(FILENAME_XML_TAG);
+    }
+
+    // ======================= COSTRUTTORE CON FILENAME ==========================
+    public Veicolo(String marca, String modello, Targa targa, String filename) {
+        this.marca = marca;
+        this.modello = modello;
+        this.targa = targa;
+        this.imgFilename = filename;
     }
 
     // Getter oggetto targa
