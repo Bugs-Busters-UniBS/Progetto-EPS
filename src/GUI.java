@@ -8,6 +8,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 
 public class GUI extends JFrame{
     public int targaDEBUG = 0;
@@ -47,6 +48,24 @@ public class GUI extends JFrame{
 
         //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
         TabellaInventario tabella = new TabellaInventario(inVeicoli);
+        //impostazione dimensioni dei pulsanti elimina e dettagli
+        TableColumn colonna = null;
+        for (int i = 0; i < tabella.getModel().getColumnCount(); i++) {
+            colonna = tabella.getColumnModel().getColumn(i);
+            if(i == 5){
+                colonna.setPreferredWidth(20);
+            }
+            else if(i == 6){
+                colonna.setPreferredWidth(20);
+            }
+            // if (i==3) {
+            //     colonna.setPreferredWidth(100); //third column is bigger
+            // } else {
+            //     colonna.setPreferredWidth(50);
+            // }
+        }
+
+
         JScrollPane tabellaPanel = new JScrollPane(tabella);
 
         //---------------------------------------------------------------------------------------------------------------
