@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+<<<<<<<< HEAD:src/GUIAggiuntaVeicolo.java
 public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
+========
+public class FinestraAggiungi extends JFrame implements ActionListener{
+>>>>>>>> implementa-immagini-xml:src/FinestraAggiungi.java
  
     private Inventario inv;
 
@@ -34,7 +38,11 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JButton salvaVeicolo;
 
     
+<<<<<<<< HEAD:src/GUIAggiuntaVeicolo.java
     public GUIAggiuntaVeicolo(String titolo, Inventario inv){
+========
+    public FinestraAggiungi(String titolo, Inventario inv){
+>>>>>>>> implementa-immagini-xml:src/FinestraAggiungi.java
         super(titolo);
         this.inv=inv;
 
@@ -128,6 +136,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==salvaVeicolo){
+            // Ottiene i parametri del veicolo dalla finestra
             String veicolo = (String)dropdownVeicolo.getSelectedItem();
             String marca = inserimentoMarca.getText();
             String modello = inserimentoModello.getText();
@@ -136,6 +145,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             String porte = (String)dropdownPorte.getSelectedItem();
             String portata = inserimentoPortata.getText();
             String cilindrata = inserimentoCilindrata.getText();
+
+            // Crea Filename da marca e modello
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
             if(veicolo.equalsIgnoreCase("Automobile"))

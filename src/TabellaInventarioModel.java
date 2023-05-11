@@ -18,7 +18,7 @@ public class TabellaInventarioModel extends DefaultTableModel {
     }
 
     public void refresh(Inventario inv) {
-        Vector<Vector<String>> rows = new Vector<>();
+        Vector<Vector<String>> rows = new Vector<Vector<String>>();
 
         for(Veicolo veic : inv.getLista()) {
             rows.add(veic.toVector());

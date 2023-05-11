@@ -33,6 +33,8 @@ public class Inventario {
     public static final String TARGA_XML_STRING = "Targa";
     public static final String NUMERO_TARGA_XML_STRING = "numero";
     public static final String PAESE_XML_STRING = "paese";
+    public static final String IMMAGINE_XML_TAG = "immagine";
+    public static final String FILENAME_XML_TAG = "filename";
 
     private LinkedList<Veicolo> listaVeicoli;
 
@@ -54,14 +56,18 @@ public class Inventario {
             // Itera su tutti i veicoli dell'inventario
             for(Veicolo vec : listaVeicoli) {
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
-                Element veicolo = vec.veicoloToXmlElement(doc, Veicolo.TIPO_VEICOLO);
+                Element veicoloElement = vec.veicoloToXmlElement(doc, Veicolo.TIPO_VEICOLO);
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
                 Element targa = vec.getTarga().targaToXml(doc, TARGA_XML_STRING);
                 // Aggiunge la targa come elemento figlio del veicolo
-                veicolo.appendChild(targa);
-
+                veicoloElement.appendChild(targa);
+                // Aggiunge il filename dell'immagine da mostrare nella schermata dettagli
+                Element immagine = doc.createElement(IMMAGINE_XML_TAG);
+                immagine.setAttribute(FILENAME_XML_TAG, vec.getImgFilename());
+                // Aggiunge l'immagine come elemento child del veicolo
+                veicoloElement.appendChild(immagine);
                 // Aggiunge il veicolo come elemento figlio di root (l'origine del documento)
-                root.appendChild(veicolo);
+                root.appendChild(veicoloElement);
             }
 
             // Aggiunge root al documento
@@ -158,20 +164,25 @@ public class Inventario {
         }
     }
 
-
+    // Aggiunge un veicolo all'inventario
     public void aggiungiVeicolo(Veicolo vec) {
         this.listaVeicoli.add(vec);
     }
     
 
+    // Rimuove un veicolo dall'inventario identificandolo dalla targa
     public void rimuoviVeicolo(String targa) {
-        //trova il veicolo con la stessa targa e lo elimina
+        // Trova il veicolo con la stessa targa e lo elimina
+        int indiceVeicolo = -1;
         for(Veicolo vec : this.listaVeicoli){
             if(vec.getTarga().getNumero().equalsIgnoreCase(targa)){
-                this.listaVeicoli.remove(vec);
-                return;
+                indiceVeicolo = listaVeicoli.indexOf(vec);
             }
         } 
+
+        if(indiceVeicolo != -1) {
+            listaVeicoli.remove(indiceVeicolo);
+        }
     }
 
     // Getter della lista listaVeicoli
@@ -180,6 +191,7 @@ public class Inventario {
         return this.listaVeicoli;
     }
 
+<<<<<<< HEAD
     public Veicolo getVeicoloDaTarga(String targa) {
         Veicolo trovato=null;
         for(Veicolo veic : listaVeicoli){
@@ -188,4 +200,15 @@ public class Inventario {
         }
         return trovato;
     }
+=======
+    /* public Veicolo getVeicoloByTarga(String targa) {
+        for(Veicolo v : listaVeicoli) {
+            if(v.getTarga().getNumero().equalsIgnoreCase(targa)) {
+                return v;
+            }
+            else {
+            }
+        }
+    } */
+>>>>>>> implementa-immagini-xml
 }

@@ -23,7 +23,7 @@ public class TabellaInventario extends JTable {
         setCellSelectionEnabled(false);
         this.setModel(modello);
         this.tableHeader.setReorderingAllowed(false);
-        setBottoni();
+        renderBottoni();
     }
 
     public void addRow(Veicolo vec) {
@@ -33,17 +33,18 @@ public class TabellaInventario extends JTable {
 
     public void updateTable() {
         this.modello.refresh(inv);
-        setBottoni();
+        renderBottoni();
+
     }
     public Inventario getInventario(){
         return inv;
     }
 
-    // public void removeRow(int i) {
-    //     this.modello.removeRow(i);
-    // }
+    /* public void removeRow(int i) {
+        this.modello.removeRow(i);
+    } */
 
-    private void setBottoni(){
+    private void renderBottoni(){
         this.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
         this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox(), inv));
 
@@ -101,7 +102,11 @@ class ButtonEditor extends DefaultCellEditor {
 
         //premuto bottone mostra dettagli
         if(column == 5){
-            String titolo=table.getModel().getValueAt(row, 1).toString()+" "+table.getModel().getValueAt(row, 2).toString();
+// <<<<<<< HEAD
+//             String titolo=table.getModel().getValueAt(row, 1).toString()+" "+table.getModel().getValueAt(row, 2).toString();
+// =======
+//             new FinestraDettagli("placeholder.png");
+// >>>>>>> implementa-immagini-xml
             String targa = table.getModel().getValueAt(row, 3).toString();
             Veicolo veicolo= inv.getVeicoloDaTarga(targa);
             GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo(titolo, veicolo);
