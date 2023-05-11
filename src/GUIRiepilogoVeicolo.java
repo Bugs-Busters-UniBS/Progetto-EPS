@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.print.attribute.standard.DialogOwner;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,9 +13,6 @@ import javax.swing.JPanel;
 
 
 public class GUIRiepilogoVeicolo extends JFrame {
-
-    //TODO fixare targa
-
     private JPanel pannelloDati = new JPanel(new GridLayout(7,1));
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
 
@@ -29,7 +27,7 @@ public class GUIRiepilogoVeicolo extends JFrame {
         JLabel tipo = new JLabel("Tipologia: " + veicolo.getTipo());;
         JLabel marca = new JLabel("Marca: " + veicolo.getMarca());
         JLabel modello = new JLabel("Modello: " + veicolo.getModello());
-        JLabel paese = new JLabel("Paese di Provenienza: " + veicolo.getTarga().getPaese().name());
+        // JLabel paese = new JLabel("Paese di Provenienza: " + veicolo.getTarga().getPaese().name());
         //JLabel targa = new JLabel("Targa: " + veicolo.getTarga().getNumero());
         JLabel porte;
         JLabel portata;
@@ -101,12 +99,14 @@ public class GUIRiepilogoVeicolo extends JFrame {
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
             pannelloTarga.setBorder(BorderFactory.createLineBorder(Color.black));
-            pannelloTarga.setPreferredSize(new Dimension(150, 35));
+            pannelloTarga.setPreferredSize(new Dimension(150, 32));
             pannelloTarga.setLayout(new BorderLayout());
             JPanel leftPanel = new JPanel();
             leftPanel.setBackground(new Color(0,61,163,255));
+            leftPanel.setPreferredSize(new Dimension(15, 32));
             JPanel rightPanel = new JPanel();
             rightPanel.setBackground(new Color(0,61,163,255));
+            rightPanel.setPreferredSize(new Dimension(15, 32));
             JLabel targaLabel = new JLabel(t.getNumero());
             JPanel centerPanel = new JPanel();
             centerPanel.setBackground(new Color(255,255,255,255));

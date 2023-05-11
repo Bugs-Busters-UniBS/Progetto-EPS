@@ -31,8 +31,8 @@ public class TabellaInventarioModel extends DefaultTableModel {
         super.addRow(v.toVector());
     }
 
-    // public boolean isCellEditable(int row, int column) {
-    //     //Only the third column
-    //     return column==5 || column==6;
-    // }
+    public boolean isCellEditable(int row, int column) {
+        //Only the third column
+        return column==5;
+    }
 }
