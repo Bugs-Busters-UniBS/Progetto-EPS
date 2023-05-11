@@ -8,20 +8,20 @@
         <Targa numero="RRRRRRR" paese="GERMANIA"/>
         <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="5" marca="Renault" modello="Qualcosa" tipo="Automobile">
-        <Targa numero="ERWFAS" paese="ITALIA"/>
-        <immagine filename="placeholder.png"/>
-    </Veicolo>
-    <Veicolo Numero_Porte="5" marca="MarcaFrancese" modello="Boh" tipo="Automobile">
-        <Targa numero="AREWQSD" paese="FRANCIA"/>
-        <immagine filename="placeholder.png"/>
-    </Veicolo>
     <Veicolo Numero_Porte="3" marca="Ferrari" modello="Boh" tipo="Automobile">
         <Targa numero="ASFAASF" paese="ITALIA"/>
         <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="Volvo" modello="HHHSH" tipo="Automobile">
-        <Targa numero="AsdAWw" paese="GERMANIA"/>
-        <immagine filename="placeholder.png"/>
+    <Veicolo Numero_Porte="3" marca="PROVA" modello="PROVA" tipo="Automobile">
+        <Targa numero="123" paese="ITALIA"/>
+        <immagine filename="PROVAPROVA.png"/>
+    </Veicolo>
+    <Veicolo Numero_Porte="3" marca="PROVA" modello="FUNZIONATUTTO" tipo="Automobile">
+        <Targa numero="SperoFunzioniTutto" paese="ITALIA"/>
+        <immagine filename="PROVAFUNZIONATUTTOSperoFunzioniTutto.png"/>
+    </Veicolo>
+    <Veicolo Numero_Porte="3" marca="giacomo" modello="franco" tipo="Automobile">
+        <Targa numero="friajbsd" paese="GERMANIA"/>
+        <immagine filename="immagini/giacomofrancofriajbsd.png"/>
     </Veicolo>
 </Inventario>

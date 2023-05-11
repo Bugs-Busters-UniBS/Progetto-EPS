@@ -139,11 +139,10 @@ public class FinestraAggiungi extends JFrame implements ActionListener{
             String cilindrata = inserimentoCilindrata.getText();
 
             // Crea Filename da marca e modello
-            String imgFilename = marca+modello+".png";
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
             if(veicolo.equalsIgnoreCase("Automobile"))
-            inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), imgFilename));
+            inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
             else if(veicolo.equalsIgnoreCase("Camion")){
                 //creazione stringa portata e apparizione messaggio di errore se non e' un double 
                 try {
@@ -152,7 +151,7 @@ public class FinestraAggiungi extends JFrame implements ActionListener{
                 catch (NumberFormatException errorPortata) {
                     JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
                 }
-                inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), imgFilename));
+                inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
             }
             else{
                 //creazione stringa portata e apparizione messaggio di errore se non e' un int 
@@ -162,7 +161,7 @@ public class FinestraAggiungi extends JFrame implements ActionListener{
                 catch (NumberFormatException errorPortata) {
                     JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
                 }
-                inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata), imgFilename));
+                inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
             }
             this.dispose();
         }

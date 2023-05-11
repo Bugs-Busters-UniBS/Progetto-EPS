@@ -56,18 +56,18 @@ public class Inventario {
             // Itera su tutti i veicoli dell'inventario
             for(Veicolo vec : listaVeicoli) {
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
-                Element veicolo = vec.veicoloToXmlElement(doc, Veicolo.TIPO_VEICOLO);
+                Element veicoloElement = vec.veicoloToXmlElement(doc, Veicolo.TIPO_VEICOLO);
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
                 Element targa = vec.getTarga().targaToXml(doc, TARGA_XML_STRING);
                 // Aggiunge la targa come elemento figlio del veicolo
-                veicolo.appendChild(targa);
+                veicoloElement.appendChild(targa);
                 // Aggiunge il filename dell'immagine da mostrare nella schermata dettagli
                 Element immagine = doc.createElement(IMMAGINE_XML_TAG);
                 immagine.setAttribute(FILENAME_XML_TAG, vec.getImgFilename());
                 // Aggiunge l'immagine come elemento child del veicolo
-                veicolo.appendChild(immagine);
+                veicoloElement.appendChild(immagine);
                 // Aggiunge il veicolo come elemento figlio di root (l'origine del documento)
-                root.appendChild(veicolo);
+                root.appendChild(veicoloElement);
             }
 
             // Aggiunge root al documento

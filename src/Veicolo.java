@@ -18,18 +18,20 @@ public class Veicolo {
     private String modello;
     private String imgFilename;
 
-    public Veicolo(String marca, String modello, Targa targa, String imgFilename) {
+    public Veicolo(String marca, String modello, Targa targa) {
         this.marca = marca;
         this.modello = modello;
         this.targa = targa;
-        this.imgFilename = imgFilename;
+        this.imgFilename = "immagini/"+marca+modello+("_"+targa.getNumero())+".png";
     }
 
     public Veicolo(Element veicolo) {
         this.modello = veicolo.getAttribute(MODELLO_XML_STRING);
         this.marca = veicolo.getAttribute(MARCA_XML_STRING);
+
         Element targaElement = (Element)veicolo.getElementsByTagName(TARGA_XML_STRING).item(0);
         this.targa = new Targa(targaElement);
+
         Element imgElement = (Element)veicolo.getElementsByTagName(IMMAGINE_XML_TAG).item(0);
         this.imgFilename = imgElement.getAttribute(FILENAME_XML_TAG);
     }

@@ -23,7 +23,7 @@ public class TabellaInventario extends JTable {
         setCellSelectionEnabled(false);
         this.setModel(modello);
         this.tableHeader.setReorderingAllowed(false);
-        setBottoni();
+        renderBottoni();
     }
 
     public void addRow(Veicolo vec) {
@@ -33,18 +33,18 @@ public class TabellaInventario extends JTable {
 
     public void updateTable() {
         this.modello.refresh(inv);
-        setBottoni();
+        renderBottoni();
 
     }
     public Inventario getInventario(){
         return inv;
     }
 
-    // public void removeRow(int i) {
-    //     this.modello.removeRow(i);
-    // }
+    /* public void removeRow(int i) {
+        this.modello.removeRow(i);
+    } */
 
-    private void setBottoni(){
+    private void renderBottoni(){
         this.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
         this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox()));
 
