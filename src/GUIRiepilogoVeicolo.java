@@ -77,13 +77,31 @@ public class GUIRiepilogoVeicolo extends JFrame {
 
         //aggiunta dell'immagine al panel
         try {
-            BufferedImage immagineAuto = ImageIO.read(new File("immagini/auto_place_holder.png"));
+            BufferedImage immagineAuto = ImageIO.read(new File(veicolo.getImgFilename()));
             Image immagineScal = immagineAuto.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
             JLabel labelImmagine = new JLabel(new ImageIcon(immagineScal));
             pannelloImmagine.add(labelImmagine);
         }
         catch(Exception e ) {
             e.printStackTrace();
+            try{
+                String fileSostitutivo = null;
+                if(veicolo instanceof Automobile)
+                    fileSostitutivo = "immagini/auto_place_holder.png"; 
+                else if(veicolo instanceof Camion)
+                    fileSostitutivo = "immagini/camion_place_holder.png"; 
+                else if(veicolo instanceof Moto) 
+                    fileSostitutivo = "immagini/moto_place_holder.png";
+                
+                BufferedImage immagineAutoStandard = ImageIO.read(new File(fileSostitutivo));
+                Image immagineStandardScal = immagineAutoStandard.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+                JLabel labelImmagine = new JLabel(new ImageIcon(immagineStandardScal));
+                pannelloImmagine.add(labelImmagine);
+
+            }
+            catch(Exception ec){
+                ec.printStackTrace();
+            }
         }
 
         //aggiunta del panel alla gui

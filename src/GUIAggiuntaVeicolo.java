@@ -33,10 +33,9 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JButton salvaVeicolo;
     private JButton aggiungiImmagine;
 
-    // String titolo, Inventario inv
-    public GUIAggiuntaVeicolo() {
-        // super(titolo);
-        // this.inv=inv;
+    public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
+        super(titolo);
+        this.inv=inv;
 
         this.setSize(400,300);
         this.setLayout(new BorderLayout());
