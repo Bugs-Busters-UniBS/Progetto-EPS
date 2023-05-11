@@ -3,14 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Scanner;
-=======
->>>>>>> a211975a9eab170aebfb6525bcc6427f5dfa5fa1
 
 public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
  
@@ -41,17 +33,10 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JButton salvaVeicolo;
     private JButton aggiungiImmagine;
 
-
-<<<<<<< HEAD
-    //da riaggiungere String titolo, Inventario inv   
-    public GUIAggiuntaVeicolo(){
+    // String titolo, Inventario inv
+    public GUIAggiuntaVeicolo() {
         // super(titolo);
         // this.inv=inv;
-=======
-    public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
-        super(titolo);
-        this.inv=inv;
->>>>>>> a211975a9eab170aebfb6525bcc6427f5dfa5fa1
 
         this.setSize(400,300);
         this.setLayout(new BorderLayout());
@@ -166,18 +151,20 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
                     inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
                 else
-                    inv.aggiungiVeicolo()new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte));
-            }
-                
+                    inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), labelFileSelezionato.getText()));
+            } 
             else if(veicolo.equalsIgnoreCase("Camion")){
                 //creazione stringa portata e apparizione messaggio di errore se non e' un double 
                 try {
-                    Double.parseDouble(portata);
+                    Double.parseDouble(portata.replace(",", "."));
                 }
                 catch (NumberFormatException errorPortata) {
-                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero (la virgola non e' accettata usare il .)","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
                 }
-                inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
+                if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                    inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
+                else
+                    inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), labelFileSelezionato.getText()));
             }
             else if(veicolo.equalsIgnoreCase("Moto")){
                 //creazione stringa portata e apparizione messaggio di errore se non e' un int 
@@ -187,7 +174,10 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 catch (NumberFormatException errorPortata) {
                     JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
                 }
-                inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
+                if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                    inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
+                else
+                    inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata), labelFileSelezionato.getText())); 
             }
             this.dispose();
         }
