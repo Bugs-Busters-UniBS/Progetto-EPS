@@ -17,6 +17,11 @@ public class Moto extends Veicolo {
 
     }
 
+    public Moto(String marca, String modello, Targa targa, int cilindrata, String filename) {
+        super(marca, modello, targa, filename);
+        this.cilindrata = cilindrata;
+    }
+
     // Getter dell'attributo cilindrata
     public int getCilindrata() {
         return this.cilindrata;

@@ -25,14 +25,16 @@ public class TabellaInventarioModel extends DefaultTableModel {
         }
 
         this.setDataVector(rows, NOMI_COLONNE);
-    } 
+    }
+    
+    public boolean isCellEditable(int row, int column) {
+        //Solo colonna 5 (checkbox)
+        return column==5;
+    }
 
     public void addRow(Veicolo v) {
         super.addRow(v.toVector());
     }
 
-    public boolean isCellEditable(int row, int column) {
-        //Only the third column
-        return column==5;
-    }
+
 }
