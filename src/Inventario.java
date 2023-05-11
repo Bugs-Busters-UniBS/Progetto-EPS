@@ -192,11 +192,10 @@ public class Inventario {
     }
 
     public Veicolo getVeicoloDaTarga(String targa) {
-        Veicolo trovato=null;
         for(Veicolo veic : listaVeicoli){
             if(veic.getTarga().getNumero().equalsIgnoreCase(targa))
-                trovato=veic;
+                return veic;
         }
-        return trovato;
+        return null;
     }
 }

@@ -53,21 +53,13 @@ public class GUI extends JFrame{
         //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
         TabellaInventario tabella = new TabellaInventario(inVeicoli);
         //impostazione dimensioni dei pulsanti elimina e dettagli
-        TableColumn colonna = null;
-        for (int i = 0; i < tabella.getModel().getColumnCount(); i++) {
-            colonna = tabella.getColumnModel().getColumn(i);
-            if(i == 5){
-                colonna.setPreferredWidth(20);
-            }
-            else if(i == 6){
-                colonna.setPreferredWidth(20);
-            }
+        TableColumn colonna = tabella.getColumnModel().getColumn(5);
+        colonna.setPreferredWidth(20);
             // if (i==3) {
             //     colonna.setPreferredWidth(100); //third column is bigger
             // } else {
             //     colonna.setPreferredWidth(50);
             // }
-        }
 
 
         JScrollPane tabellaPanel = new JScrollPane(tabella);
@@ -97,14 +89,14 @@ public class GUI extends JFrame{
         }});
     
         // Agggiunta campo di ricerca
-        JLabel filtroText = new JLabel("Cerca:");
-        JTextField barraRicerca = new JTextField("", 15);
+        // JLabel filtroText = new JLabel("Cerca:");
+        // JTextField barraRicerca = new JTextField("", 15);
 
         // Composizione dei pannelli ...
         bottoniPanel.add(botAggiungi);
         bottoniPanel.add(botSalva);
-        bottoniPanel.add(filtroText);
-        bottoniPanel.add(barraRicerca);
+        // bottoniPanel.add(filtroText);
+        // bottoniPanel.add(barraRicerca);
         // ... e della finestra principale
         this.add(logoPanel);
         this.add(bottoniPanel);
