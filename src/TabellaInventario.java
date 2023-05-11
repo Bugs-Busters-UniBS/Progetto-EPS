@@ -23,7 +23,6 @@ public class TabellaInventario extends JTable {
         setCellSelectionEnabled(false);
         this.setModel(modello);
         this.tableHeader.setReorderingAllowed(false);
-        setBottoni();
     }
 
     public void addRow(Veicolo vec) {
@@ -33,102 +32,15 @@ public class TabellaInventario extends JTable {
 
     public void updateTable() {
         this.modello.refresh(inv);
-        setBottoni();
+
     }
     public Inventario getInventario(){
         return inv;
     }
 
-    // public void removeRow(int i) {
-    //     this.modello.removeRow(i);
-    // }
+    /* public void removeRow(int i) {
+        this.modello.removeRow(i);
+    } */
 
-    private void setBottoni(){
-        this.getColumn("Elimina").setCellRenderer(new ButtonRenderer());
-        this.getColumn("Elimina").setCellEditor(new ButtonEditor(new JCheckBox(), inv));
-
-        this.getColumn("Dettagli").setCellRenderer(new ButtonRenderer());
-        this.getColumn("Dettagli").setCellEditor(new ButtonEditor(new JCheckBox(), inv));
-    }
     
-}
-
-class ButtonRenderer extends JButton implements TableCellRenderer {
-
-    public ButtonRenderer() {
-        setOpaque(true);
-    }
-
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
-                // if (isSelected) {
-                //     setForeground(Color.RED);
-                //     setBackground(Color.BLUE);
-                // } else {
-                //     setForeground(Color.RED);
-                //     setBackground(Color.BLUE);
-                // }
-        setText((value == null) ? "" : value.toString());
-        return this;
-    }
-}
-
-class ButtonEditor extends DefaultCellEditor {
-
-    protected JButton button;
-    private String label;
-    private Inventario inv;
-
-    public ButtonEditor(JCheckBox checkBox, Inventario inv) {
-        super(checkBox);
-        button = new JButton();
-        this.inv=inv;
-    }
-
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-            boolean isSelected, int row, int column) {
-        // if (isSelected) {
-        //     button.setForeground(Color.RED);
-        //     button.setBackground(Color.BLUE);
-        // } else {
-        //     button.setForeground(Color.RED);
-        //     button.setBackground(Color.BLUE);
-        // }
-        label = (value == null) ? "" : value.toString();
-        button.setText(label);
-
-        //premuto bottone mostra dettagli
-        if(column == 5){
-            String titolo=table.getModel().getValueAt(row, 1).toString()+" "+table.getModel().getValueAt(row, 2).toString();
-            String targa = table.getModel().getValueAt(row, 3).toString();
-            Veicolo veicolo= inv.getVeicoloDaTarga(targa);
-            GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo(titolo, veicolo);
-            riepGUI.setVisible(true);
-        }
-        
-        //premuto bottone elimina veicolo
-        if(column == 6){
-            TabellaInventario tabella = (TabellaInventario) table;
-            String targa = tabella.getModel().getValueAt(row, 3).toString();
-            int scelta = JOptionPane.showConfirmDialog(null,"Sei sicuro?");  
-            //int scelta = JOptionPane.showConfirmDialog(null,"Are you sure?","Conferma",0, JOptionPane.QUESTION_MESSAGE,null);`
-            if(scelta==JOptionPane.YES_OPTION){
-                tabella.getInventario().rimuoviVeicolo(targa);
-                tabella.updateTable();
-            }
-        }
-        return button;
-    }
-
-    @Override
-    public Object getCellEditorValue() {
-        return label;
-    }
-
-    @Override
-    public boolean stopCellEditing() {
-        return super.stopCellEditing();
-    }
 }

@@ -1,15 +1,16 @@
-import javax.lang.model.util.ElementScanner14;
 import javax.swing.*;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Scanner;
+=======
+>>>>>>> a211975a9eab170aebfb6525bcc6427f5dfa5fa1
 
 public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
  
@@ -41,10 +42,16 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JButton aggiungiImmagine;
 
 
+<<<<<<< HEAD
     //da riaggiungere String titolo, Inventario inv   
     public GUIAggiuntaVeicolo(){
         // super(titolo);
         // this.inv=inv;
+=======
+    public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
+        super(titolo);
+        this.inv=inv;
+>>>>>>> a211975a9eab170aebfb6525bcc6427f5dfa5fa1
 
         this.setSize(400,300);
         this.setLayout(new BorderLayout());
@@ -142,6 +149,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==salvaVeicolo){
+            // Ottiene i parametri del veicolo dalla finestra
             String veicolo = (String)dropdownVeicolo.getSelectedItem();
             String marca = inserimentoMarca.getText();
             String modello = inserimentoModello.getText();
@@ -150,6 +158,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             String porte = (String)dropdownPorte.getSelectedItem();
             String portata = inserimentoPortata.getText();
             String cilindrata = inserimentoCilindrata.getText();
+
+            // Crea Filename da marca e modello
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
 
             if(veicolo.equalsIgnoreCase("Automobile")){

@@ -4,7 +4,8 @@ import org.w3c.dom.Element;
 public class Targa {
     public enum Paese {
         ITALIA,
-        GERMANIA
+        GERMANIA,
+        FRANCIA
         // Future implementazioni degli altri paesi
     }
 
