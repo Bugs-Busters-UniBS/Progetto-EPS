@@ -125,6 +125,8 @@ public class GUIRiepilogoVeicolo extends JFrame {
             rightPanel.setBackground(new Color(0,61,163,255));
             rightPanel.setPreferredSize(new Dimension(15, 32));
             JLabel targaLabel = new JLabel(t.getNumero());
+            targaLabel.setFont(new Font("Serif", Font.BOLD, 20));
+
             JPanel centerPanel = new JPanel();
             centerPanel.setBackground(new Color(255,255,255,255));
             centerPanel.add(targaLabel);

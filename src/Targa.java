@@ -16,14 +16,18 @@ public class Targa {
     private String numero;
 
     // Costruttore da string
-    public Targa(String numero, String paese) {
+    public Targa(String numero, String paese) throws TargaException {
+        numero = numero.toUpperCase();
+        numero = numero.trim();
+        this.paese = Paese.valueOf(paese.toUpperCase());
+        checkCorrettezzaNumero(numero, this.paese);
         this.numero = numero;
         // Converte string con il nome del paese nel valore enum
         this.paese = Paese.valueOf(paese.toUpperCase());
     }
 
     // Costruttore da elemento XML
-    public Targa(Element targa) {
+    public Targa(Element targa) throws TargaException{
         this(targa.getAttribute(NUMERO_TARGA_XML_STRING), targa.getAttribute(PAESE_XML_STRING));
     }
 
@@ -46,5 +50,43 @@ public class Targa {
         return targa;
     }
 
-    
+    //ritorna la sigla del paese (utile per visualizzazione targa nella gui)
+    public String getSigla() {
+        switch(paese) {
+            case ITALIA:
+                return "I";
+            case GERMANIA:
+                return "D";
+            case FRANCIA:
+                return "F";
+        }
+        return "";
+    }
+
+    //verifica correttezza sintassi targa e lancia eccezione nel caso ci siano degli errori
+    private void checkCorrettezzaNumero(String numero, Paese paese) throws TargaException{
+        switch(paese){
+            case ITALIA:
+                if (numero.length() != 7)
+                    throw new TargaException("Lunghezza targa errata");
+                if (numero.contains("Q") || numero.contains("I") ||numero.contains("O") ||numero.contains("U"))
+                    throw new TargaException("Caratteri targa non ammessi");
+                char[] n = numero.toCharArray();
+                for (int i = 0; i < 7; i++) {
+                    if (i<2 || i>4){
+                        if(n[i]>'Z' || n[i]<'A')
+                            throw new TargaException("Sintassi targa errata");
+                    }
+                    else {
+                        if(n[i]>'9' || n[i]<'0')
+                            throw new TargaException("Sintassi targa errata");
+                    }
+                }
+                break;
+            case GERMANIA:
+                break;
+            case FRANCIA:
+                break;
+        }
+    } 
 }

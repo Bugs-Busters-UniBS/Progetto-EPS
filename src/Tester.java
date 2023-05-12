@@ -51,17 +51,17 @@ public class Tester {
         //     throw new RuntimeException(e);
         // }
 
-        // GUI myGui = new GUI("Gestionale Veicoli");
-        // myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // myGui.setVisible(true);
+        GUI myGui = new GUI("Gestionale Veicoli");
+        myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myGui.setVisible(true);
 
         // GUIVeicolo addGUI = new GUIVeicolo();
         // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // addGUI.setVisible(true);
         
-        Moto auto = new Moto("Fiat", "500", new Targa("1518aa", "Italia"), 3, "Fiaat500.png");
-        GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
-        riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        riepGUI.setVisible(true);
+        // Moto auto = new Moto("Fiat", "500", new Targa("1518aa", "Italia"), 3, "Fiaat500.png");
+        // GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
+        // riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // riepGUI.setVisible(true);
     }
 }

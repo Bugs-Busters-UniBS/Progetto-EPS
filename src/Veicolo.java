@@ -40,8 +40,12 @@ public class Veicolo {
         this.marca = veicolo.getAttribute(MARCA_XML_STRING);
 
         Element targaElement = (Element)veicolo.getElementsByTagName(TARGA_XML_STRING).item(0);
-        this.targa = new Targa(targaElement);
-
+        try{
+            this.targa = new Targa(targaElement);
+        }
+        catch(TargaException e){
+            //non posso mai andare qui perché una targa generata da XML è corretta per forza
+        }
         Element imgElement = (Element)veicolo.getElementsByTagName(IMMAGINE_XML_TAG).item(0);
         this.imgFilename = imgElement.getAttribute(FILENAME_XML_TAG);
     }

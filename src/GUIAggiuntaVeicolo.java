@@ -132,6 +132,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource()==salvaVeicolo){
             // Ottiene i parametri del veicolo dalla finestra
             String veicolo = (String)dropdownVeicolo.getSelectedItem();
@@ -145,41 +146,46 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
 
             // Crea Filename da marca e modello
             System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
-
-            if(veicolo.equalsIgnoreCase("Automobile")){
-                if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
-                    inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
-                else
-                    inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), labelFileSelezionato.getText()));
-            } 
-            else if(veicolo.equalsIgnoreCase("Camion")){
-                //creazione stringa portata e apparizione messaggio di errore se non e' un double 
-                try {
-                    Double.parseDouble(portata.replace(",", "."));
+            try{
+                if(veicolo.equalsIgnoreCase("Automobile")){
+                    if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                        inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+                    else
+                        inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), labelFileSelezionato.getText()));
+                } 
+                else if(veicolo.equalsIgnoreCase("Camion")){
+                    //creazione stringa portata e apparizione messaggio di errore se non e' un double 
+                    try {
+                        Double.parseDouble(portata.replace(",", "."));
+                    }
+                    catch (NumberFormatException errorPortata) {
+                        JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
+                    }
+                    if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                        inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
+                    else
+                        inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), labelFileSelezionato.getText()));
                 }
-                catch (NumberFormatException errorPortata) {
-                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
+                else if(veicolo.equalsIgnoreCase("Moto")){
+                    //creazione stringa portata e apparizione messaggio di errore se non e' un int 
+                    try {
+                        Integer.parseInt(cilindrata);
+                    }
+                    catch (NumberFormatException errorPortata) {
+                        JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
+                    }
+                    if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                        inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
+                    else
+                        inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata), labelFileSelezionato.getText())); 
                 }
-                if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
-                    inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
-                else
-                    inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), labelFileSelezionato.getText()));
+                this.dispose();
             }
-            else if(veicolo.equalsIgnoreCase("Moto")){
-                //creazione stringa portata e apparizione messaggio di errore se non e' un int 
-                try {
-                    Integer.parseInt(cilindrata);
-                }
-                catch (NumberFormatException errorPortata) {
-                    JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
-                }
-                if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
-                    inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
-                else
-                    inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata), labelFileSelezionato.getText())); 
+            catch(TargaException te){
+                JOptionPane.showInternalMessageDialog(null,te.getMessage(),"Errore inserimento Targa",JOptionPane.ERROR_MESSAGE);
             }
-            this.dispose();
         }
+
         //tasto di aggiunta immagine
         else if(e.getSource()==aggiungiImmagine){
             final JFileChooser file = new JFileChooser();
