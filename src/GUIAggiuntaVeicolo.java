@@ -35,8 +35,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
 
     public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
         super(titolo);
-        this.inv=inv;
-
+        
         this.setSize(400,300);
         this.setLayout(new BorderLayout());
         this.setResizable(false);

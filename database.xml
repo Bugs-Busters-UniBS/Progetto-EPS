@@ -21,7 +21,7 @@
         <immagine filename="PROVAFUNZIONATUTTOSperoFunzioniTutto.png"/>
     </Veicolo>
     <Veicolo Numero_Porte="3" marca="giacomo" modello="franco" tipo="Automobile">
-        <Targa numero="friajbsd" paese="GERMANIA"/>
+        <Targa numero="FRIAJBSD" paese="GERMANIA"/>
         <immagine filename="immagini/giacomofrancofriajbsd.png"/>
     </Veicolo>
 </Inventario>

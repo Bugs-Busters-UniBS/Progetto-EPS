@@ -59,9 +59,15 @@ public class Tester {
         // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // addGUI.setVisible(true);
         
-        // Moto auto = new Moto("Fiat", "500", new Targa("1518aa", "Italia"), 3, "Fiaat500.png");
-        // GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
-        // riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // riepGUI.setVisible(true);
+        // try{
+        //     Moto auto = new Moto("Fiat", "500", new Targa("GK178MM", "Italia"), 3, "Fiaat500.png");
+        //     GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
+        //     riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //     riepGUI.setVisible(true);
+        // }
+        // catch(TargaException e){
+        //     e.printStackTrace();
+        // }
+       
     }
 }
