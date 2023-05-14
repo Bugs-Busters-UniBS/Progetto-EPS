@@ -85,6 +85,8 @@ public class GUI extends JFrame{
 
         //====================BOTTONE SALVATAGGIO INVENTARIO=============================
         JButton botSalva = new JButton("Salva modifiche all'inventario");
+        botSalva.setBackground(new java.awt.Color(55, 90, 129));
+        botSalva.setForeground(Color.WHITE);
         botSalva.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 inVeicoli.salvaInventario("database.xml");
@@ -95,11 +97,13 @@ public class GUI extends JFrame{
         
         //====================BOTTONE RIMOZIONE VEICOLI=================================
         JButton botRimuovi = new JButton("Rimuovi veicoli selezionati");
+        botRimuovi.setBackground((new java.awt.Color(222, 51, 72)));
+        botRimuovi.setForeground(Color.WHITE);
         botRimuovi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                String[] opzioni = {"Si", "No"};
+                String[] opzioni = {"Si, Sono sicuro", "No"};
                 int scelta = JOptionPane.showOptionDialog(botRimuovi, "Sei sicuro di voler rimuovere i veicoli selezionati?", "Scelta", 
-                                                        JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opzioni, null);
+                                                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, null);
                 
                 if(scelta == JOptionPane.YES_OPTION) {
                     //Ottiene una lista delle righe dalla tabella

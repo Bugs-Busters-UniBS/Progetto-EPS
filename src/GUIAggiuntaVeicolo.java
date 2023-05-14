@@ -65,9 +65,12 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         labelPortata = new JLabel("Portata", SwingConstants.CENTER);
         labelCilindrata = new JLabel("Cilindrata", SwingConstants.CENTER);
         labelFileSelezionato = new JLabel("Non hai selezionato nessuna immagine");
+        // standard se non viene selezionata nessuna immagine
+        labelFileSelezionato.setForeground(new java.awt.Color(222, 51, 72));
         
 
-        //IDEA: sarebbe bello ottenere in automatico il numero di paesi e veicoli supportati
+        // IDEA: sarebbe bello ottenere in automatico il numero di paesi 
+        // e veicoli supportati mettendoli tutti una classe enum di costanti
         String[] stringVeicolo = {"Automobile", "Camion", "Moto"};
         dropdownVeicolo = new JComboBox<String>(stringVeicolo);
 
@@ -110,9 +113,9 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         insertionPanel.add(inserimentoCilindrata);
         inserimentoCilindrata.setEditable(false);
 
-        //standart automobile
-        labelPortata.setForeground(Color.lightGray);
-        labelCilindrata.setForeground(Color.lightGray);
+        //standard automobile
+        labelPortata.setForeground(new java.awt.Color(55, 55, 55));
+        labelCilindrata.setForeground(new java.awt.Color(55, 55, 55));
 
         //definizione pulsantiera
         aggiungiImmagine = new JButton("Aggiunta immagine");
@@ -123,6 +126,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         pulsantiera.add(salvaVeicolo);
         label.add(labelFileSelezionato, BorderLayout.PAGE_END);
         aggiungiImmagine.addActionListener(this);
+        salvaVeicolo.setBackground(new java.awt.Color(55, 90, 129));
+        salvaVeicolo.setForeground(Color.WHITE);
         salvaVeicolo.addActionListener(this);
         
         //aggiunta alla pulsantiera label
@@ -149,12 +154,17 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             String porte = (String)dropdownPorte.getSelectedItem();
             String portata = inserimentoPortata.getText();
             String cilindrata = inserimentoCilindrata.getText();
+            
+            //riconosce se e' stata inserita un immagine personalizzata
+            Boolean selezioneImmagine = true;
+            if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                selezioneImmagine = false;
 
             // Crea Filename da marca e modello
             //System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
             try{
                 if(veicolo.equalsIgnoreCase("Automobile")){
-                    if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                    if(!selezioneImmagine)
                         inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
                     else
                         inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), labelFileSelezionato.getText()));
@@ -167,7 +177,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                     catch (NumberFormatException errorPortata) {
                         JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
                     }
-                    if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                    if(!selezioneImmagine)
                         inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
                     else
                         inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), labelFileSelezionato.getText()));
@@ -180,7 +190,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                     catch (NumberFormatException errorPortata) {
                         JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
                     }
-                    if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+                    if(!selezioneImmagine)
                         inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
                     else
                         inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata), labelFileSelezionato.getText())); 
@@ -199,6 +209,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             
             try {
                 labelFileSelezionato.setText(file.getSelectedFile().toString());
+                labelFileSelezionato.setForeground(null);
             }
             catch(Exception er){
                 System.out.println("il file non è stato trovato");
@@ -213,9 +224,9 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 dropdownPorte.setEnabled(true);
                 inserimentoPortata.setEditable(false);
                 inserimentoCilindrata.setEditable(false);
-                labelPorte.setForeground(Color.black);
-                labelPortata.setForeground(Color.lightGray);
-                labelCilindrata.setForeground(Color.lightGray);
+                labelPorte.setForeground(null);
+                labelPortata.setForeground(new java.awt.Color(55, 55, 55));
+                labelCilindrata.setForeground(new java.awt.Color(55, 55, 55));
                 break;
 
                 //Camion
@@ -223,9 +234,9 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 dropdownPorte.setEnabled(false);
                 inserimentoPortata.setEditable(true);
                 inserimentoCilindrata.setEditable(false);
-                labelPorte.setForeground(Color.lightGray);
-                labelPortata.setForeground(Color.black);
-                labelCilindrata.setForeground(Color.lightGray);
+                labelPorte.setForeground(new java.awt.Color(55, 55, 55));
+                labelPortata.setForeground(null);
+                labelCilindrata.setForeground(new java.awt.Color(55, 55, 55));
                 break;
 
                 //Moto
@@ -233,9 +244,9 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 dropdownPorte.setEnabled(false);
                 inserimentoPortata.setEditable(false);
                 inserimentoCilindrata.setEditable(true);
-                labelPorte.setForeground(Color.lightGray);
-                labelPortata.setForeground(Color.lightGray);
-                labelCilindrata.setForeground(Color.black);
+                labelPorte.setForeground(new java.awt.Color(55, 55, 55));
+                labelPortata.setForeground(new java.awt.Color(55, 55, 55));
+                labelCilindrata.setForeground(null);
                 break;
             }
 

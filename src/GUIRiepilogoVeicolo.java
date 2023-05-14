@@ -81,6 +81,8 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         //aggiunta azioni pulsanti
         closeButton.addActionListener(ev -> this.dispose());
         eliminaButton.addActionListener(this);
+        eliminaButton.setBackground(new java.awt.Color(222, 51, 72));
+        eliminaButton.setForeground(Color.WHITE);
         //aggiunta pulsanti al panel
         pannelloBottoni.add(eliminaButton);
         pannelloBottoni.add(closeButton);

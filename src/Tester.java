@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
-// import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
+import com.formdev.flatlaf.FlatLightLaf;
 // import com.formdev.flatlaf.FlatDarculaLaf;
 // import com.formdev.flatlaf.FlatLightLaf;
 
@@ -43,13 +45,13 @@ public class Tester {
        
         //======================TESTING GUI=================================================================
         
-        // FlatDarculaLaf.setup();
+        FlatLightLaf.setup();
 
-        // try {
-        //     UIManager.setLookAndFeel(new FlatDarculaLaf());
-        // } catch (UnsupportedLookAndFeelException e) {
-        //     throw new RuntimeException(e);
-        // }
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
 
         GUI myGui = new GUI("Gestionale Veicoli");
         myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
