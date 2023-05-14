@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -8,15 +10,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-public class GUIRiepilogoVeicolo extends JFrame {
+public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     private JPanel pannelloDati = new JPanel(new GridLayout(7,1));
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
+    private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
+    //creazione bottone per eliminare auto
+    private JButton eliminaButton = new JButton("Elimina");
+    //Veicolo passato
+    Veicolo veicolo;
+    //inventario
+    private Inventario inv;
 
-    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo) {
+    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo, Inventario inv) {
         super(titolo);
+        this.inv= inv;
+        this.veicolo=veicolo;
         this.setLayout(new BorderLayout(10,0));
         this.setSize(600,300);
         this.setResizable(false);
@@ -31,9 +43,6 @@ public class GUIRiepilogoVeicolo extends JFrame {
         JLabel porte;
         JLabel portata;
         JLabel cilindrata;
-
-        //creazione bottone di chiusura
-        JButton closeButton = new JButton("Chiudi");
 
         //aggiunta delle label costanti al panel
         titoloGUI.setFont(new Font("Lucida Grande", Font.ITALIC, 20));
@@ -68,8 +77,14 @@ public class GUIRiepilogoVeicolo extends JFrame {
         pannelloDati.add(targa);
 
         //aggiunta del bottone di chiusura e della sua azione
-        pannelloDati.add(closeButton, BorderLayout.PAGE_END);
+        JButton closeButton = new JButton("Chiudi");
+        //aggiunta azioni pulsanti
         closeButton.addActionListener(ev -> this.dispose());
+        eliminaButton.addActionListener(this);
+        //aggiunta pulsanti al panel
+        pannelloBottoni.add(eliminaButton);
+        pannelloBottoni.add(closeButton);
+        pannelloDati.add(pannelloBottoni, BorderLayout.PAGE_END);
 
         //aggiunta del panel al frame
         add(pannelloDati, BorderLayout.CENTER);
@@ -97,7 +112,6 @@ public class GUIRiepilogoVeicolo extends JFrame {
                 Image immagineStandardScal = immagineAutoStandard.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
                 JLabel labelImmagine = new JLabel(new ImageIcon(immagineStandardScal));
                 pannelloImmagine.add(labelImmagine);
-
             }
             catch(Exception ec){
                 ec.printStackTrace();
@@ -141,4 +155,17 @@ public class GUIRiepilogoVeicolo extends JFrame {
             pannelloTarga.add(rightPanel,BorderLayout.LINE_END);
         }
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==eliminaButton){
+            Object[] opzioni = {"Si, sono sicuro", "No"};
+            int dialogButton = JOptionPane.showOptionDialog(this, "Would you like green eggs and ham?", "A Silly Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, opzioni[0]);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                inv.rimuoviVeicolo(veicolo.getTarga().getNumero());
+                this.dispose();
+            }
+                
+            }
+    }    
 }
+

@@ -4,24 +4,12 @@
         <Targa numero="AA000AA" paese="ITALIA"/>
         <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo marca="Volkswagen" modello="Modellowagen" portata="1433.0" tipo="Camion">
-        <Targa numero="RRRRRRR" paese="GERMANIA"/>
-        <immagine filename="placeholder.png"/>
-    </Veicolo>
-    <Veicolo Numero_Porte="3" marca="Ferrari" modello="Boh" tipo="Automobile">
-        <Targa numero="AA000AB" paese="ITALIA"/>
-        <immagine filename="placeholder.png"/>
-    </Veicolo>
     <Veicolo Numero_Porte="3" marca="PROVA" modello="PROVA" tipo="Automobile">
         <Targa numero="AA000AC" paese="ITALIA"/>
         <immagine filename="PROVAPROVA.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="PROVA" modello="FUNZIONATUTTO" tipo="Automobile">
-        <Targa numero="AA000AD" paese="ITALIA"/>
-        <immagine filename="PROVAFUNZIONATUTTOSperoFunzioniTutto.png"/>
-    </Veicolo>
     <Veicolo Numero_Porte="3" marca="giacomo" modello="franco" tipo="Automobile">
-        <Targa numero="friajbsd" paese="GERMANIA"/>
+        <Targa numero="FRIAJBSD" paese="GERMANIA"/>
         <immagine filename="immagini/giacomofrancofriajbsd.png"/>
     </Veicolo>
 </Inventario>
