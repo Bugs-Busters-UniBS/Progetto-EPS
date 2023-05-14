@@ -3,12 +3,13 @@ import org.w3c.dom.Element;
 
 public class Camion extends Veicolo {
     public final static String TIPO_VEICOLO = "Camion";
+    private final static String DEFAULT_IMAGE = "immagini/camion_place_holder.png";
 
     private double portataCarico;
 
     //===================COSTRUTTORE DA MARCA MODELLO TARGA==============================
     public Camion(String marca, String modello, Targa targa, double portata) {
-        super(marca, modello, targa);
+        super(marca, modello, targa, DEFAULT_IMAGE);
         this.portataCarico = portata;
     }
     //====================================================================================

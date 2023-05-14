@@ -4,11 +4,12 @@ import org.w3c.dom.Element;
 
 public class Automobile extends Veicolo {
     public final static String TIPO_VEICOLO = "Automobile";
+    private final static String DEFAULT_IMAGE = "immagini/auto_place_holder.png";
     private int numeroPorte;
 
     //==================COSTRUTTORE DA MARCA MODELLO TARGA===========================
     public Automobile(String marca, String modello, Targa targa, int numeroPorte) {
-        super(marca, modello, targa);
+        super(marca, modello, targa, DEFAULT_IMAGE);
         this.numeroPorte = numeroPorte;
     }
     //===============================================================================

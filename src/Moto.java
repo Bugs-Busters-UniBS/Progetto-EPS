@@ -3,11 +3,12 @@ import org.w3c.dom.Element;
 
 public class Moto extends Veicolo {
     public final static String TIPO_VEICOLO = "Moto";
+    private final static String DEFAULT_IMAGE = "immagini/moto_place_holder.png";
     private int cilindrata;
    
     //========================COSTRUTTORE DA MARCA MODELLO E TARGA==========================
     public Moto(String marca, String modello, Targa targa, int cilindrata) {
-        super(marca, modello, targa);
+        super(marca, modello, targa, DEFAULT_IMAGE);
         this.cilindrata = cilindrata;
     }
     //======================================================================================
@@ -22,7 +23,7 @@ public class Moto extends Veicolo {
     //=======================================================================================
 
     
-    //==========================COSTRUTTORE CON IMMAGINE=====================================
+    //==========================COSTRUTTORE CON IMMAGINE SPECIFICA===========================
     public Moto(String marca, String modello, Targa targa, int cilindrata, String filename) {
         super(marca, modello, targa, filename);
         this.cilindrata = cilindrata;
