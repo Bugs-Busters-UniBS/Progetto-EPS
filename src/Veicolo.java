@@ -23,15 +23,6 @@ public class Veicolo {
         this.marca = marca;
         this.modello = modello;
         this.targa = targa;
-
-        if(this instanceof Automobile)
-            this.imgFilename = "immagini/auto_place_holder.png";
-        
-        else if(this instanceof Camion)
-            this.imgFilename = "immagini/camion_place_holder.png";
-
-        else if(this instanceof Moto)
-            this.imgFilename = "immagini/moto_place_holder.png";
     }
 
     // ============ COSTRUTTORE DA ELEMENTO XML ===================================

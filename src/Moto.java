@@ -7,7 +7,7 @@ public class Moto extends Veicolo {
     private int cilindrata;
    
     public Moto(String marca, String modello, Targa targa, int cilindrata) {
-        super(marca, modello, targa);
+        super(marca, modello, targa,"immagini/moto_place_holder.png");
         this.cilindrata = cilindrata;
     }
 

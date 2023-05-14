@@ -133,16 +133,21 @@ public class Inventario {
                 Element elementVeicolo = (Element)nodeVeicolo;
 
                 String tipo = elementVeicolo.getAttribute(TIPO_XML_STRING);
-                if(tipo.equals(Automobile.TIPO_VEICOLO)) {
-                    aggiungiVeicolo(new Automobile(elementVeicolo));
-                }
+                try {
+                    if(tipo.equals(Automobile.TIPO_VEICOLO)) {
+                        aggiungiVeicolo(new Automobile(elementVeicolo));
+                    }
 
-                if (tipo.equals(Camion.TIPO_VEICOLO)) {
-                    aggiungiVeicolo(new Camion(elementVeicolo));
-                }
+                    if (tipo.equals(Camion.TIPO_VEICOLO)) {
+                        aggiungiVeicolo(new Camion(elementVeicolo));
+                    }
 
-                if (tipo.equals(Moto.TIPO_VEICOLO)) {
-                    aggiungiVeicolo(new Moto(elementVeicolo));
+                    if (tipo.equals(Moto.TIPO_VEICOLO)) {
+                        aggiungiVeicolo(new Moto(elementVeicolo));
+                    }
+                }
+                catch(TargaException te){
+                    //impossibile arrivare qui, li sto caricando da XML
                 }
 
             }
@@ -170,12 +175,12 @@ public class Inventario {
     }
 
     // Aggiunge un veicolo all'inventario
-    public void aggiungiVeicolo(Veicolo vec) {
+    public void aggiungiVeicolo(Veicolo vec) throws TargaException {
         
         if(this.listaTarghe.add(vec.getTarga()))
             this.listaVeicoli.add(vec);
         else
-            System.out.println("Targa già presente");
+            throw new TargaException("Targa già presente");
     }
     
     // Rimuove un veicolo dall'inventario identificandolo dalla targa

@@ -8,7 +8,7 @@ public class Automobile extends Veicolo {
     private int numeroPorte;
 
     public Automobile(String marca, String modello, Targa targa, int numeroPorte) {
-        super(marca, modello, targa);
+        super(marca, modello, targa,"immagini/auto_place_holder.png");
         this.numeroPorte = numeroPorte;
     }
 
