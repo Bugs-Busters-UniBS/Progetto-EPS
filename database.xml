@@ -4,12 +4,12 @@
         <Targa numero="AA000AA" paese="ITALIA"/>
         <immagine filename="placeholder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="PROVA" modello="PROVA" tipo="Automobile">
-        <Targa numero="AA000AC" paese="ITALIA"/>
-        <immagine filename="PROVAPROVA.png"/>
+    <Veicolo marca="b" modello="b" portata="123.0" tipo="Camion">
+        <Targa numero="BB332BB" paese="ITALIA"/>
+        <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="giacomo" modello="franco" tipo="Automobile">
-        <Targa numero="FRIAJBSD" paese="GERMANIA"/>
-        <immagine filename="immagini/giacomofrancofriajbsd.png"/>
+    <Veicolo cilindrata="125" marca="a" modello="a" tipo="Moto">
+        <Targa numero="EE444EE" paese="ITALIA"/>
+        <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
 </Inventario>

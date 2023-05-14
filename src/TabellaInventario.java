@@ -47,7 +47,12 @@ public class TabellaInventario extends JTable{
 
     }
     public void addRow(Veicolo vec) {
-        inv.aggiungiVeicolo(vec);
+        try {
+            inv.aggiungiVeicolo(vec);
+        } catch (TargaException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         updateTable();
     }
 
@@ -55,6 +60,7 @@ public class TabellaInventario extends JTable{
         this.modello.refresh(inv);
 
     }
+    
     public Inventario getInventario(){
         return inv;
     }
