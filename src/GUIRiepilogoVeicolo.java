@@ -112,6 +112,10 @@ public class GUIRiepilogoVeicolo extends JFrame {
     private class TargaPanel extends JPanel {
 
         TargaPanel(Targa t) {
+            String numeroTarga = t.getNumero();
+            if (t.getPaese() == Targa.Paese.FRANCIA){
+                numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
+            }
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
@@ -124,7 +128,8 @@ public class GUIRiepilogoVeicolo extends JFrame {
             JPanel rightPanel = new JPanel();
             rightPanel.setBackground(new Color(0,61,163,255));
             rightPanel.setPreferredSize(new Dimension(15, 32));
-            JLabel targaLabel = new JLabel(t.getNumero());
+            
+            JLabel targaLabel = new JLabel(numeroTarga);
             targaLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
             JPanel centerPanel = new JPanel();
