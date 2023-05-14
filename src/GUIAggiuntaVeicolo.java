@@ -33,9 +33,11 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JButton salvaVeicolo;
     private JButton aggiungiImmagine;
 
-    public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
-        super(titolo);
-        
+    // String titolo, Inventario inv
+    public GUIAggiuntaVeicolo(Inventario inv) {
+        // super(titolo);
+        this.inv=inv;
+
         this.setSize(400,300);
         this.setLayout(new BorderLayout());
         this.setResizable(false);
@@ -61,6 +63,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         labelFileSelezionato = new JLabel("Non hai selezionato nessuna immagine");
         
 
+        //IDEA: sarebbe bello ottenere in automatico il numero di paesi e veicoli supportati
         String[] stringVeicolo = {"Automobile", "Camion", "Moto"};
         dropdownVeicolo = new JComboBox<String>(stringVeicolo);
 
@@ -144,7 +147,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             String cilindrata = inserimentoCilindrata.getText();
 
             // Crea Filename da marca e modello
-            System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
+            //System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
             try{
                 if(veicolo.equalsIgnoreCase("Automobile")){
                     if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
@@ -201,6 +204,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         //disitabilazione spazi non necessari all'inserimento del particolare veicolo
         else if(e.getSource()==dropdownVeicolo){
             switch(dropdownVeicolo.getSelectedIndex()){
+                //Automobile
                 case 0:
                 dropdownPorte.setEnabled(true);
                 inserimentoPortata.setEditable(false);
@@ -209,6 +213,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 labelPortata.setForeground(Color.lightGray);
                 labelCilindrata.setForeground(Color.lightGray);
                 break;
+
+                //Camion
                 case 1:
                 dropdownPorte.setEnabled(false);
                 inserimentoPortata.setEditable(true);
@@ -217,6 +223,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 labelPortata.setForeground(Color.black);
                 labelCilindrata.setForeground(Color.lightGray);
                 break;
+
+                //Moto
                 case 2:
                 dropdownPorte.setEnabled(false);
                 inserimentoPortata.setEditable(false);

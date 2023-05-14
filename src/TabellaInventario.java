@@ -1,8 +1,6 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -13,12 +11,17 @@ public class TabellaInventario extends JTable{
     public TabellaInventario(Inventario inv) {
         super();
         this.inv = inv;
+
         getToolTipText();
+
         modello = new TabellaInventarioModel(inv);
+
         setCellSelectionEnabled(false);
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         this.setModel(modello);
         this.tableHeader.setReorderingAllowed(false);
+        
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
                 if (me.getClickCount() == 2) {

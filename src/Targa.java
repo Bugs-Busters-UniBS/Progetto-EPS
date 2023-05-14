@@ -9,9 +9,6 @@ public class Targa {
         // Future implementazioni degli altri paesi
     }
 
-    public static final String NUMERO_TARGA_XML_STRING = "numero";
-    public static final String PAESE_XML_STRING = "paese";
-
     private Paese paese;
     private String numero;
 
@@ -28,7 +25,7 @@ public class Targa {
 
     // Costruttore da elemento XML
     public Targa(Element targa) throws TargaException{
-        this(targa.getAttribute(NUMERO_TARGA_XML_STRING), targa.getAttribute(PAESE_XML_STRING));
+        this(targa.getAttribute(XmlTags.NUMERO_TARGA_XML_TAG), targa.getAttribute(XmlTags.PAESE_XML_TAG));
     }
 
     // Getter numero della targa
@@ -42,10 +39,11 @@ public class Targa {
         return this.paese;
     }
 
+    //Converte l'oggetto targa in un elemento XML
     public Element targaToXml(Document fileInventario, String tag) {
         Element targa = fileInventario.createElement(tag);
-        targa.setAttribute(NUMERO_TARGA_XML_STRING, this.getNumero());
-        targa.setAttribute(PAESE_XML_STRING, this.getPaese().toString());
+        targa.setAttribute(XmlTags.NUMERO_TARGA_XML_TAG, this.getNumero());
+        targa.setAttribute(XmlTags.PAESE_XML_TAG, this.getPaese().toString());
 
         return targa;
     }

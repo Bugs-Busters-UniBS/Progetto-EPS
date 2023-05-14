@@ -9,67 +9,68 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 public class GUI extends JFrame{
     public int targaDEBUG = 0;
+
+    //Inventario interno di veicoli
     private Inventario inVeicoli;
 
+    //Pannelli per il logo e titolo, bottoni, tabella
     private JPanel logoPanel = new JPanel();
     private JPanel bottoniPanel = new JPanel();
+    private JScrollPane tabellaPanel;
 
     public GUI(String titolo) {
-        // Costruttore superclasse JFrame
+        //Costruttore superclasse JFrame
         super(titolo);
 
-        // Creazione Inventario interno
-        this.inVeicoli = new Inventario();
-        inVeicoli.caricaInventario("database.xml");
-    
-        // Impostazione ampiezza finestra e layout manager
+        //Impostazione ampiezza finestra e layout manager
         this.setSize(1000,800);
-        this.setLayout(new GridLayout(4,1));
+        this.setLayout(new BorderLayout(25, 15));
 
-        // Impostazione layout manager dei pannelli
-        logoPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
-        bottoniPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
+        //Impostazione layout manager dei pannelli
+        logoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
+        bottoniPanel.setLayout(new GridLayout(3, 1, 15, 15));
 
+        //Inserimento Logo UniBS
         try {
-            // Inserimento logo
             BufferedImage logo = ImageIO.read(new File("logo_unibs.png"));
             Image logoScal = logo.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             JLabel picLabel = new JLabel(new ImageIcon(logoScal));
 
+            // Composizione logoPanel
             logoPanel.add(picLabel);
         }
         catch(Exception e ) {
             e.printStackTrace();
         }
 
-        // Inserimento titolo del programma e nome del gruppo
+        //LABEL CON NOME DEL GRUPPO
         JLabel titoloProg = new JLabel("<html>Gestionale Veicoli<br/>By BugsBusters UniBS</html>");
         titoloProg.setFont(new Font("Lucida Grande", Font.ITALIC, 30));
         logoPanel.add(titoloProg);
 
-        //--------------------------------------CREAZIONE TABELLA--------------------------------------------------------
+        //======================================CREAZIONE TABELLA=================================================
+        //Instanziamento Inventario interno
+        this.inVeicoli = new Inventario();
+        inVeicoli.caricaInventario("database.xml");
+
         TabellaInventario tabella = new TabellaInventario(inVeicoli);
         //impostazione dimensioni dei pulsanti elimina e dettagli
         TableColumn colonna = tabella.getColumnModel().getColumn(5);
         colonna.setPreferredWidth(20);
-            // if (i==3) {
-            //     colonna.setPreferredWidth(100); //third column is bigger
-            // } else {
-            //     colonna.setPreferredWidth(50);
-            // }
+        tabellaPanel = new JScrollPane(tabella);
+        //=======================================================================================================
 
 
-        JScrollPane tabellaPanel = new JScrollPane(tabella);
-        //---------------------------------------------------------------------------------------------------------------
-
-        // Aggiunta bottone di creazione nuovo veicolo
+        //===================================BOTTONE AGGIUNTA NUOVO VEICOLO===================================
         JButton botAggiungi = new JButton("Aggiungi nuovo veicolo");
         botAggiungi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta Veicoli", inVeicoli);
+                // GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta Veicoli", inVeicoli);
+                GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo(inVeicoli);
                 //aggiorna la tabella dopo aver aggiunto il veicolo
                 addGUI.addWindowListener(new WindowAdapter() {
                     public void windowClosed(WindowEvent e) {
@@ -79,32 +80,64 @@ public class GUI extends JFrame{
                 addGUI.setVisible(true);
             }
         });
+        //===================================================================================================
 
-        // Aggiunta bottone salvataggio dell'inventario
+
+        //====================BOTTONE SALVATAGGIO INVENTARIO=============================
         JButton botSalva = new JButton("Salva modifiche all'inventario");
         botSalva.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 inVeicoli.salvaInventario("database.xml");
                 JOptionPane.showMessageDialog(null,"Inventario salvato correttamente");
         }});
-    
+        //=============================================================================
+
+        
+        //====================BOTTONE RIMOZIONE VEICOLI=================================
+        JButton botRimuovi = new JButton("Rimuovi veicoli selezionati");
+        botRimuovi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                String[] opzioni = {"Si", "No"};
+                int scelta = JOptionPane.showOptionDialog(botRimuovi, "Sei sicuro di voler rimuovere i veicoli selezionati?", "Scelta", 
+                                                        JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opzioni, null);
+                
+                if(scelta == JOptionPane.YES_OPTION) {
+                    //Ottiene una lista delle righe dalla tabella
+                    TableModel model = tabella.getModel();
+                    int numRows = model.getRowCount();
+                    //Per ogni riga controlla se è selezionata e ne ottiene la targa
+                    for(int i=0; i<numRows; i++) {
+                        //Rimuove il veicolo dalla targa ottenuta se selezionato
+                        if((Boolean)model.getValueAt(i, 5) == true)
+                            inVeicoli.rimuoviVeicolo((String)model.getValueAt(i, 3));       
+                    }
+                    //Infine aggiorna la tabella
+                    tabella.updateTable();
+                }
+            }
+        });
+        //===============================================================================
+
         // Agggiunta campo di ricerca
         // JLabel filtroText = new JLabel("Cerca:");
         // JTextField barraRicerca = new JTextField("", 15);
 
         // Composizione dei pannelli ...
-        bottoniPanel.add(botAggiungi);
         bottoniPanel.add(botSalva);
-        // bottoniPanel.add(filtroText);
-        // bottoniPanel.add(barraRicerca);
+        bottoniPanel.add(botAggiungi);
+        bottoniPanel.add(botRimuovi);
+
         // ... e della finestra principale
-        this.add(logoPanel);
-        this.add(bottoniPanel);
-        this.add(tabellaPanel);
+        this.add(logoPanel, BorderLayout.NORTH);
+        this.add(bottoniPanel, BorderLayout.WEST);
+        this.add(tabellaPanel, BorderLayout.CENTER);
     }
 
+    //Non funziona
     public void eliminaVeicolo(Veicolo veicolo){
-        inVeicoli.rimuoviVeicolo(veicolo.getTarga().getNumero());
-        System.out.println(veicolo.getTarga().getNumero());
+        String targaNum = veicolo.getTarga().getNumero();
+        inVeicoli.rimuoviVeicolo(targaNum);
+        System.out.println(targaNum);
     }
+
 }
