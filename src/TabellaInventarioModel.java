@@ -8,20 +8,16 @@ public class TabellaInventarioModel extends DefaultTableModel {
 
     public TabellaInventarioModel(Inventario inv) {
         super(NOMI_COLONNE, inv.getLista().size());
-        Vector<Vector<String>> rows = new Vector<>();
-
-        for(Veicolo veic : inv.getLista()) {
-            rows.add(veic.toVector());
-        }
-
-        this.setDataVector(rows, NOMI_COLONNE);
+        refresh(inv);
     }
 
     public void refresh(Inventario inv) {
-        Vector<Vector<String>> rows = new Vector<Vector<String>>();
+        Vector<Vector<Object>> rows = new Vector<Vector<Object>>();
 
         for(Veicolo veic : inv.getLista()) {
-            rows.add(veic.toVector());
+            Vector<Object> row = veic.toVector();
+            row.add(false);
+            rows.add(row);
         }
 
         this.setDataVector(rows, NOMI_COLONNE);
@@ -29,12 +25,22 @@ public class TabellaInventarioModel extends DefaultTableModel {
     
     public boolean isCellEditable(int row, int column) {
         //Solo colonna 5 (checkbox)
-        return column==5;
+        return column == 5;
     }
 
+    //Aggiunge una linea alla tabella (quando viene aggiunto un veicolo all'inventario)
     public void addRow(Veicolo v) {
-        super.addRow(v.toVector());
+        Vector<Object> row = v.toVector();
+        row.add(false); //Aggiunge una colonna false (la checkbox per la rimozione)
+
+        super.addRow(row); //Aggiunge la riga completa alla tabella
     }
 
-
+    //"Forza" la tabella a considerare la quinta colonna come dei boolean
+    public Class<?> getColumnClass(int columnIndex) {
+        if(columnIndex == 5)
+            return Boolean.class;
+        else
+            return String.class;
+    }
 }

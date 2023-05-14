@@ -25,22 +25,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Inventario {
-    public static final String INVENTARIO_XML_STRING = "Inventario";
-    public static final String TIPO_XML_STRING = "tipo";
-    public static final String MARCA_XML_STRING = "marca";
-    public static final String MODELLO_XML_STRING = "modello";
-    public static final String NUMERO_PORTE_XML_STRING = "Numero_Porte";
-    public static final String PORTATA_XML_STRING = "portata";
-    public static final String CILINDRATA_XML_STRING = "cilindrata";
-    public static final String TARGA_XML_STRING = "Targa";
-    public static final String NUMERO_TARGA_XML_STRING = "numero";
-    public static final String PAESE_XML_STRING = "paese";
-    public static final String IMMAGINE_XML_TAG = "immagine";
-    public static final String FILENAME_XML_TAG = "filename";
-
     private LinkedList<Veicolo> listaVeicoli;
     private TreeSet<Targa> listaTarghe;
 
+    //Unico costruttore inventario
     public Inventario() {
         listaVeicoli = new LinkedList<Veicolo>();
         listaTarghe = new TreeSet<Targa>();
@@ -56,19 +44,19 @@ public class Inventario {
             Document doc = builder.newDocument();
             
             // Crea l'elemento root ossia l'origine dell'inventario
-            Element root = doc.createElement(INVENTARIO_XML_STRING);
+            Element root = doc.createElement(XmlTags.INVENTARIO_XML_TAG);
 
             // Itera su tutti i veicoli dell'inventario
             for(Veicolo vec : listaVeicoli) {
                 // Crea gli attributi dell'entry XML partendo da quelli degli oggetti della lista
                 Element veicoloElement = vec.veicoloToXmlElement(doc, Veicolo.TIPO_VEICOLO);
                 // Crea per ultima la targa in quanto si tratta di un elemento figlio del veicolo e non un attributo
-                Element targa = vec.getTarga().targaToXml(doc, TARGA_XML_STRING);
+                Element targa = vec.getTarga().targaToXml(doc, XmlTags.TARGA_XML_TAG);
                 // Aggiunge la targa come elemento figlio del veicolo
                 veicoloElement.appendChild(targa);
                 // Aggiunge il filename dell'immagine da mostrare nella schermata dettagli
-                Element immagine = doc.createElement(IMMAGINE_XML_TAG);
-                immagine.setAttribute(FILENAME_XML_TAG, vec.getImgFilename());
+                Element immagine = doc.createElement(XmlTags.IMMAGINE_XML_TAG);
+                immagine.setAttribute(XmlTags.FILENAME_XML_TAG, vec.getImgFilename());
                 // Aggiunge l'immagine come elemento child del veicolo
                 veicoloElement.appendChild(immagine);
                 // Aggiunge il veicolo come elemento figlio di root (l'origine del documento)
@@ -132,7 +120,7 @@ public class Inventario {
                 // Casta l'oggetto nodeVeicolo di classe Node in un oggetto di classe Element
                 Element elementVeicolo = (Element)nodeVeicolo;
 
-                String tipo = elementVeicolo.getAttribute(TIPO_XML_STRING);
+                String tipo = elementVeicolo.getAttribute(XmlTags.TIPO_XML_TAG);
                 try {
                     if(tipo.equals(Automobile.TIPO_VEICOLO)) {
                         aggiungiVeicolo(new Automobile(elementVeicolo));
@@ -173,6 +161,7 @@ public class Inventario {
             e.printStackTrace();
         }
     }
+
 
     // Aggiunge un veicolo all'inventario
     public void aggiungiVeicolo(Veicolo vec) throws TargaException {
