@@ -161,7 +161,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             Object[] opzioni = {"Si, sono sicuro", "No"};
             int dialogButton = JOptionPane.showOptionDialog(this, "Sei sicuro di voler rimuovere il veicolo?", "Conferma rimozione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, opzioni[0]);
             if(dialogButton == JOptionPane.YES_OPTION){
-                inv.rimuoviVeicolo(veicolo.getTarga().getNumero());
+                inv.rimuoviVeicolo(veicolo.getTarga());
                 this.dispose();
             }
                 

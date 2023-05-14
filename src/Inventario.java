@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+import java.util.TreeSet;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -37,9 +39,12 @@ public class Inventario {
     public static final String FILENAME_XML_TAG = "filename";
 
     private LinkedList<Veicolo> listaVeicoli;
+    private TreeSet<Targa> listaTarghe;
 
     public Inventario() {
         listaVeicoli = new LinkedList<Veicolo>();
+        listaTarghe = new TreeSet<Targa>();
+
     }
 
     // Salva la lista dei veicolo in un file XML
@@ -166,22 +171,23 @@ public class Inventario {
 
     // Aggiunge un veicolo all'inventario
     public void aggiungiVeicolo(Veicolo vec) {
-        this.listaVeicoli.add(vec);
+        
+        if(this.listaTarghe.add(vec.getTarga()))
+            this.listaVeicoli.add(vec);
+        else
+            System.out.println("Targa già presente");
     }
     
-
     // Rimuove un veicolo dall'inventario identificandolo dalla targa
-    public void rimuoviVeicolo(String targa) {
+    public void rimuoviVeicolo(Targa targa) {
         // Trova il veicolo con la stessa targa e lo elimina
-        int indiceVeicolo = -1;
-        for(Veicolo vec : this.listaVeicoli){
-            if(vec.getTarga().getNumero().equalsIgnoreCase(targa)){
-                indiceVeicolo = listaVeicoli.indexOf(vec);
+        if(listaTarghe.remove(targa)){
+            for(Veicolo vec : this.listaVeicoli){
+                if(vec.getTarga().compareTo(targa) == 0){
+                    this.listaVeicoli.remove(vec);
+                    return;
+                }
             }
-        } 
-
-        if(indiceVeicolo != -1) {
-            listaVeicoli.remove(indiceVeicolo);
         }
     }
 

@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Targa {
+public class Targa implements Comparable  {
     public enum Paese {
         ITALIA,
         GERMANIA,
@@ -99,6 +99,17 @@ public class Targa {
                 if(n[i]>'9' || n[i]<'0')
                     throw new TargaException("Sintassi targa errata");
             }
+        }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Targa altro = (Targa) o;
+        if (numero.equals(altro.getNumero())){
+            return this.paese.compareTo(altro.getPaese());
+        }
+        else{
+            return this.numero.compareTo(altro.getNumero());
         }
     }
 }
