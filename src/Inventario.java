@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+import java.util.TreeSet;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,10 +26,13 @@ import java.io.IOException;
 
 public class Inventario {
     private LinkedList<Veicolo> listaVeicoli;
+    private TreeSet<Targa> listaTarghe;
 
     //Unico costruttore inventario
     public Inventario() {
         listaVeicoli = new LinkedList<Veicolo>();
+        listaTarghe = new TreeSet<Targa>();
+
     }
 
     // Salva la lista dei veicolo in un file XML
@@ -116,16 +121,21 @@ public class Inventario {
                 Element elementVeicolo = (Element)nodeVeicolo;
 
                 String tipo = elementVeicolo.getAttribute(XmlTags.TIPO_XML_TAG);
-                if(tipo.equals(Automobile.TIPO_VEICOLO)) {
-                    aggiungiVeicolo(new Automobile(elementVeicolo));
-                }
+                try {
+                    if(tipo.equals(Automobile.TIPO_VEICOLO)) {
+                        aggiungiVeicolo(new Automobile(elementVeicolo));
+                    }
 
-                if (tipo.equals(Camion.TIPO_VEICOLO)) {
-                    aggiungiVeicolo(new Camion(elementVeicolo));
-                }
+                    if (tipo.equals(Camion.TIPO_VEICOLO)) {
+                        aggiungiVeicolo(new Camion(elementVeicolo));
+                    }
 
-                if (tipo.equals(Moto.TIPO_VEICOLO)) {
-                    aggiungiVeicolo(new Moto(elementVeicolo));
+                    if (tipo.equals(Moto.TIPO_VEICOLO)) {
+                        aggiungiVeicolo(new Moto(elementVeicolo));
+                    }
+                }
+                catch(TargaException te){
+                    //impossibile arrivare qui, li sto caricando da XML
                 }
 
             }
@@ -154,22 +164,24 @@ public class Inventario {
 
 
     // Aggiunge un veicolo all'inventario
-    public void aggiungiVeicolo(Veicolo vec) {
-        this.listaVeicoli.add(vec);
+    public void aggiungiVeicolo(Veicolo vec) throws TargaException {
+        
+        if(this.listaTarghe.add(vec.getTarga()))
+            this.listaVeicoli.add(vec);
+        else
+            throw new TargaException("Targa già presente");
     }
     
     // Rimuove un veicolo dall'inventario identificandolo dalla targa
-    public void rimuoviVeicolo(String targa) {
+    public void rimuoviVeicolo(Targa targa) {
         // Trova il veicolo con la stessa targa e lo elimina
-        int indiceVeicolo = -1;
-        for(Veicolo vec : this.listaVeicoli){
-            if(vec.getTarga().getNumero().equalsIgnoreCase(targa)){
-                indiceVeicolo = listaVeicoli.indexOf(vec);
+        if(listaTarghe.remove(targa)){
+            for(Veicolo vec : this.listaVeicoli){
+                if(vec.getTarga().compareTo(targa) == 0){
+                    this.listaVeicoli.remove(vec);
+                    return;
+                }
             }
-        } 
-
-        if(indiceVeicolo != -1) {
-            listaVeicoli.remove(indiceVeicolo);
         }
     }
 

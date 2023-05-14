@@ -8,12 +8,13 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
+public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     private JPanel pannelloDati = new JPanel(new GridLayout(7,1));
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
     private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
@@ -21,9 +22,12 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
     private JButton eliminaButton = new JButton("Elimina");
     //Veicolo passato
     Veicolo veicolo;
+    //inventario
+    private Inventario inv;
 
-    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo) {
+    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo, Inventario inv) {
         super(titolo);
+        this.inv= inv;
         this.veicolo=veicolo;
         this.setLayout(new BorderLayout(10,0));
         this.setSize(600,300);
@@ -122,6 +126,10 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
     private class TargaPanel extends JPanel {
 
         TargaPanel(Targa t) {
+            String numeroTarga = t.getNumero();
+            if (t.getPaese() == Targa.Paese.FRANCIA){
+                numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
+            }
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
@@ -134,7 +142,8 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
             JPanel rightPanel = new JPanel();
             rightPanel.setBackground(new Color(0,61,163,255));
             rightPanel.setPreferredSize(new Dimension(15, 32));
-            JLabel targaLabel = new JLabel(t.getNumero());
+            
+            JLabel targaLabel = new JLabel(numeroTarga);
             targaLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
             JPanel centerPanel = new JPanel();
@@ -150,10 +159,12 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==eliminaButton){
             Object[] opzioni = {"Si, sono sicuro", "No"};
-            int dialogButton = JOptionPane.showOptionDialog(this, "Would you like green eggs and ham?", "A Silly Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, opzioni[0]);
-            if(dialogButton == JOptionPane.YES_OPTION)
-                this.eliminaVeicolo(veicolo);
+            int dialogButton = JOptionPane.showOptionDialog(this, "Sei sicuro di voler rimuovere il veicolo?", "Conferma rimozione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, opzioni[0]);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                inv.rimuoviVeicolo(veicolo.getTarga());
                 this.dispose();
+            }
+                
             }
     }    
 }

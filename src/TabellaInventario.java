@@ -1,6 +1,9 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -39,13 +42,24 @@ public class TabellaInventario extends JTable{
         //se non sono nella colonna della checkbox
         if(col != 5){
             Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(row, 3).toString());
-            GUIRiepilogoVeicolo gui = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v);
-            gui.setVisible(true);
+            GUIRiepilogoVeicolo guiDettagli = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v, inv);
+            //aggiorna la tabella dopo aver eliminato il veicolo
+            guiDettagli.addWindowListener(new WindowAdapter() {
+                public void windowClosed(WindowEvent e) {
+                    updateTable();
+                }
+            });
+            guiDettagli.setVisible(true);          
         }
 
     }
     public void addRow(Veicolo vec) {
-        inv.aggiungiVeicolo(vec);
+        try {
+            inv.aggiungiVeicolo(vec);
+        } catch (TargaException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         updateTable();
     }
 
@@ -53,6 +67,7 @@ public class TabellaInventario extends JTable{
         this.modello.refresh(inv);
 
     }
+    
     public Inventario getInventario(){
         return inv;
     }

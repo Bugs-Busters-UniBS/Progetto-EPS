@@ -139,5 +139,4 @@ public class GUI extends JFrame{
         inVeicoli.rimuoviVeicolo(targaNum);
         System.out.println(targaNum);
     }
-
 }

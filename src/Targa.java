@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Targa {
+public class Targa implements Comparable  {
     public enum Paese {
         ITALIA,
         GERMANIA,
@@ -16,6 +16,7 @@ public class Targa {
     public Targa(String numero, String paese) throws TargaException {
         numero = numero.toUpperCase();
         numero = numero.trim();
+        numero = numero.replace("-", "");
         this.paese = Paese.valueOf(paese.toUpperCase());
         checkCorrettezzaNumero(numero, this.paese);
         this.numero = numero;
@@ -65,26 +66,48 @@ public class Targa {
     private void checkCorrettezzaNumero(String numero, Paese paese) throws TargaException{
         switch(paese){
             case ITALIA:
-                if (numero.length() != 7)
-                    throw new TargaException("Lunghezza targa errata");
-                if (numero.contains("Q") || numero.contains("I") ||numero.contains("O") ||numero.contains("U"))
+                checkPreliminare(numero);
+                if (numero.contains("Q"))
                     throw new TargaException("Caratteri targa non ammessi");
-                char[] n = numero.toCharArray();
-                for (int i = 0; i < 7; i++) {
-                    if (i<2 || i>4){
-                        if(n[i]>'Z' || n[i]<'A')
-                            throw new TargaException("Sintassi targa errata");
-                    }
-                    else {
-                        if(n[i]>'9' || n[i]<'0')
-                            throw new TargaException("Sintassi targa errata");
-                    }
-                }
                 break;
             case GERMANIA:
+                //da implementare
                 break;
             case FRANCIA:
+                checkPreliminare(numero);
+                if (numero.contains("000")){
+                    throw new TargaException("Sintassi targa errata");
+                }
                 break;
         }
-    } 
+    }
+
+    private void checkPreliminare(String numero) throws TargaException {
+        if (numero.length() != 7)
+            throw new TargaException("Lunghezza targa errata");
+        if (numero.contains("I") ||numero.contains("O") ||numero.contains("U"))
+            throw new TargaException("Caratteri targa non ammessi");
+        char[] n = numero.toCharArray();
+        for (int i = 0; i < 7; i++) {
+            if (i<2 || i>4){
+                if(n[i]>'Z' || n[i]<'A')
+                    throw new TargaException("Sintassi targa errata");
+            }
+            else {
+                if(n[i]>'9' || n[i]<'0')
+                    throw new TargaException("Sintassi targa errata");
+            }
+        }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Targa altro = (Targa) o;
+        if (numero.equals(altro.getNumero())){
+            return this.paese.compareTo(altro.getPaese());
+        }
+        else{
+            return this.numero.compareTo(altro.getNumero());
+        }
+    }
 }

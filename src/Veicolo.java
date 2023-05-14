@@ -21,7 +21,6 @@ public class Veicolo {
     } */
     //=============================================================================
 
-
     // ====================== COSTRUTTORE DA ELEMENTO XML ===================================
     public Veicolo(Element veicolo) {
         this.modello = veicolo.getAttribute(XmlTags.MODELLO_XML_TAG);

@@ -44,7 +44,6 @@ public class Automobile extends Veicolo {
     public Element veicoloToXmlElement(Document fileInventario, String tag) {
         Element veicolo = super.veicoloToXmlElement(fileInventario, tag);
         veicolo.setAttribute(XmlTags.NUMERO_PORTE_XML_TAG, Integer.toString(this.getNumeroPorte()));
-
         return veicolo;
     }
 }
