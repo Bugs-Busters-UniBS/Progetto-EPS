@@ -1,3 +1,10 @@
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+// import javax.swing.UnsupportedLookAndFeelException;
+
+// import com.formdev.flatlaf.FlatDarculaLaf;
+// import com.formdev.flatlaf.FlatLightLaf;
+
 public class Tester {
     public static void main(String[] args) {
         //=================TESTING CARICAMENTO==========================================================
@@ -11,7 +18,7 @@ public class Tester {
 
 
         //================TESTING SALVATAGGIO===========================================================
-        Inventario inv = new Inventario();
+        /* Inventario inv = new Inventario();
 
         Targa targa1 = new Targa("ADGSBS", "Italia");
         Targa targa2 = new Targa("FFFSAB", "Germania");
@@ -33,7 +40,24 @@ public class Tester {
         Inventario inv2 = new Inventario();
         inv2.caricaInventario("Inv1.xml");
         inv2.rimuoviVeicolo("FFFSAB");
-        inv2.salvaInventario("Inv2.xml");
+        inv2.salvaInventario("Inv2.xml"); */
        
+        //======================TESTING GUI=================================================================
+        
+        // FlatDarculaLaf.setup();
+
+        // try {
+        //     UIManager.setLookAndFeel(new FlatDarculaLaf());
+        // } catch (UnsupportedLookAndFeelException e) {
+        //     throw new RuntimeException(e);
+        // }
+
+        GUI myGui = new GUI("Gestionale Veicoli");
+        myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myGui.setVisible(true);
+
+        // GUIVeicolo addGUI = new GUIVeicolo();
+        //         addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //         addGUI.setVisible(true);
     }
 }

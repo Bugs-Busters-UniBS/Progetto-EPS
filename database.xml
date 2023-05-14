@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Inventario>
+    <Veicolo Numero_Porte="5" marca="Fiat" modello="500" tipo="Automobile">
+        <Targa numero="AAAAAAA" paese="ITALIA"/>
+        <immagine filename="placeholder.png"/>
+    </Veicolo>
+    <Veicolo marca="Volkswagen" modello="Modellowagen" portata="1433.0" tipo="Camion">
+        <Targa numero="RRRRRRR" paese="GERMANIA"/>
+        <immagine filename="placeholder.png"/>
+    </Veicolo>
+    <Veicolo Numero_Porte="3" marca="Ferrari" modello="Boh" tipo="Automobile">
+        <Targa numero="ASFAASF" paese="ITALIA"/>
+        <immagine filename="placeholder.png"/>
+    </Veicolo>
+    <Veicolo Numero_Porte="3" marca="PROVA" modello="PROVA" tipo="Automobile">
+        <Targa numero="123" paese="ITALIA"/>
+        <immagine filename="PROVAPROVA.png"/>
+    </Veicolo>
+    <Veicolo Numero_Porte="3" marca="PROVA" modello="FUNZIONATUTTO" tipo="Automobile">
+        <Targa numero="SperoFunzioniTutto" paese="ITALIA"/>
+        <immagine filename="PROVAFUNZIONATUTTOSperoFunzioniTutto.png"/>
+    </Veicolo>
+    <Veicolo Numero_Porte="3" marca="giacomo" modello="franco" tipo="Automobile">
+        <Targa numero="friajbsd" paese="GERMANIA"/>
+        <immagine filename="immagini/giacomofrancofriajbsd.png"/>
+    </Veicolo>
+</Inventario>
