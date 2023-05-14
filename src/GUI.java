@@ -70,7 +70,7 @@ public class GUI extends JFrame{
         botAggiungi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 // GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta Veicoli", inVeicoli);
-                GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo(inVeicoli);
+                GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta veicolo", inVeicoli);
                 //aggiorna la tabella dopo aver aggiunto il veicolo
                 addGUI.addWindowListener(new WindowAdapter() {
                     public void windowClosed(WindowEvent e) {
@@ -108,8 +108,17 @@ public class GUI extends JFrame{
                     //Per ogni riga controlla se è selezionata e ne ottiene la targa
                     for(int i=0; i<numRows; i++) {
                         //Rimuove il veicolo dalla targa ottenuta se selezionato
-                        if((Boolean)model.getValueAt(i, 5) == true)
-                            inVeicoli.rimuoviVeicolo((String)model.getValueAt(i, 3));       
+                        if((Boolean)model.getValueAt(i, 5) == true) {
+                            String numero = (String)model.getValueAt(i, 3);
+                            String paese = (String)model.getValueAt(i, 4);
+                            try {
+                                Targa targaRimozione = new Targa(numero, paese);
+                                inVeicoli.rimuoviVeicolo(targaRimozione);
+                            }
+                            catch(TargaException ex) {
+                                System.out.println("Errore nella rimozione della targa tramite checkbox!");
+                            }
+                        }       
                     }
                     //Infine aggiorna la tabella
                     tabella.updateTable();
@@ -135,8 +144,17 @@ public class GUI extends JFrame{
 
     //Non funziona
     public void eliminaVeicolo(Veicolo veicolo){
-        String targaNum = veicolo.getTarga().getNumero();
-        inVeicoli.rimuoviVeicolo(targaNum);
-        System.out.println(targaNum);
+        
+        try {
+            String targaNum = veicolo.getTarga().getNumero();
+            String targaPaese = veicolo.getTarga().getPaese().toString();
+            Targa targaRimozione = new Targa(targaNum, targaPaese);
+
+            inVeicoli.rimuoviVeicolo(targaRimozione);
+            System.out.println(targaNum);
+
+        } catch (TargaException e) {
+            System.out.println("Errore nella rimozione della targa tramite schermata dettagli!");
+        }
     }
 }

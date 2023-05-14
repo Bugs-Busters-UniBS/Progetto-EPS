@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Inventario>
-  
     <Veicolo marca="TEST" modello="TEST" portata="124123.0" tipo="Camion">
         <Targa numero="AA444AA" paese="FRANCIA"/>
         <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
-  
     <Veicolo marca="Boh1" modello="Boh1" portata="4444.0" tipo="Camion">
         <Targa numero="AA444AA" paese="GERMANIA"/>
         <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
-  
     <Veicolo cilindrata="125" marca="Boh2" modello="Boh2" tipo="Moto">
         <Targa numero="RR555RR" paese="FRANCIA"/>
         <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-  
     <Veicolo cilindrata="175" marca="Honda" modello="Boh3" tipo="Moto">
         <Targa numero="RR333EE" paese="GERMANIA"/>
         <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-  
-    <Veicolo marca="fiat" modello="400" portata="123123.0" tipo="Camion">
-        <Targa numero="AA444AA" paese="ITALIA"/>
-        <immagine filename="immagini/camion_place_holder.png"/>
-    </Veicolo>
-  
-    <Veicolo marca="b" modello="b" portata="12345.88" tipo="Camion">
-        <Targa numero="BB333BB" paese="ITALIA"/>
-        <immagine filename="immagini/camion_place_holder.png"/>
-    </Veicolo>
-  
     <Veicolo marca="a" modello="a" numero_porte="5" tipo="Automobile">
-        <Targa numero="AA111AA" paese="ITALIA"/>
+        <Targa numero="AA222AA" paese="GERMANIA"/>
         <immagine filename="immagini/auto_place_holder.png"/>
     </Veicolo>
-  
-    <Veicolo cilindrata="125" marca="c" modello="c" tipo="Moto">
-        <Targa numero="CC333CC" paese="ITALIA"/>
-        <immagine filename="immagini/moto_place_holder.png"/>
-    </Veicolo>
-  
 </Inventario>
