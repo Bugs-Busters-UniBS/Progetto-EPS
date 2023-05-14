@@ -102,9 +102,4 @@ public class GUI extends JFrame{
         this.add(bottoniPanel);
         this.add(tabellaPanel);
     }
-
-    public void eliminaVeicolo(Veicolo veicolo){
-        inVeicoli.rimuoviVeicolo(veicolo.getTarga().getNumero());
-        System.out.println(veicolo.getTarga().getNumero());
-    }
 }

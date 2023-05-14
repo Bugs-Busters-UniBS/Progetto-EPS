@@ -8,12 +8,13 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
+public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     private JPanel pannelloDati = new JPanel(new GridLayout(7,1));
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
     private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
@@ -21,9 +22,12 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
     private JButton eliminaButton = new JButton("Elimina");
     //Veicolo passato
     Veicolo veicolo;
+    //inventario
+    private Inventario inv;
 
-    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo) {
+    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo, Inventario inv) {
         super(titolo);
+        this.inv= inv;
         this.veicolo=veicolo;
         this.setLayout(new BorderLayout(10,0));
         this.setSize(600,300);
@@ -151,9 +155,11 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
         if(e.getSource()==eliminaButton){
             Object[] opzioni = {"Si, sono sicuro", "No"};
             int dialogButton = JOptionPane.showOptionDialog(this, "Would you like green eggs and ham?", "A Silly Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, opzioni[0]);
-            if(dialogButton == JOptionPane.YES_OPTION)
-                this.eliminaVeicolo(veicolo);
+            if(dialogButton == JOptionPane.YES_OPTION){
+                inv.rimuoviVeicolo(veicolo.getTarga().getNumero());
                 this.dispose();
+            }
+                
             }
     }    
 }
