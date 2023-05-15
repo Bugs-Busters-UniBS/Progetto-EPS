@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -126,6 +127,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     private class TargaPanel extends JPanel {
 
         TargaPanel(Targa t) {
+
             String numeroTarga = t.getNumero();
             if (t.getPaese() == Targa.Paese.FRANCIA){
                 numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
@@ -134,27 +136,57 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
             pannelloTarga.setBorder(BorderFactory.createLineBorder(Color.black));
-            pannelloTarga.setPreferredSize(new Dimension(150, 32));
+            pannelloTarga.setPreferredSize(new Dimension(135, 25));
             pannelloTarga.setLayout(new BorderLayout());
-            JPanel leftPanel = new JPanel();
-            leftPanel.setBackground(new Color(0,61,163,255));
-            leftPanel.setPreferredSize(new Dimension(15, 32));
+            JPanel leftPanel = creaLeftPanel(t);
+            
             JPanel rightPanel = new JPanel();
             rightPanel.setBackground(new Color(0,61,163,255));
-            rightPanel.setPreferredSize(new Dimension(15, 32));
+            rightPanel.setPreferredSize(new Dimension(13, 32));
             
             JLabel targaLabel = new JLabel(numeroTarga);
+            targaLabel.setVerticalAlignment(JLabel.TOP);
             targaLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
             JPanel centerPanel = new JPanel();
+            centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
             centerPanel.setBackground(new Color(255,255,255,255));
+            targaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             centerPanel.add(targaLabel);
             pannelloTarga.add(centerPanel,BorderLayout.CENTER);
     
             pannelloTarga.add(leftPanel,BorderLayout.LINE_START);
             pannelloTarga.add(rightPanel,BorderLayout.LINE_END);
         }
+
+        private JPanel creaLeftPanel(Targa t){
+            JPanel leftPanel = new JPanel();
+            leftPanel.setBackground(new Color(0,61,163,255));
+            leftPanel.setPreferredSize(new Dimension(13, 32));
+            leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+            JLabel paeseTargaLabel = new JLabel(t.getSigla());
+            paeseTargaLabel.setFont(new Font("Serif", Font.PLAIN, 8));
+            paeseTargaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            
+
+            try {
+                BufferedImage immagineStelle = ImageIO.read(new File("immagini/stelle.png"));
+                Image immagineScal = immagineStelle.getScaledInstance(8, 10, Image.SCALE_SMOOTH);
+                JLabel stelleLabel = new JLabel(new ImageIcon(immagineScal));
+                leftPanel.add(stelleLabel);
+                stelleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            }
+            catch(Exception e){
+
+            }
+
+            leftPanel.add(paeseTargaLabel);
+
+            return leftPanel;
+        }
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==eliminaButton){
