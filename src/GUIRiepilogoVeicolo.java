@@ -132,11 +132,12 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             if (t.getPaese() == Targa.Paese.FRANCIA){
                 numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
             }
+            int widthTarga = numeroTarga.length()*20;
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
             pannelloTarga.setBorder(BorderFactory.createLineBorder(Color.black));
-            pannelloTarga.setPreferredSize(new Dimension(135, 25));
+            
             pannelloTarga.setLayout(new BorderLayout());
             JPanel leftPanel = creaLeftPanel(t);
             
@@ -150,13 +151,27 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
 
             JPanel centerPanel = new JPanel();
             centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+    
             centerPanel.setBackground(new Color(255,255,255,255));
             targaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
             centerPanel.add(targaLabel);
             pannelloTarga.add(centerPanel,BorderLayout.CENTER);
-    
+            int dimensioniLabel = (int)targaLabel.getPreferredSize().getWidth();
+
             pannelloTarga.add(leftPanel,BorderLayout.LINE_START);
-            pannelloTarga.add(rightPanel,BorderLayout.LINE_END);
+            switch(t.getPaese()){
+                case ITALIA, FRANCIA:
+                    pannelloTarga.add(rightPanel,BorderLayout.LINE_END);
+                    dimensioniLabel+=40;
+                break;
+                case GERMANIA:
+                    dimensioniLabel+=20;
+                break; 
+            }
+            pannelloTarga.setPreferredSize(new Dimension(dimensioniLabel, 25));
+
+            
         }
 
         private JPanel creaLeftPanel(Targa t){
@@ -195,9 +210,8 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             if(dialogButton == JOptionPane.YES_OPTION){
                 inv.rimuoviVeicolo(veicolo.getTarga());
                 this.dispose();
-            }
-                
-            }
+            }   
+        }
     }    
 }
 
