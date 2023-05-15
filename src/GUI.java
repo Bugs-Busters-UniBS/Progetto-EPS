@@ -8,11 +8,21 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+// LAF
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 public class GUI extends JFrame{
     public int targaDEBUG = 0;
+
+    //dropdown di scelta del tema
+    JComboBox<String> dropdownTema;
 
     //Inventario interno di veicoli
     private Inventario inVeicoli;
@@ -20,6 +30,8 @@ public class GUI extends JFrame{
     //Pannelli per il logo e titolo, bottoni, tabella
     private JPanel logoPanel = new JPanel();
     private JPanel bottoniPanel = new JPanel();
+    private JPanel swichTema = new JPanel();
+    private JPanel cercaPanel = new JPanel(); 
     private JScrollPane tabellaPanel;
 
     public GUI(String titolo) {
@@ -31,8 +43,10 @@ public class GUI extends JFrame{
         this.setLayout(new BorderLayout(25, 15));
 
         //Impostazione layout manager dei pannelli
-        logoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
-        bottoniPanel.setLayout(new GridLayout(3, 1, 15, 15));
+        swichTema.setLayout(new GridLayout(1, 2));
+        cercaPanel.setLayout(new GridLayout(1,2));
+        logoPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 100, 10));
+        bottoniPanel.setLayout(new GridLayout(6, 1, 15, 15));
 
         //Inserimento Logo UniBS
         try {
@@ -56,8 +70,11 @@ public class GUI extends JFrame{
         //Instanziamento Inventario interno
         this.inVeicoli = new Inventario();
         inVeicoli.caricaInventario("database.xml");
-
-        TabellaInventario tabella = new TabellaInventario(inVeicoli);
+        //tabella
+        TabellaInventario tabella;
+        tabella = new TabellaInventario(inVeicoli);
+        //filtro per la ricerca
+        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tabella.getModel());
         //impostazione dimensioni dei pulsanti elimina e dettagli
         TableColumn colonna = tabella.getColumnModel().getColumn(5);
         colonna.setPreferredWidth(20);
@@ -94,7 +111,56 @@ public class GUI extends JFrame{
         }});
         //=============================================================================
 
-        
+        //====================DROPDOWN SWICH TEMA INVENTARIO===========================
+        //label swichTema
+        JLabel swichTemaLabel = new JLabel("Tema:");
+        String[] stringTema = {"Chiaro", "Scuro"};
+        dropdownTema = new JComboBox<String>(stringTema);
+        dropdownTema.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchTheme();
+            }
+        });
+        swichTema.add(swichTemaLabel);
+        swichTema.add(dropdownTema);
+        //=============================================================================
+
+        //====================CASELLA DI RICERCA E BOTTONI==============================
+        JTextField cercaField = new JTextField();
+        JButton pulisciTesto = new JButton("Pulisci");
+        cercaField.getDocument().addDocumentListener(new DocumentListener(){
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = cercaField.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = cercaField.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        cercaPanel.add(pulisciTesto);
+        //==============================================================================
+
         //====================BOTTONE RIMOZIONE VEICOLI=================================
         JButton botRimuovi = new JButton("Rimuovi veicoli selezionati");
         botRimuovi.setBackground((new java.awt.Color(222, 51, 72)));
@@ -136,6 +202,9 @@ public class GUI extends JFrame{
         // JTextField barraRicerca = new JTextField("", 15);
 
         // Composizione dei pannelli ...
+        bottoniPanel.add(swichTema);
+        bottoniPanel.add(cercaField);
+        bottoniPanel.add(cercaPanel);
         bottoniPanel.add(botSalva);
         bottoniPanel.add(botAggiungi);
         bottoniPanel.add(botRimuovi);
@@ -146,19 +215,20 @@ public class GUI extends JFrame{
         this.add(tabellaPanel, BorderLayout.CENTER);
     }
 
-    //Non funziona
-    public void eliminaVeicolo(Veicolo veicolo){
-        
+    private void switchTheme() {
+        String selectedTheme = (String) dropdownTema.getSelectedItem();
+
         try {
-            String targaNum = veicolo.getTarga().getNumero();
-            String targaPaese = veicolo.getTarga().getPaese().toString();
-            Targa targaRimozione = new Targa(targaNum, targaPaese);
+            if (selectedTheme.equalsIgnoreCase("Scuro")) {
+                UIManager.setLookAndFeel(new FlatMacDarkLaf());
+            } else {
+                UIManager.setLookAndFeel(new FlatMacLightLaf());
+            }
 
-            inVeicoli.rimuoviVeicolo(targaRimozione);
-            System.out.println(targaNum);
-
-        } catch (TargaException e) {
-            System.out.println("Errore nella rimozione della targa tramite schermata dettagli!");
+            // Update the UI for all open windows
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
