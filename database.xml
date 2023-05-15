@@ -20,4 +20,8 @@
         <Targa numero="AA222AA" paese="GERMANIA"/>
         <immagine filename="immagini/auto_place_holder.png"/>
     </Veicolo>
+    <Veicolo marca="as" modello="as" numero_porte="3" tipo="Automobile">
+        <Targa numero="OOOOOOOOOO" paese="GERMANIA"/>
+        <immagine filename="immagini/auto_place_holder.png"/>
+    </Veicolo>
 </Inventario>

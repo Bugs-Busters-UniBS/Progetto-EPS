@@ -78,7 +78,11 @@ public class TabellaInventario extends JTable{
     }
     
     public String getToolTipText(MouseEvent e) {
-        return "Doppio click per visualizzare ulteriori dettagli";
+        int colIndex = columnAtPoint(e.getPoint());
+        if (colIndex != 5) // tutte le colonne 
+            return "Doppio click per visualizzare ulteriori dettagli";
+        else // solo colonna checkbox
+            return "Seleziona uno o più veicoli per rimuoverli successivamente";
     }
 
     /* public void removeRow(int i) {

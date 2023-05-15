@@ -2,6 +2,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Targa implements Comparable  {
+    
     public enum Paese {
         ITALIA,
         GERMANIA,
@@ -71,7 +72,9 @@ public class Targa implements Comparable  {
                     throw new TargaException("Caratteri targa non ammessi");
                 break;
             case GERMANIA:
-                //da implementare
+                //da implementare in modo corretto
+                if (numero.length()<5 && numero.length()>10)
+                    throw new TargaException("Lunghezza targa errata");
                 break;
             case FRANCIA:
                 checkPreliminare(numero);
