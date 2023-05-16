@@ -20,7 +20,7 @@ import org.xml.sax.SAXException;
 public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     private JPanel pannelloDati = new JPanel(new GridBagLayout());
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
-    private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
+    // private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
     GridBagConstraints gbcDati = new GridBagConstraints();
     //creazione bottone per eliminare auto
     private JButton eliminaButton = new JButton("Elimina");
@@ -34,7 +34,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         this.inv= inv;
         this.veicolo=veicolo;
         this.setLayout(new BorderLayout(10,0));
-        this.setSize(600,300);
+        this.setSize(650,300);
         this.setResizable(false);
 
         //creazione label
@@ -80,26 +80,28 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             caratteristicaAggiuntiva = new JLabel("Cilindrata: " + String.valueOf(moto.getCilindrata()));
         }
         gbcDati.gridy+=1;
+        caratteristicaAggiuntiva.setFont(new Font("Serif", Font.PLAIN, 16));
         pannelloDati.add(caratteristicaAggiuntiva,gbcDati);
 
         gbcDati.gridy+=1;
+        gbcDati.gridwidth = 2;
         TargaPanel targa = new TargaPanel(veicolo.getTarga());
         pannelloDati.add(targa, gbcDati);
-
+        gbcDati.gridwidth = 1;
         //aggiunta del bottone di chiusura e della sua azione
         JButton closeButton = new JButton("Chiudi");
         // //aggiunta azioni pulsanti
         closeButton.addActionListener(ev -> this.dispose());
         eliminaButton.addActionListener(this);
-        // eliminaButton.setSize(new Dimension(150,40));
-        // closeButton.setSize(new Dimension(150,40));
+        eliminaButton.setPreferredSize(new Dimension(150,40));
+        closeButton.setPreferredSize(new Dimension(150,40));
 
         // //aggiunta pulsanti al panel
         // pannelloBottoni.add(eliminaButton);
         // pannelloBottoni.add(closeButton);
         // pannelloDati.add(pannelloBottoni, BorderLayout.PAGE_END);
+        gbcDati.fill = GridBagConstraints.HORIZONTAL;
         gbcDati.gridy+=1;
-        gbcDati.gridwidth = 2;
         pannelloDati.add(eliminaButton, gbcDati);
         gbcDati.gridx+=1;
         pannelloDati.add(closeButton,gbcDati);
@@ -145,6 +147,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     private class TargaPanel extends JPanel {
 
         TargaPanel(Targa t) {
+            int altezza = 30;
 
             String numeroTarga = t.getNumero();
             if (t.getPaese() == Targa.Paese.FRANCIA){
@@ -153,18 +156,17 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
-            pannelloTarga.setBorder(BorderFactory.createLineBorder(Color.black));
             
             pannelloTarga.setLayout(new BorderLayout());
-            JPanel leftPanel = creaLeftPanel(t);
+            JPanel leftPanel = creaLeftPanel(t,altezza);
             
             JPanel rightPanel = new JPanel();
             rightPanel.setBackground(new Color(0,61,163,255));
-            rightPanel.setPreferredSize(new Dimension(13, 32));
+            rightPanel.setPreferredSize(new Dimension(13, altezza));
             
             JLabel targaLabel = new JLabel(numeroTarga);
             targaLabel.setVerticalAlignment(JLabel.TOP);
-            targaLabel.setFont(new Font("Serif", Font.BOLD, 20));
+            targaLabel.setFont(new Font("Serif", Font.BOLD, altezza-2));
 
             JPanel centerPanel = new JPanel();
             centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -186,15 +188,16 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
                     dimensioniLabel+=20;
                 break; 
             }
-            pannelloTarga.setPreferredSize(new Dimension(dimensioniLabel, 25));
+            pannelloTarga.setPreferredSize(new Dimension(dimensioniLabel, altezza));
+            pannelloTarga.setBorder(BorderFactory.createLineBorder(Color.black));
 
             
         }
 
-        private JPanel creaLeftPanel(Targa t){
+        private JPanel creaLeftPanel(Targa t, int altezza){
             JPanel leftPanel = new JPanel();
             leftPanel.setBackground(new Color(0,61,163,255));
-            leftPanel.setPreferredSize(new Dimension(13, 32));
+            leftPanel.setPreferredSize(new Dimension(13, altezza));
             leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
             JLabel paeseTargaLabel = new JLabel(t.getSigla());
             paeseTargaLabel.setFont(new Font("Serif", Font.PLAIN, 8));

@@ -59,8 +59,8 @@ public class GUI extends JFrame{
 
         TabellaInventario tabella = new TabellaInventario(inVeicoli);
         //impostazione dimensioni dei pulsanti elimina e dettagli
-        TableColumn colonna = tabella.getColumnModel().getColumn(5);
-        colonna.setPreferredWidth(20);
+        // TableColumn colonna = tabella.getColumnModel().getColumn(5);
+        // colonna.setPreferredWidth(20);
         tabellaPanel = new JScrollPane(tabella);
         //=======================================================================================================
 
