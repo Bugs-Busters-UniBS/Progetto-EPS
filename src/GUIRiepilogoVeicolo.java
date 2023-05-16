@@ -166,13 +166,14 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             
             JLabel targaLabel = new JLabel(numeroTarga);
             targaLabel.setVerticalAlignment(JLabel.TOP);
-            targaLabel.setFont(new Font("Serif", Font.BOLD, altezza-2));
+            targaLabel.setFont(new Font("Serif", Font.BOLD, altezza-4));
 
             JPanel centerPanel = new JPanel();
             centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
     
             centerPanel.setBackground(new Color(255,255,255,255));
             targaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            targaLabel.setForeground(Color.BLACK);
 
             centerPanel.add(targaLabel);
             pannelloTarga.add(centerPanel,BorderLayout.CENTER);
@@ -201,12 +202,13 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
             JLabel paeseTargaLabel = new JLabel(t.getSigla());
             paeseTargaLabel.setFont(new Font("Serif", Font.PLAIN, 8));
+            paeseTargaLabel.setForeground(Color.white);
             paeseTargaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             
 
             try {
                 BufferedImage immagineStelle = ImageIO.read(new File("immagini/stelle.png"));
-                Image immagineScal = immagineStelle.getScaledInstance(8, 10, Image.SCALE_SMOOTH);
+                Image immagineScal = immagineStelle.getScaledInstance(14, 15, Image.SCALE_SMOOTH);
                 JLabel stelleLabel = new JLabel(new ImageIcon(immagineScal));
                 leftPanel.add(stelleLabel);
                 stelleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
