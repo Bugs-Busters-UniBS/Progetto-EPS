@@ -26,6 +26,8 @@ public class TabellaInventario extends JTable{
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         this.setModel(modello);
+        //Rimpicciolisce colonna checkbox
+        this.getColumnModel().getColumn(5).setPreferredWidth(15);
         this.tableHeader.setReorderingAllowed(false);
         // render alternato piu' leggibile
         this.setDefaultRenderer(Object.class, new ColoreAlternatoRigheTabella());
@@ -70,6 +72,8 @@ public class TabellaInventario extends JTable{
 
     public void updateTable() {
         this.modello.refresh(inv);
+        //Rimpicciolisce colonna checkbox
+        this.getColumnModel().getColumn(5).setPreferredWidth(15);
 
     }
     
