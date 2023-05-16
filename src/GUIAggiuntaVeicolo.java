@@ -114,8 +114,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         inserimentoCilindrata.setEditable(false);
 
         //standard automobile
-        labelPortata.setForeground(new java.awt.Color(55, 55, 55));
-        labelCilindrata.setForeground(new java.awt.Color(55, 55, 55));
+        labelPortata.setForeground(new java.awt.Color(86, 86, 86));
+        labelCilindrata.setForeground(new java.awt.Color(86, 86, 86));
 
         //definizione pulsantiera
         aggiungiImmagine = new JButton("Aggiunta immagine");
@@ -225,8 +225,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 inserimentoPortata.setEditable(false);
                 inserimentoCilindrata.setEditable(false);
                 labelPorte.setForeground(null);
-                labelPortata.setForeground(new java.awt.Color(55, 55, 55));
-                labelCilindrata.setForeground(new java.awt.Color(55, 55, 55));
+                labelPortata.setForeground(new java.awt.Color(86, 86, 86));
+                labelCilindrata.setForeground(new java.awt.Color(86, 86, 86));
                 break;
 
                 //Camion
@@ -234,9 +234,9 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 dropdownPorte.setEnabled(false);
                 inserimentoPortata.setEditable(true);
                 inserimentoCilindrata.setEditable(false);
-                labelPorte.setForeground(new java.awt.Color(55, 55, 55));
+                labelPorte.setForeground(new java.awt.Color(86, 86, 86));
                 labelPortata.setForeground(null);
-                labelCilindrata.setForeground(new java.awt.Color(55, 55, 55));
+                labelCilindrata.setForeground(new java.awt.Color(86, 86, 86));
                 break;
 
                 //Moto
@@ -244,8 +244,8 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 dropdownPorte.setEnabled(false);
                 inserimentoPortata.setEditable(false);
                 inserimentoCilindrata.setEditable(true);
-                labelPorte.setForeground(new java.awt.Color(55, 55, 55));
-                labelPortata.setForeground(new java.awt.Color(55, 55, 55));
+                labelPorte.setForeground(new java.awt.Color(86, 86, 86));
+                labelPortata.setForeground(new java.awt.Color(86, 86, 86));
                 labelCilindrata.setForeground(null);
                 break;
             }
