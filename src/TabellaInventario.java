@@ -72,6 +72,9 @@ public class TabellaInventario extends JTable{
         this.modello.refresh(inv);
 
     }
+    public TabellaInventarioModel getTabellaInventarioModel(){
+        return this.modello;
+    }
     
     public Inventario getInventario(){
         return inv;

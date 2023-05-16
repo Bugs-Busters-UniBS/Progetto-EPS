@@ -1,3 +1,4 @@
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -45,6 +46,8 @@ public class Tester {
         
         FlatMacLightLaf.setup();
 
+        ImageIcon logo = new ImageIcon("immagini/logo.png");
+
         try {
             UIManager.setLookAndFeel(new FlatMacLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
@@ -54,6 +57,8 @@ public class Tester {
         GUI myGui = new GUI("Gestionale Veicoli");
         myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myGui.setVisible(true);
+        myGui.setIconImage(logo.getImage());
+
 
         // GUIVeicolo addGUI = new GUIVeicolo();
         // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

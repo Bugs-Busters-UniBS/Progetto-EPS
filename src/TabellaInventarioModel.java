@@ -43,4 +43,7 @@ public class TabellaInventarioModel extends DefaultTableModel {
         else
             return String.class;
     }
+
+    public void filterRows(String searchText) {
+    }
 }

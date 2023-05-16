@@ -22,16 +22,21 @@ public class GUI extends JFrame{
     public int targaDEBUG = 0;
 
     //dropdown di scelta del tema
-    JComboBox<String> dropdownTema;
+    private JComboBox<String> dropdownTema;
+
+    //tabella
+    private TabellaInventario tabella;
+    private JTextField cercaField;
 
     //Inventario interno di veicoli
     private Inventario inVeicoli;
 
     //Pannelli per il logo e titolo, bottoni, tabella
     private JPanel logoPanel = new JPanel();
+    private JPanel topPanel = new JPanel();
     private JPanel bottoniPanel = new JPanel();
     private JPanel swichTema = new JPanel();
-    private JPanel cercaPanel = new JPanel(); 
+    private JPanel cercaPanel = new JPanel();
     private JScrollPane tabellaPanel;
 
     public GUI(String titolo) {
@@ -43,14 +48,15 @@ public class GUI extends JFrame{
         this.setLayout(new BorderLayout(25, 15));
 
         //Impostazione layout manager dei pannelli
-        swichTema.setLayout(new GridLayout(1, 2));
-        cercaPanel.setLayout(new GridLayout(1,2));
+        topPanel.setLayout(new BorderLayout());
+        swichTema.setLayout(new FlowLayout());
+        cercaPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         logoPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 100, 10));
-        bottoniPanel.setLayout(new GridLayout(6, 1, 15, 15));
+        bottoniPanel.setLayout(new GridLayout(3, 1, 15, 15));
 
         //Inserimento Logo UniBS
         try {
-            BufferedImage logo = ImageIO.read(new File("logo_unibs.png"));
+            BufferedImage logo = ImageIO.read(new File("immagini/logo.png"));
             Image logoScal = logo.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             JLabel picLabel = new JLabel(new ImageIcon(logoScal));
 
@@ -63,7 +69,7 @@ public class GUI extends JFrame{
 
         //LABEL CON NOME DEL GRUPPO
         JLabel titoloProg = new JLabel("<html>Gestionale Veicoli<br/>By BugsBusters UniBS</html>");
-        titoloProg.setFont(new Font("Lucida Grande", Font.ITALIC, 30));
+        titoloProg.setFont(new Font("Arial", Font.ITALIC, 30));
         logoPanel.add(titoloProg);
 
         //======================================CREAZIONE TABELLA=================================================
@@ -71,10 +77,7 @@ public class GUI extends JFrame{
         this.inVeicoli = new Inventario();
         inVeicoli.caricaInventario("database.xml");
         //tabella
-        TabellaInventario tabella;
         tabella = new TabellaInventario(inVeicoli);
-        //filtro per la ricerca
-        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tabella.getModel());
         //impostazione dimensioni dei pulsanti elimina e dettagli
         TableColumn colonna = tabella.getColumnModel().getColumn(5);
         colonna.setPreferredWidth(20);
@@ -126,38 +129,37 @@ public class GUI extends JFrame{
         swichTema.add(dropdownTema);
         //=============================================================================
 
-        //====================CASELLA DI RICERCA E BOTTONI==============================
-        JTextField cercaField = new JTextField();
+        //====================CASELLA DI RICERCA E BOTTONI E LABEL==============================
+        cercaField = new JTextField(20);
+        JLabel cercaLabel= new JLabel("Cerca:");
         JButton pulisciTesto = new JButton("Pulisci");
-        cercaField.getDocument().addDocumentListener(new DocumentListener(){
 
+        cercaField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                String text = cercaField.getText();
-
-                if (text.trim().length() == 0) {
-                    rowSorter.setRowFilter(null);
-                } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-                }
+                filterRows(cercaField.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                String text = cercaField.getText();
-
-                if (text.trim().length() == 0) {
-                    rowSorter.setRowFilter(null);
-                } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-                }
+                filterRows(cercaField.getText());
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                filterRows(cercaField.getText());
             }
         });
+        pulisciTesto.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                cercaField.setText("");
+            }
+            
+        });
+        cercaPanel.add(cercaLabel);
+        cercaPanel.add(cercaField);
         cercaPanel.add(pulisciTesto);
         //==============================================================================
 
@@ -201,18 +203,28 @@ public class GUI extends JFrame{
         // JLabel filtroText = new JLabel("Cerca:");
         // JTextField barraRicerca = new JTextField("", 15);
 
-        // Composizione dei pannelli ...
-        bottoniPanel.add(swichTema);
-        bottoniPanel.add(cercaField);
-        bottoniPanel.add(cercaPanel);
-        bottoniPanel.add(botSalva);
+        //top panel
+        topPanel.add(logoPanel, BorderLayout.PAGE_START);
+        topPanel.add(cercaPanel, BorderLayout.CENTER);
+        topPanel.add(swichTema, BorderLayout.LINE_START);
+
+        // Composizione dei pannelli ...    
         bottoniPanel.add(botAggiungi);
+        bottoniPanel.add(botSalva);
         bottoniPanel.add(botRimuovi);
 
         // ... e della finestra principale
-        this.add(logoPanel, BorderLayout.NORTH);
+        this.add(topPanel, BorderLayout.NORTH);
         this.add(bottoniPanel, BorderLayout.WEST);
         this.add(tabellaPanel, BorderLayout.CENTER);
+    }
+
+    private void filterRows(String searchText) {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabella.getTabellaInventarioModel());
+        tabella.setRowSorter(sorter);
+
+        RowFilter<TableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + searchText);
+        sorter.setRowFilter(rowFilter);
     }
 
     private void switchTheme() {
