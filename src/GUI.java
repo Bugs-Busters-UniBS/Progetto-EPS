@@ -6,6 +6,12 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+// import per le icone
+import jiconfont.swing.IconFontSwing;
+import icone.FontAwesome;
+import icone.GoogleMaterialDesignIcons;
+import icone.Iconic;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -21,8 +27,9 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 public class GUI extends JFrame{
     public int targaDEBUG = 0;
 
-    //dropdown di scelta del tema
-    private JComboBox<String> dropdownTema;
+    //bottone di scelta del tema
+    private JButton bottoneTema;
+    private boolean isDarkMode = false;
 
     //tabella
     private TabellaInventario tabella;
@@ -43,13 +50,15 @@ public class GUI extends JFrame{
         //Costruttore superclasse JFrame
         super(titolo);
 
+        //per le icone
+        IconFontSwing.register(Iconic.getIconFont());
+
         //Impostazione ampiezza finestra e layout manager
         this.setSize(1000,800);
         this.setLayout(new BorderLayout(25, 15));
 
         //Impostazione layout manager dei pannelli
         topPanel.setLayout(new BorderLayout());
-        swichTema.setLayout(new FlowLayout());
         cercaPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         logoPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 100, 10));
         bottoniPanel.setLayout(new GridLayout(3, 1, 15, 15));
@@ -114,26 +123,24 @@ public class GUI extends JFrame{
         }});
         //=============================================================================
 
-        //====================DROPDOWN SWICH TEMA INVENTARIO===========================
-        //label swichTema
-        JLabel swichTemaLabel = new JLabel("Tema:");
-        String[] stringTema = {"Chiaro", "Scuro"};
-        dropdownTema = new JComboBox<String>(stringTema);
-        dropdownTema.addActionListener(new ActionListener() {
+        //====================BOTTONE SWICH TEMA INVENTARIO===========================
+        Icon iconaLuna = IconFontSwing.buildIcon(Iconic.MOON_FILL, 20, new Color(0, 0, 0));
+        bottoneTema = new JButton(iconaLuna);
+        bottoneTema.setOpaque(false);
+        bottoneTema.setContentAreaFilled(false);
+        bottoneTema.setBorderPainted(false);
+        bottoneTema.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switchTheme();
+                toggleLookAndFeel();
             }
         });
-        swichTema.add(swichTemaLabel);
-        swichTema.add(dropdownTema);
         //=============================================================================
 
         //====================CASELLA DI RICERCA E BOTTONI E LABEL==============================
         cercaField = new JTextField(20);
         JLabel cercaLabel= new JLabel("Cerca:");
         JButton pulisciTesto = new JButton("Pulisci");
-
         cercaField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -205,8 +212,8 @@ public class GUI extends JFrame{
 
         //top panel
         topPanel.add(logoPanel, BorderLayout.PAGE_START);
-        topPanel.add(cercaPanel, BorderLayout.CENTER);
-        topPanel.add(swichTema, BorderLayout.LINE_START);
+        topPanel.add(cercaPanel, BorderLayout.LINE_START);
+        topPanel.add(bottoneTema, BorderLayout.LINE_END);
 
         // Composizione dei pannelli ...    
         bottoniPanel.add(botAggiungi);
@@ -227,20 +234,22 @@ public class GUI extends JFrame{
         sorter.setRowFilter(rowFilter);
     }
 
-    private void switchTheme() {
-        String selectedTheme = (String) dropdownTema.getSelectedItem();
-
+    private void toggleLookAndFeel() {
+        Icon iconaSole = IconFontSwing.buildIcon(Iconic.SUN_FILL, 20, new Color(255,213,0));
+        Icon iconaLuna = IconFontSwing.buildIcon(Iconic.MOON_FILL, 20, new Color(0, 0, 0));
         try {
-            if (selectedTheme.equalsIgnoreCase("Scuro")) {
-                UIManager.setLookAndFeel(new FlatMacDarkLaf());
-            } else {
+            if (isDarkMode) {
                 UIManager.setLookAndFeel(new FlatMacLightLaf());
+                bottoneTema.setIcon(iconaLuna);
+                isDarkMode = false;
+            } else {
+                UIManager.setLookAndFeel(new FlatMacDarkLaf());
+                bottoneTema.setIcon(iconaSole);
+                isDarkMode = true;
             }
-
-            // Update the UI for all open windows
             SwingUtilities.updateComponentTreeUI(this);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
     }
 }
