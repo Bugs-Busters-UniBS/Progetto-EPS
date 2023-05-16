@@ -16,12 +16,8 @@
         <Targa numero="RR333EE" paese="GERMANIA"/>
         <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-    <Veicolo marca="a" modello="a" numero_porte="5" tipo="Automobile">
-        <Targa numero="AA222AA" paese="GERMANIA"/>
-        <immagine filename="immagini/auto_place_holder.png"/>
-    </Veicolo>
-    <Veicolo marca="as" modello="as" numero_porte="3" tipo="Automobile">
-        <Targa numero="OOOOOOOOOO" paese="GERMANIA"/>
+    <Veicolo marca="Fiat" modello="500" numero_porte="5" tipo="Automobile">
+        <Targa numero="RR444RR" paese="ITALIA"/>
         <immagine filename="immagini/auto_place_holder.png"/>
     </Veicolo>
 </Inventario>
