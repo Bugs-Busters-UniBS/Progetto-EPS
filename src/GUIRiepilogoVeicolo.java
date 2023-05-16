@@ -14,11 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.xml.sax.SAXException;
+
 
 public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
-    private JPanel pannelloDati = new JPanel(new GridLayout(7,1));
+    private JPanel pannelloDati = new JPanel(new GridBagLayout());
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
     private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
+    GridBagConstraints gbcDati = new GridBagConstraints();
     //creazione bottone per eliminare auto
     private JButton eliminaButton = new JButton("Elimina");
     //Veicolo passato
@@ -26,7 +29,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     //inventario
     private Inventario inv;
 
-    public GUIRiepilogoVeicolo(String titolo, Veicolo veicolo, Inventario inv) {
+    public <T extends Veicolo> GUIRiepilogoVeicolo(String titolo, T veicolo, Inventario inv) {
         super(titolo);
         this.inv= inv;
         this.veicolo=veicolo;
@@ -39,55 +42,70 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         JLabel tipo = new JLabel("Tipologia: " + veicolo.getTipo());;
         JLabel marca = new JLabel("Marca: " + veicolo.getMarca());
         JLabel modello = new JLabel("Modello: " + veicolo.getModello());
-        // JLabel paese = new JLabel("Paese di Provenienza: " + veicolo.getTarga().getPaese().name());
-        //JLabel targa = new JLabel("Targa: " + veicolo.getTarga().getNumero());
-        JLabel porte;
-        JLabel portata;
-        JLabel cilindrata;
-
+        JLabel caratteristicaAggiuntiva = new JLabel();
+    
         //aggiunta delle label costanti al panel
+        gbcDati.anchor = GridBagConstraints.FIRST_LINE_START;
+        // gbcDati.fill = GridBagConstraints.BOTH;
+        gbcDati.insets = new Insets(5, 0, 0, 10);
+
         titoloGUI.setFont(new Font("Lucida Grande", Font.ITALIC, 20));
-        pannelloDati.add(titoloGUI);
+        gbcDati.gridx = 0;
+        gbcDati.gridy = 0;
+        pannelloDati.add(titoloGUI, gbcDati);
+        // pannelloDati.add(titoloGUI);
         tipo.setFont(new Font("Serif", Font.PLAIN, 16));
-        pannelloDati.add(tipo);
+        gbcDati.gridy += 1;
+        pannelloDati.add(tipo,gbcDati);
         marca.setFont(new Font("Serif", Font.PLAIN, 16));
-        pannelloDati.add(marca);
+        gbcDati.gridy += 1;
+        pannelloDati.add(marca,gbcDati);
         modello.setFont(new Font("Serif", Font.PLAIN, 16));
-        pannelloDati.add(modello);
-        //pannelloDati.add(paese);
+        gbcDati.gridy += 1;
+        pannelloDati.add(modello,gbcDati);
         
 
-        //riconoscimento veicolo e istanziazione dei label mancanti
+        // riconoscimento veicolo e istanziazione dei label mancanti
         if(veicolo instanceof Automobile){
             Automobile auto = (Automobile)veicolo;
-            porte = new JLabel("N Porte: " + String.valueOf(auto.getNumeroPorte()));
-            pannelloDati.add(porte);
+            caratteristicaAggiuntiva = new JLabel("N Porte: " + String.valueOf(auto.getNumeroPorte()));
             
         }
         else if(veicolo instanceof Camion){
             Camion camion = (Camion)veicolo;
-            portata = new JLabel("Portata: " + String.valueOf(camion.getPortata()));
-            pannelloDati.add(portata);
+            caratteristicaAggiuntiva = new JLabel("Portata: " + String.valueOf(camion.getPortata()));
         }
         else if(veicolo instanceof Moto){
             Moto moto = (Moto)veicolo;
-            cilindrata = new JLabel("Cilindrata: " + String.valueOf(moto.getCilindrata()));
-            pannelloDati.add(cilindrata);
+            caratteristicaAggiuntiva = new JLabel("Cilindrata: " + String.valueOf(moto.getCilindrata()));
         }
+        gbcDati.gridy+=1;
+        pannelloDati.add(caratteristicaAggiuntiva,gbcDati);
+
+        gbcDati.gridy+=1;
         TargaPanel targa = new TargaPanel(veicolo.getTarga());
-        pannelloDati.add(targa);
+        pannelloDati.add(targa, gbcDati);
 
         //aggiunta del bottone di chiusura e della sua azione
         JButton closeButton = new JButton("Chiudi");
-        //aggiunta azioni pulsanti
+        // //aggiunta azioni pulsanti
         closeButton.addActionListener(ev -> this.dispose());
         eliminaButton.addActionListener(this);
-        //aggiunta pulsanti al panel
-        pannelloBottoni.add(eliminaButton);
-        pannelloBottoni.add(closeButton);
-        pannelloDati.add(pannelloBottoni, BorderLayout.PAGE_END);
+        // eliminaButton.setSize(new Dimension(150,40));
+        // closeButton.setSize(new Dimension(150,40));
 
-        //aggiunta del panel al frame
+        // //aggiunta pulsanti al panel
+        // pannelloBottoni.add(eliminaButton);
+        // pannelloBottoni.add(closeButton);
+        // pannelloDati.add(pannelloBottoni, BorderLayout.PAGE_END);
+        gbcDati.gridy+=1;
+        gbcDati.gridwidth = 2;
+        pannelloDati.add(eliminaButton, gbcDati);
+        gbcDati.gridx+=1;
+        pannelloDati.add(closeButton,gbcDati);
+        // //aggiunta del panel al frame
+
+        
         add(pannelloDati, BorderLayout.CENTER);
         
 
@@ -132,7 +150,6 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             if (t.getPaese() == Targa.Paese.FRANCIA){
                 numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
             }
-            int widthTarga = numeroTarga.length()*20;
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
