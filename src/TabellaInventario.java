@@ -46,7 +46,8 @@ public class TabellaInventario extends JTable{
     private void visualizzaVeicolo(int row, int col) {
         //se non sono nella colonna della checkbox
         if(col != 5){
-            Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(row, 3).toString());
+            int modelIndex = this.convertRowIndexToModel(row);
+            Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(modelIndex, 3).toString());
             GUIRiepilogoVeicolo guiDettagli = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v, inv);
             //aggiorna la tabella dopo aver eliminato il veicolo
             guiDettagli.addWindowListener(new WindowAdapter() {
