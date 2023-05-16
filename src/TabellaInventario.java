@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -88,6 +89,20 @@ public class TabellaInventario extends JTable{
             return "Doppio click per visualizzare ulteriori dettagli";
         else // solo colonna checkbox
             return "Seleziona uno o più veicoli per rimuoverli successivamente";
+    }
+
+    //Ottiene gli indici delle righe selezionate dalla checkbox sottoforma di ArrayList di interi
+    public ArrayList<Integer> getCheckedRows() {
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+        int rowNum = this.getRowCount();
+
+        for(int i = 0; i<rowNum; i++) {
+            if((Boolean)getValueAt(i, 5) == true) {
+                rows.add(i);
+            }
+        }
+
+        return rows;
     }
 
     /* public void removeRow(int i) {
