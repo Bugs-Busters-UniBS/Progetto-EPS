@@ -9,13 +9,12 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
+public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
     private JPanel pannelloDati = new JPanel(new GridLayout(7,1));
     private JPanel pannelloImmagine = new JPanel(new BorderLayout());
     private JPanel pannelloBottoni = new JPanel(new GridLayout(1, 2));
@@ -92,6 +91,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         //aggiunta del panel al frame
         add(pannelloDati, BorderLayout.CENTER);
         
+        
 
         //aggiunta dell'immagine al panel
         try {
@@ -102,23 +102,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         }
         catch(Exception e ) {
             e.printStackTrace();
-            try{
-                String fileSostitutivo = null;
-                if(veicolo instanceof Automobile)
-                    fileSostitutivo = "immagini/auto_place_holder.png"; 
-                else if(veicolo instanceof Camion)
-                    fileSostitutivo = "immagini/camion_place_holder.png"; 
-                else if(veicolo instanceof Moto) 
-                    fileSostitutivo = "immagini/moto_place_holder.png";
-                
-                BufferedImage immagineAutoStandard = ImageIO.read(new File(fileSostitutivo));
-                Image immagineStandardScal = immagineAutoStandard.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-                JLabel labelImmagine = new JLabel(new ImageIcon(immagineStandardScal));
-                pannelloImmagine.add(labelImmagine);
-            }
-            catch(Exception ec){
-                ec.printStackTrace();
-            }
+            System.out.println("Errore immagine non trovata");
         }
 
         //aggiunta del panel alla gui
@@ -134,7 +118,6 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             if (t.getPaese() == Targa.Paese.FRANCIA){
                 numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
             }
-            int widthTarga = numeroTarga.length()*20;
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
             JPanel pannelloTarga = new JPanel();
             add(pannelloTarga);
@@ -150,6 +133,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             JLabel targaLabel = new JLabel(numeroTarga);
             targaLabel.setVerticalAlignment(JLabel.TOP);
             targaLabel.setFont(new Font("Serif", Font.BOLD, 20));
+            targaLabel.setForeground(Color.BLACK);
 
             JPanel centerPanel = new JPanel();
             centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 // import per le icone
 import jiconfont.swing.IconFontSwing;
+import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
 import icone.Iconic;
 
 import javax.imageio.ImageIO;
@@ -27,22 +28,24 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 public class GUI extends JFrame{
     public int targaDEBUG = 0;
 
+    //per i place holder
+    String aggiunta;
+
     //bottone di scelta del tema
     private JButton bottoneTema;
-    private boolean isDarkMode = false;
+    private boolean isDarkMode;
 
     //Inventario interno di veicoli
     private Inventario inVeicoli;
 
     //Titolo, logo
-    JLabel picLabel;
-    JLabel titoloProg;
+    private JLabel picLabel;
+    private JLabel titoloProg;
 
     //Pannelli per il logo e titolo, bottoni, scrollpanel per la tabella
     private JPanel logoPanel = new JPanel();
     private JPanel topPanel = new JPanel();
     private JPanel bottoniPanel = new JPanel();
-    private JPanel swichTema = new JPanel();
     private JPanel cercaPanel = new JPanel();
     private JScrollPane tabellaPanel;
 
@@ -54,11 +57,9 @@ public class GUI extends JFrame{
     //Tabella, ricerca
     private TabellaInventario tabella;
     private JTextField cercaField;
-    private JLabel cercaLabel;
-    private JButton pulisciTesto;
 
-    //Switch tema
-    private JLabel swichTemaLabel;
+    //easter egg
+    private static final String VIDEO_PATH = "video/easter_egg.mp4";
 
     //INIZIO COSTRUTTORE
     public GUI(String titolo) {
@@ -80,17 +81,9 @@ public class GUI extends JFrame{
 
 
         //================================CREAZIONE LOGO===============================================================
-        try {
-            BufferedImage logo = ImageIO.read(new File("immagini/logo.png"));
-            Image logoScal = logo.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-            picLabel = new JLabel(new ImageIcon(logoScal));
-
-            // Composizione logoPanel
-            logoPanel.add(picLabel);
-        }
-        catch(Exception e ) {
-            System.out.println("Errore nel caricamento del logo!");
-        }
+        picLabel = new JLabel();
+        setLogoImage("immagini/logo.png");
+        logoPanel.add(picLabel);
         //===========================================================================================================
 
 
@@ -177,6 +170,16 @@ public class GUI extends JFrame{
         cercaField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
+                if(cercaField.getText().equalsIgnoreCase("hitByTruck")){
+                    JFrame frame = new JFrame("MP4 Player Example");
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setSize(800, 600);
+            
+                    // EmbeddedMediaPlayerComponent mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
+                    // // frame.setContentPane(mediaPlayerComponent);
+                    // frame.setVisible(true);
+                    // mediaPlayerComponent.mediaPlayer().media().play(VIDEO_PATH);
+                }
                 filterRows(cercaField.getText());
             }
 
@@ -279,15 +282,29 @@ public class GUI extends JFrame{
             if (isDarkMode) {
                 UIManager.setLookAndFeel(new FlatMacLightLaf());
                 bottoneTema.setIcon(iconaLuna);
+                setLogoImage("immagini/logo.png");
                 isDarkMode = false;
             } else {
                 UIManager.setLookAndFeel(new FlatMacDarkLaf());
                 bottoneTema.setIcon(iconaSole);
+                setLogoImage("immagini/logo_white.png");
                 isDarkMode = true;
             }
             SwingUtilities.updateComponentTreeUI(this);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setLogoImage(String path){
+        try {
+            BufferedImage logo = ImageIO.read(new File(path));
+            Image logoScal = logo.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+            picLabel.setIcon(new ImageIcon(logoScal));
+            
+        }
+        catch(Exception e ) {
+            System.out.println("Errore nel caricamento del logo!");
         }
     }
 }
