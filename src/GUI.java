@@ -5,11 +5,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 // import per le icone
 import jiconfont.swing.IconFontSwing;
-import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
 import icone.Iconic;
 
 import javax.imageio.ImageIO;
@@ -170,15 +172,8 @@ public class GUI extends JFrame{
         cercaField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if(cercaField.getText().equalsIgnoreCase("hitByTruck")){
-                    JFrame frame = new JFrame("MP4 Player Example");
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    frame.setSize(800, 600);
-            
-                    // EmbeddedMediaPlayerComponent mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
-                    // // frame.setContentPane(mediaPlayerComponent);
-                    // frame.setVisible(true);
-                    // mediaPlayerComponent.mediaPlayer().media().play(VIDEO_PATH);
+                if(cercaField.getText().equalsIgnoreCase("RickRoll")){
+                    getVideo("https://www.youtube.com/watch?v=dQw4w9WgXcQ");    
                 }
                 filterRows(cercaField.getText());
             }
@@ -305,6 +300,18 @@ public class GUI extends JFrame{
         }
         catch(Exception e ) {
             System.out.println("Errore nel caricamento del logo!");
+        }
+    }
+    
+    private void getVideo(String URL){
+        try {
+            Desktop.getDesktop().browse(new URI(URL));
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (URISyntaxException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
         }
     }
 }
