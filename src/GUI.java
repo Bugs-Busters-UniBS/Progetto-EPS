@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 // import per le icone
 import jiconfont.swing.IconFontSwing;
+import icone.GoogleMaterialDesignIcons;
 import icone.Iconic;
 
 import javax.imageio.ImageIO;
@@ -68,9 +69,6 @@ public class GUI extends JFrame{
         //Costruttore superclasse JFrame
         super(titolo);
 
-        //per le icone
-        IconFontSwing.register(Iconic.getIconFont());
-
         //Impostazione ampiezza finestra e layout manager
         this.setSize(1000,800);
         this.setLayout(new BorderLayout(25, 15));
@@ -122,6 +120,8 @@ public class GUI extends JFrame{
 
         //===================================BOTTONE AGGIUNTA NUOVO VEICOLO===================================
         botAggiungi = new JButton("Aggiungi nuovo veicolo");
+        botAggiungi.setBackground(new java.awt.Color(55, 90, 129));
+        botAggiungi.setForeground(Color.WHITE);
         //Azione di botAggiungi
         botAggiungi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -152,6 +152,7 @@ public class GUI extends JFrame{
         //===================================================================================================
 
         //====================BOTTONE SWICH TEMA INVENTARIO===========================
+        IconFontSwing.register(Iconic.getIconFont());
         Icon iconaLuna = IconFontSwing.buildIcon(Iconic.MOON_FILL, 20, new Color(0, 0, 0));
         bottoneTema = new JButton(iconaLuna);
         bottoneTema.setOpaque(false);
@@ -166,8 +167,10 @@ public class GUI extends JFrame{
         //=============================================================================
 
         //====================CASELLA DI RICERCA E BOTTONI E LABEL==============================
+        IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
+        Icon iconaLente = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SEARCH, 20, Color.BLACK);
         cercaField = new JTextField(20);
-        JLabel cercaLabel= new JLabel("Cerca:");
+        JLabel cercaLabel= new JLabel(iconaLente);
         JButton pulisciTesto = new JButton("Pulisci");
         cercaField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
