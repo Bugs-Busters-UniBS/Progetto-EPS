@@ -16,8 +16,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 // image
 import javax.imageio.ImageIO;
@@ -112,18 +110,6 @@ public class GUI extends JFrame{
         
         // Instanziamento tabella
         tabella = new TabellaInventario(inVeicoli);
-
-        // Permette di rendere abilitato il pulsante di rimozione solo quando una riga è effettivamente selezionata
-        tabella.getModel().addTableModelListener(new TableModelListener() {
-            public void tableChanged(TableModelEvent ev) {
-                if(tabella.getCheckedRows().size() == 0) {
-                    botRimuovi.setEnabled(false);
-                }
-                else {
-                    botRimuovi.setEnabled(true);
-                }
-            }
-        });
 
         // impostazione dimensioni dei pulsanti elimina e dettagli
         tabella.getColumnModel().getColumn(5).setPreferredWidth(20);
@@ -255,40 +241,31 @@ public class GUI extends JFrame{
         botRimuovi.setBackground((new java.awt.Color(222, 51, 72)));
         botRimuovi.setForeground(Color.WHITE);
 
-        //Inizialmente non abilitato
-        botRimuovi.setEnabled(false);
-
         // Azione bottone rimuovi
         botRimuovi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                // Istanziamento scelte per il JOptionPane
-                String[] opzioni = {"Si, Sono sicuro", "No"};
-                int scelta = JOptionPane.showOptionDialog(botRimuovi, "Sei sicuro di voler rimuovere i veicoli selezionati?", "Scelta", 
-                                                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, null);
-                
-                // Analisi della scelta
-                if(scelta == JOptionPane.YES_OPTION) {
-                    // Ottiene una lista delle righe dalla tabella
-                    ArrayList<Integer> selected = tabella.getCheckedRows();
+                if(tabella.howManyChecked() > 0) {
+                    // Istanziamento scelte per il JOptionPane
+                    String[] opzioni = {"Si, Sono sicuro", "No"};
+                    int scelta = JOptionPane.showOptionDialog(tabellaPanel, "Sei sicuro di voler rimuovere i veicoli selezionati?", "Scelta", 
+                                                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opzioni, null);
+                    
+                    // Analisi della scelta
+                    if(scelta == JOptionPane.YES_OPTION) {
+                        // Ottiene una lista delle righe dalla tabella
+                        ArrayList<Targa> targheRimozione = tabella.getCheckedTarghe();
 
-                    // Cicla su tutte le righe selezionate dalla checkbox
-                    for(int rowIndex : selected) {
-                        // Ottiene il numero di targa e paese dalla tabella
-                        String numero = (String)tabella.getModel().getValueAt(rowIndex, 3);
-                        String paese = (String)tabella.getModel().getValueAt(rowIndex, 4);
-
-                        try {
-                            // Rimuove il veicolo identificandolo dalla targa
-                            Targa targaRimozione = new Targa(numero, paese);
-                            inVeicoli.rimuoviVeicolo(targaRimozione);
+                        // Cicla su tutte le righe selezionate dalla checkbox
+                        for(Targa targa : targheRimozione) {
+                            inVeicoli.rimuoviVeicolo(targa);
                         }
-                        catch(TargaException ex) {
-                            System.out.println("Errore nella rimozione della targa tramite checkbox!");
-                        }
-                       
+                        // Infine aggiorna la tabella
+                        tabella.updateTable();
                     }
-                    // Infine aggiorna la tabella
-                    tabella.updateTable();
+                }
+
+                else {
+                    JOptionPane.showMessageDialog(tabellaPanel, "Selezionare almeno un veicolo", "", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });

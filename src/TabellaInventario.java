@@ -92,17 +92,39 @@ public class TabellaInventario extends JTable{
     }
 
     //Ottiene gli indici delle righe selezionate dalla checkbox sottoforma di ArrayList di interi
-    public ArrayList<Integer> getCheckedRows() {
-        ArrayList<Integer> rows = new ArrayList<Integer>();
+    public ArrayList<Targa> getCheckedTarghe() {
+        ArrayList<Targa> targhe = new ArrayList<Targa>();
+
         int rowNum = this.getRowCount();
 
-        for(int i = 0; i<rowNum; i++) {
+        for(int i = 0; i < rowNum; i++) {
             if((Boolean)getValueAt(i, 5) == true) {
-                rows.add(i);
+                String numero = (String)getValueAt(i, 3);
+                String paese = (String)getValueAt(i, 4);
+
+                try {
+                    Targa targaRimozione = new Targa(numero, paese);
+                    targhe.add(targaRimozione);
+                } catch (TargaException e) {
+                    System.out.println("Errore nella rimozione della targa!");
+                }
             }
         }
 
-        return rows;
+        return targhe;
+    }
+
+    public int howManyChecked() {
+        int num = 0;
+        int rowNum = getRowCount();
+
+        for(int i=0; i<rowNum; i++) {
+            if((Boolean)getValueAt(i, 5) == true) {
+                num++;
+            }
+        }
+        
+        return num;
     }
 
     /* public void removeRow(int i) {

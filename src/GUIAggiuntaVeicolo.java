@@ -188,44 +188,59 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 //Se il veicolo selezionato è un auto
                 if(veicolo.equalsIgnoreCase("Automobile")){
                     // Se non è stata selezionata nessuna immagine
-                    if(!selezioneImmagine)
+                    if(!selezioneImmagine) {
                         inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+                    }
                     // Se è stata selezionata un immagine
-                    else
+                    else {
                         inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), labelFileSelezionato.getText()));
+                    }
+
+                    JOptionPane.showMessageDialog(insertionPanel, "Veicolo aggiunto correttamente!", null, JOptionPane.INFORMATION_MESSAGE, null);
+                    this.dispose();
                 } 
                 else if(veicolo.equalsIgnoreCase("Camion")){
                     // Creazione stringa portata e apparizione messaggio di errore se non e' un double e replacement del . con la ,
                     try {
-                        Double.parseDouble(portata.replace(",", "."));
+                        // Potrebbe lanciare un eccezione se l'utente inserisce dei caratteri 
+                        Double portataCamion = Double.parseDouble(portata.replace(",","."));
+
+                        if(!selezioneImmagine) {
+                            inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), portataCamion));
+                        }
+                        else {
+                            inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), portataCamion, labelFileSelezionato.getText()));
+                        }
+
+                        JOptionPane.showMessageDialog(insertionPanel, "Veicolo aggiunto correttamente!", null, JOptionPane.INFORMATION_MESSAGE, null);
+                        this.dispose();
                     }
                     // Errore inserimento valore portata
                     catch (NumberFormatException errorPortata) {
-                        JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(insertionPanel,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
                     }
-                    if(!selezioneImmagine)
-                        inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata)));
-                    else
-                        inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), labelFileSelezionato.getText()));
                 }
                 else if(veicolo.equalsIgnoreCase("Moto")){
                     // Creazione stringa cilindrata e apparizione messaggio di errore se non e' un int 
                     try {
-                        Integer.parseInt(cilindrata);
+                        int cilindrataMoto = Integer.parseInt(cilindrata);
+                        if(!selezioneImmagine) {
+                            inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), cilindrataMoto));
+                        }
+                        else {
+                            inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), cilindrataMoto, labelFileSelezionato.getText()));
+                        }
+                        JOptionPane.showMessageDialog(insertionPanel, "Veicolo aggiunto correttamente!", null, JOptionPane.INFORMATION_MESSAGE, null);
+                        this.dispose();
                     }
                     catch (NumberFormatException errorPortata) {
-                        JOptionPane.showInternalMessageDialog(null,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(insertionPanel,"Inserire un numero intero","Errore inserimento cilindrata",JOptionPane.ERROR_MESSAGE);
                     }
-                    if(!selezioneImmagine)
-                        inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata)));
-                    else
-                        inv.aggiungiVeicolo(new Moto(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(cilindrata), labelFileSelezionato.getText())); 
                 }
-                this.dispose();
             }
             // Catch dell errore targa su tutte le tipologie di Veicolo
             catch(TargaException te){
-                JOptionPane.showInternalMessageDialog(null,te.getMessage(),"Errore inserimento Targa",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(insertionPanel,te.getMessage(),"Errore inserimento Targa",JOptionPane.ERROR_MESSAGE);
             }
         }
 
