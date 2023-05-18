@@ -1,18 +1,31 @@
+// Import GUI
 import javax.swing.*;
 
+import enumerazioni.Paesi;
+import enumerazioni.Veicoli;
+
 import java.awt.*;
+
+// Import event
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/***
+ * Classe GUI Destinata alla aggiunta di un nuovo veicolo all'internio del gestonale
+ */
 public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
- 
+    
+    // Copia dei dati
     private Inventario inv;
 
+    // Creazione dei panel di composizione della GUI
     private JPanel insertionPanel = new JPanel();
     private JPanel pulsantieraLabel = new JPanel();
     private JPanel pulsantiera = new JPanel();
-    private JPanel label = new JPanel();
+    private JPanel labelPanel = new JPanel();
     
+    // Creazione di tutte le label necessarie
+    private JLabel titoloGUI;
     private JLabel labelTipoVeicolo;
     private JLabel labelMarca;
     private JLabel labelModello;
@@ -22,40 +35,44 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JLabel labelPortata;
     private JLabel labelCilindrata;
     private JLabel labelFileSelezionato;
+
+    // Creazione dei Menu a Dropdown
     private JComboBox<String> dropdownVeicolo;
     private JComboBox<String> dropdownPaese;
     private JComboBox<String> dropdownPorte;
+
+    // Creazione dei TextField di inserimento
     private JTextField inserimentoMarca;
     private JTextField inserimentoModello;
     private JTextField inserimentoNumeroTarga;
     private JTextField inserimentoPortata;
     private JTextField inserimentoCilindrata;
+
+    // Creazione dei bottoni
     private JButton salvaVeicolo;
     private JButton aggiungiImmagine;
 
-    // String titolo, Inventario inv
-    /*public GUIAggiuntaVeicolo(Inventario inv) {
-        // super(titolo);
-        this.inv=inv;*/
-
+    // INIZIO COSTRUTTORE
     public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
+        // Richiamo al costruttore della super classe
         super(titolo);
         this.inv = inv;
         
+        // Seleziopne dimensione finestra e blocco della dimensionamento di quest'ultima e selezione del Layout
         this.setSize(400,300);
-        this.setLayout(new BorderLayout());
         this.setResizable(false);
+        this.setLayout(new BorderLayout());
         
-        //definizione due panel
+        // Selezine Layout del panel pulsantiera e inserimento
         insertionPanel.setLayout(new GridLayout(8,2));
-        pulsantieraLabel.setLayout(new GridLayout(1, 2));
+        pulsantieraLabel.setLayout(new BorderLayout());
 
-        //titolo
-        JLabel titoloGUI = new JLabel("Aggiunta Veicoli",  SwingConstants.CENTER);
+        // Istanziamento e aggiunta del del Titolo al panel
+        titoloGUI = new JLabel("Aggiunta Veicoli",  SwingConstants.CENTER);
         titoloGUI.setFont(new Font("Lucida Grande", Font.ITALIC, 20));
         this.add(titoloGUI, BorderLayout.PAGE_START);
 
-        //definizione insertionPanel
+        // Istanziamnto delle Label
         labelTipoVeicolo = new JLabel("Tipo Veicolo", SwingConstants.CENTER);
         labelMarca = new JLabel("Marca", SwingConstants.CENTER);
         labelModello = new JLabel("Modello", SwingConstants.CENTER);
@@ -65,27 +82,45 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         labelPortata = new JLabel("Portata", SwingConstants.CENTER);
         labelCilindrata = new JLabel("Cilindrata", SwingConstants.CENTER);
         labelFileSelezionato = new JLabel("Non hai selezionato nessuna immagine");
-        // standard se non viene selezionata nessuna immagine
+        // Selezione colore standard della label di inseriemnto file se nojn è stato inserito alcun file
         labelFileSelezionato.setForeground(new java.awt.Color(222, 51, 72));
         
-
-        // IDEA: sarebbe bello ottenere in automatico il numero di paesi 
-        // e veicoli supportati mettendoli tutti una classe enum di costanti
-        String[] stringVeicolo = {"Automobile", "Camion", "Moto"};
+        // Inserimento veicoli supportati
+        String[] stringVeicolo = Veicoli.VEICOLI;
         dropdownVeicolo = new JComboBox<String>(stringVeicolo);
 
-        String[] stringPaese = {"ITALIA", "GERMANIA", "FRANCIA"};
+        // Inserimento paesi supportati
+        String[] stringPaese = Paesi.PAESI;
         dropdownPaese = new JComboBox<String>(stringPaese);
 
+        // Inserimento N° porte
         String[] stringPorte = {"3", "5"};
         dropdownPorte = new JComboBox<String>(stringPorte);
 
+        // Istanziamento dei FextFiled
         inserimentoMarca = new JTextField("", 15);
         inserimentoModello = new JTextField("", 15);
         inserimentoNumeroTarga = new JTextField("", 15);
         inserimentoPortata = new JTextField("", 15);
         inserimentoCilindrata = new JTextField("", 15);
 
+        // Settaggio colori standard (automobile) per le label Portata e Cilindrata
+        labelPortata.setForeground(new java.awt.Color(86, 86, 86));
+        labelCilindrata.setForeground(new java.awt.Color(86, 86, 86));
+
+        // Istanziamento pulsantiera
+        aggiungiImmagine = new JButton("Aggiunta immagine");
+        salvaVeicolo = new JButton("Salva veicolo");
+        
+        // Selezione colore per il pulsante di salvataggio
+        salvaVeicolo.setBackground(new java.awt.Color(55, 90, 129));
+        salvaVeicolo.setForeground(Color.WHITE);
+
+        //aggiunta action Listener ai bottoni
+        aggiungiImmagine.addActionListener(this);
+        salvaVeicolo.addActionListener(this);
+        
+        // Aggiunta delle Label e TextField al insertionPanel
         insertionPanel.add(labelTipoVeicolo);
         insertionPanel.add(dropdownVeicolo);
         dropdownVeicolo.addActionListener(this);
@@ -113,39 +148,27 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         insertionPanel.add(inserimentoCilindrata);
         inserimentoCilindrata.setEditable(false);
 
-        //standard automobile
-        labelPortata.setForeground(new java.awt.Color(86, 86, 86));
-        labelCilindrata.setForeground(new java.awt.Color(86, 86, 86));
+        //Aggiunta della label file selezionato al labelPanel
+        labelPanel.add(labelFileSelezionato, BorderLayout.PAGE_END);
 
-        //definizione pulsantiera
-        aggiungiImmagine = new JButton("Aggiunta immagine");
-        salvaVeicolo = new JButton("Salva veicolo");
-
-        // JButton aggiungiFoto = new JButton("aggiungi foto");
+        // Aggiunta pulsanti della Label alla pulsantiera
         pulsantiera.add(aggiungiImmagine);
         pulsantiera.add(salvaVeicolo);
-        label.add(labelFileSelezionato, BorderLayout.PAGE_END);
-        aggiungiImmagine.addActionListener(this);
-        salvaVeicolo.setBackground(new java.awt.Color(55, 90, 129));
-        salvaVeicolo.setForeground(Color.WHITE);
-        salvaVeicolo.addActionListener(this);
-        
-        //aggiunta alla pulsantiera label
-        pulsantieraLabel.setLayout(new BorderLayout());
-        pulsantieraLabel.add(label, BorderLayout.PAGE_START);
+        pulsantieraLabel.add(labelPanel, BorderLayout.PAGE_START);
         pulsantieraLabel.add(pulsantiera, BorderLayout.PAGE_END);
-        
-        //aggiunta panel
+
+        // Aggiunta Panel secondari al Panel principale
         this.add(insertionPanel, BorderLayout.CENTER);
         this.add(pulsantieraLabel, BorderLayout.PAGE_END);
     }
 
-
+    // Metodo di override per la Selezione dell azione da eseguire su ciascun componente
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==salvaVeicolo){
-            // Ottiene i parametri del veicolo dalla finestra
+        // Caso del bottone di salvataggio
+        if(e.getSource() == salvaVeicolo){
+            // Ottiene i parametri del veicolo dai TextField
             String veicolo = (String)dropdownVeicolo.getSelectedItem();
             String marca = inserimentoMarca.getText();
             String modello = inserimentoModello.getText();
@@ -155,25 +178,28 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
             String portata = inserimentoPortata.getText();
             String cilindrata = inserimentoCilindrata.getText();
             
-            //riconosce se e' stata inserita un immagine personalizzata
+            // Riconosce se e' stata inserita un immagine personalizzata
             Boolean selezioneImmagine = true;
-            if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine"))
+            if(labelFileSelezionato.getText().equalsIgnoreCase("Non hai selezionato nessuna immagine")){
                 selezioneImmagine = false;
-
-            // Crea Filename da marca e modello
-            //System.out.println(veicolo+" "+marca+" "+modello+" "+paese+" "+numeroTarga+" "+porte+" "+portata+" "+cilindrata);
+            }
+            
             try{
+                //Se il veicolo selezionato è un auto
                 if(veicolo.equalsIgnoreCase("Automobile")){
+                    // Se non è stata selezionata nessuna immagine
                     if(!selezioneImmagine)
                         inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte)));
+                    // Se è stata selezionata un immagine
                     else
                         inv.aggiungiVeicolo(new Automobile(marca, modello, new Targa(numeroTarga, paese), Integer.parseInt(porte), labelFileSelezionato.getText()));
                 } 
                 else if(veicolo.equalsIgnoreCase("Camion")){
-                    //creazione stringa portata e apparizione messaggio di errore se non e' un double 
+                    // Creazione stringa portata e apparizione messaggio di errore se non e' un double e replacement del . con la ,
                     try {
                         Double.parseDouble(portata.replace(",", "."));
                     }
+                    // Errore inserimento valore portata
                     catch (NumberFormatException errorPortata) {
                         JOptionPane.showInternalMessageDialog(null,"Inserire un numero","Errore inserimento portata",JOptionPane.ERROR_MESSAGE);
                     }
@@ -183,7 +209,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                         inv.aggiungiVeicolo(new Camion(marca, modello, new Targa(numeroTarga, paese), Double.parseDouble(portata), labelFileSelezionato.getText()));
                 }
                 else if(veicolo.equalsIgnoreCase("Moto")){
-                    //creazione stringa portata e apparizione messaggio di errore se non e' un int 
+                    // Creazione stringa cilindrata e apparizione messaggio di errore se non e' un int 
                     try {
                         Integer.parseInt(cilindrata);
                     }
@@ -197,27 +223,31 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 }
                 this.dispose();
             }
+            // Catch dell errore targa su tutte le tipologie di Veicolo
             catch(TargaException te){
                 JOptionPane.showInternalMessageDialog(null,te.getMessage(),"Errore inserimento Targa",JOptionPane.ERROR_MESSAGE);
             }
         }
 
-        //tasto di aggiunta immagine
-        else if(e.getSource()==aggiungiImmagine){
+        // Caso Bottone di aggiunta immagine
+        else if(e.getSource() == aggiungiImmagine){
+            // Finestra di Scelta del file
             final JFileChooser file = new JFileChooser();
             file.showOpenDialog(this);
-            
+
             try {
                 labelFileSelezionato.setText(file.getSelectedFile().toString());
                 labelFileSelezionato.setForeground(null);
             }
+            // Catch di errori con il file selezionato
             catch(Exception er){
-                System.out.println("il file non è stato trovato");
+                System.out.println("Il File scelto non è stato trovato!");
             }
 
         }
-        //disitabilazione spazi non necessari all'inserimento del particolare veicolo
-        else if(e.getSource()==dropdownVeicolo){
+
+        // Disitabilazione degliu spazi non necessari all'inserimento del particolare veicolo
+        else if(e.getSource() == dropdownVeicolo){
             switch(dropdownVeicolo.getSelectedIndex()){
                 //Automobile
                 case 0:
@@ -249,7 +279,6 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
                 labelCilindrata.setForeground(null);
                 break;
             }
-
         }
     }   
 }
