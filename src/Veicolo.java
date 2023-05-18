@@ -1,11 +1,17 @@
 import java.util.Vector;
 
+// Import classe di utilità per XML
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/***
+ * Classe per la definizione del tipo generico veicolo
+ */
 public class Veicolo {
     //Tipo di veicolo
-    public static final String TIPO_VEICOLO = "Veicolo"; //Ma quanto è bello il polimorfismo Johnny?!
+    //Ma quanto è bello il polimorfismo Johnny?!
+    public static final String TIPO_VEICOLO = "Veicolo"; 
+   
     //Attributi generali di un veicolo
     private String marca;
     private Targa targa;
@@ -19,7 +25,7 @@ public class Veicolo {
         this.modello = modello;
         this.targa = targa;
     } */
-    //=============================================================================
+    // ======================================================================================
 
     // ====================== COSTRUTTORE DA ELEMENTO XML ===================================
     public Veicolo(Element veicolo) {
@@ -36,17 +42,17 @@ public class Veicolo {
         Element imgElement = (Element)veicolo.getElementsByTagName(XmlTags.IMMAGINE_XML_TAG).item(0);
         this.imgFilename = imgElement.getAttribute(XmlTags.FILENAME_XML_TAG);
     }
-    //========================================================================================
+    // =======================================================================================
 
 
-    // ======================= COSTRUTTORE CON FILENAME IMMAGINE ==========================
+    // ======================= COSTRUTTORE CON FILENAME IMMAGINE =============================
     public Veicolo(String marca, String modello, Targa targa, String filename) {
         this.marca = marca;
         this.modello = modello;
         this.targa = targa;
         this.imgFilename = filename;
     }
-    //=====================================================================================
+    // =======================================================================================
 
 
     // Getter oggetto targa

@@ -1,10 +1,15 @@
+// import GUI
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
+// import LAF
 import javax.swing.UIManager;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.UnsupportedLookAndFeelException;
 
-// import com.formdev.flatlaf.FlatDarculaLaf;
-// import com.formdev.flatlaf.FlatLightLaf;
-
+/***
+ * Classe Destinata al testing delle funzionalità del programma
+ */
 public class Tester {
     public static void main(String[] args) {
         //=================TESTING CARICAMENTO==========================================================
@@ -44,24 +49,31 @@ public class Tester {
        
         //======================TESTING GUI=================================================================
         
-        // FlatDarculaLaf.setup();
+        // Settaggio tema di Default all'apertura
+        FlatMacLightLaf.setup();
+        
+        // Settaggio immagine logo del programma
+        ImageIcon logo = new ImageIcon("immagini/logo.png");
+        try {
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
 
-        // try {
-        //     UIManager.setLookAndFeel(new FlatDarculaLaf());
-        // } catch (UnsupportedLookAndFeelException e) {
-        //     throw new RuntimeException(e);
-        // }
-
+        // GUI principale e completa
         GUI myGui = new GUI("Gestionale Veicoli");
         myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myGui.setVisible(true);
+        myGui.setIconImage(logo.getImage());
 
+        // Gui di aggiunta veicolo
         // GUIVeicolo addGUI = new GUIVeicolo();
         // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // addGUI.setVisible(true);
         
+        // Gui di riepilogo veicolo
         // try{
-        //     Moto auto = new Moto("Fiat", "500", new Targa("GK178MM", "Italia"), 3, "Fiaat500.png");
+        //     Automobile auto = new Automobile("Fiat", "500", new Targa("GK178MM", "Italia"), 3, "Fiaat500.png");
         //     GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
         //     riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //     riepGUI.setVisible(true);

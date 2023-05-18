@@ -12,16 +12,20 @@
         <Targa numero="RR555RR" paese="FRANCIA"/>
         <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-    <Veicolo cilindrata="175" marca="Honda" modello="Boh3" tipo="Moto">
-        <Targa numero="RR333EE" paese="GERMANIA"/>
+    <Veicolo marca="Fiat" modello="500" numero_porte="5" tipo="Automobile">
+        <Targa numero="RR444RR" paese="ITALIA"/>
+        <immagine filename="immagini/auto_place_holder.png"/>
+    </Veicolo>
+    <Veicolo cilindrata="125" marca="MptoMarca" modello="Moto1" tipo="Moto">
+        <Targa numero="TT666TT" paese="FRANCIA"/>
         <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-    <Veicolo marca="a" modello="a" numero_porte="5" tipo="Automobile">
-        <Targa numero="AA222AA" paese="GERMANIA"/>
+    <Veicolo marca="AutoMarca" modello="Auto1" numero_porte="5" tipo="Automobile">
+        <Targa numero="HH888HH" paese="GERMANIA"/>
         <immagine filename="immagini/auto_place_holder.png"/>
     </Veicolo>
-    <Veicolo marca="as" modello="as" numero_porte="3" tipo="Automobile">
-        <Targa numero="OOOOOOOOOO" paese="GERMANIA"/>
-        <immagine filename="immagini/auto_place_holder.png"/>
+    <Veicolo marca="eee" modello="eee" portata="667.34" tipo="Camion">
+        <Targa numero="EE444EE" paese="GERMANIA"/>
+        <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
 </Inventario>

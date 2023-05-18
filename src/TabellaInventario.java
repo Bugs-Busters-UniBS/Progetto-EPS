@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -48,7 +49,9 @@ public class TabellaInventario extends JTable{
     private void visualizzaVeicolo(int row, int col) {
         //se non sono nella colonna della checkbox
         if(col != 5){
-            Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(row, 3).toString());
+            //Trovo l'indice di ciò che sto visualizzando in tabella
+            int modelIndex = this.convertRowIndexToModel(row);
+            Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(modelIndex, 3).toString());
             GUIRiepilogoVeicolo guiDettagli = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v, inv);
             //aggiorna la tabella dopo aver eliminato il veicolo
             guiDettagli.addWindowListener(new WindowAdapter() {
@@ -76,6 +79,9 @@ public class TabellaInventario extends JTable{
         this.getColumnModel().getColumn(5).setPreferredWidth(15);
 
     }
+    public TabellaInventarioModel getTabellaInventarioModel(){
+        return this.modello;
+    }
     
     public Inventario getInventario(){
         return inv;
@@ -87,6 +93,42 @@ public class TabellaInventario extends JTable{
             return "Doppio click per visualizzare ulteriori dettagli";
         else // solo colonna checkbox
             return "Seleziona uno o più veicoli per rimuoverli successivamente";
+    }
+
+    //Ottiene gli indici delle righe selezionate dalla checkbox sottoforma di ArrayList di interi
+    public ArrayList<Targa> getCheckedTarghe() {
+        ArrayList<Targa> targhe = new ArrayList<Targa>();
+
+        int rowNum = this.getRowCount();
+
+        for(int i = 0; i < rowNum; i++) {
+            if((Boolean)getValueAt(i, 5) == true) {
+                String numero = (String)getValueAt(i, 3);
+                String paese = (String)getValueAt(i, 4);
+
+                try {
+                    Targa targaRimozione = new Targa(numero, paese);
+                    targhe.add(targaRimozione);
+                } catch (TargaException e) {
+                    System.out.println("Errore nella rimozione della targa!");
+                }
+            }
+        }
+
+        return targhe;
+    }
+
+    public int howManyChecked() {
+        int num = 0;
+        int rowNum = getRowCount();
+
+        for(int i=0; i<rowNum; i++) {
+            if((Boolean)getValueAt(i, 5) == true) {
+                num++;
+            }
+        }
+        
+        return num;
     }
 
     /* public void removeRow(int i) {

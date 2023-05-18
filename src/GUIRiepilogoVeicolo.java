@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import enumerazioni.Paese;
 
 
 public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
@@ -110,6 +111,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         
         add(pannelloDati, BorderLayout.CENTER);
         
+        
 
         //aggiunta dell'immagine al panel
         try {
@@ -120,23 +122,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         }
         catch(Exception e ) {
             e.printStackTrace();
-            try{
-                String fileSostitutivo = null;
-                if(veicolo instanceof Automobile)
-                    fileSostitutivo = "immagini/auto_place_holder.png"; 
-                else if(veicolo instanceof Camion)
-                    fileSostitutivo = "immagini/camion_place_holder.png"; 
-                else if(veicolo instanceof Moto) 
-                    fileSostitutivo = "immagini/moto_place_holder.png";
-                
-                BufferedImage immagineAutoStandard = ImageIO.read(new File(fileSostitutivo));
-                Image immagineStandardScal = immagineAutoStandard.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-                JLabel labelImmagine = new JLabel(new ImageIcon(immagineStandardScal));
-                pannelloImmagine.add(labelImmagine);
-            }
-            catch(Exception ec){
-                ec.printStackTrace();
-            }
+            System.out.println("Errore immagine non trovata");
         }
 
         //aggiunta del panel alla gui
@@ -150,7 +136,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
             int altezza = 30;
 
             String numeroTarga = t.getNumero();
-            if (t.getPaese() == Targa.Paese.FRANCIA){
+            if (t.getPaese() == Paese.FRANCIA){
                 numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
             }
             this.setLayout(new FlowLayout(FlowLayout.LEFT));

@@ -1,14 +1,9 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import enumerazioni.Paese;
+
 public class Targa implements Comparable  {
-    
-    public enum Paese {
-        ITALIA,
-        GERMANIA,
-        FRANCIA
-        // Future implementazioni degli altri paesi
-    }
 
     private Paese paese;
     private String numero;

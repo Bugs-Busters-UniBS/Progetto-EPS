@@ -1,12 +1,12 @@
 import java.util.LinkedList;
 import java.util.TreeSet;
 
+// Import classe di utilità per XML
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,11 +19,15 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+// Import per la gestione dei File
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/***
+ * Classe per la Creazione di un inventario contente una lista di Veicoli
+ */
 public class Inventario {
     private LinkedList<Veicolo> listaVeicoli;
     private TreeSet<Targa> listaTarghe;
@@ -78,22 +82,17 @@ public class Inventario {
 
         }
         catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (TransformerConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (TransformerFactoryConfigurationError e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (TransformerException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
