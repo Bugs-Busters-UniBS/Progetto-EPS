@@ -1,8 +1,8 @@
 // Import GUI
 import javax.swing.*;
 
-import enumerazioni.Paesi;
-import enumerazioni.Veicoli;
+import enumerazioni.Paese;
+import enumerazioni.VeicoloEnum;
 
 import java.awt.*;
 
@@ -86,11 +86,11 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         labelFileSelezionato.setForeground(new java.awt.Color(222, 51, 72));
         
         // Inserimento veicoli supportati
-        String[] stringVeicolo = Veicoli.VEICOLI;
+        String[] stringVeicolo = VeicoloEnum.VEICOLI;
         dropdownVeicolo = new JComboBox<String>(stringVeicolo);
 
         // Inserimento paesi supportati
-        String[] stringPaese = Paesi.PAESI;
+        String[] stringPaese = Paese.PAESI;
         dropdownPaese = new JComboBox<String>(stringPaese);
 
         // Inserimento N° porte

@@ -1,11 +1,11 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import enumerazioni.Paesi;
+import enumerazioni.Paese;
 
 public class Targa implements Comparable  {
 
-    private Paesi paese;
+    private Paese paese;
     private String numero;
 
     // Costruttore da string
@@ -13,11 +13,11 @@ public class Targa implements Comparable  {
         numero = numero.toUpperCase();
         numero = numero.trim();
         numero = numero.replace("-", "");
-        this.paese = Paesi.valueOf(paese.toUpperCase());
+        this.paese = Paese.valueOf(paese.toUpperCase());
         checkCorrettezzaNumero(numero, this.paese);
         this.numero = numero;
         // Converte string con il nome del paese nel valore enum
-        this.paese = Paesi.valueOf(paese.toUpperCase());
+        this.paese = Paese.valueOf(paese.toUpperCase());
     }
 
     // Costruttore da elemento XML
@@ -32,7 +32,7 @@ public class Targa implements Comparable  {
 
     // Getter valore enum Paese del paese della targa
     // Per avere il valore in string si può usare Paese.toString()
-    public Paesi getPaese() {
+    public Paese getPaese() {
         return this.paese;
     }
 
@@ -59,7 +59,7 @@ public class Targa implements Comparable  {
     }
 
     //verifica correttezza sintassi targa e lancia eccezione nel caso ci siano degli errori
-    private void checkCorrettezzaNumero(String numero, Paesi paese) throws TargaException{
+    private void checkCorrettezzaNumero(String numero, Paese paese) throws TargaException{
         switch(paese){
             case ITALIA:
                 checkPreliminare(numero);

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import enumerazioni.Paese;
 
 
 public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
@@ -115,7 +116,7 @@ public class GUIRiepilogoVeicolo extends GUI implements ActionListener {
         TargaPanel(Targa t) {
 
             String numeroTarga = t.getNumero();
-            if (t.getPaese() == Targa.Paese.FRANCIA){
+            if (t.getPaese() == Paese.FRANCIA){
                 numeroTarga = numeroTarga.substring(0, 2)+"-"+numeroTarga.substring(2, 5)+"-"+numeroTarga.substring(5, 7);
             }
             this.setLayout(new FlowLayout(FlowLayout.LEFT));
