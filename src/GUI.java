@@ -71,6 +71,8 @@ public class GUI extends JFrame{
     // Ricerca nella tabella
     private JTextField cercaField;
     private JLabel cercaLabel;
+    private Icon iconaLenteDark;
+    private Icon iconaLenteLight;
     private JButton pulisciTesto;
 
     // INIZIO COSTRUTTORE
@@ -187,14 +189,16 @@ public class GUI extends JFrame{
         // Istanziamento libreria da cui prelevare l'icona
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
 
-        // Creazione icona
-        Icon iconaLente = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SEARCH, 20, Color.BLACK);
+        // Creazione icone per tema chiaro e scuro
+        iconaLenteDark = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SEARCH, 20, Color.BLACK);
+        iconaLenteLight = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SEARCH, 20, Color.WHITE);
+        
 
         // Istanziamento e dimensionamento della JTextField di ricerca
         cercaField = new JTextField(20);
 
         // Creazione label con icona lente
-        cercaLabel= new JLabel(iconaLente);
+        cercaLabel= new JLabel(iconaLenteDark);
 
         // Creazione bottone di pulizia
         pulisciTesto = new JButton("Pulisci");
@@ -325,10 +329,12 @@ public class GUI extends JFrame{
                 
                 // Swiching del logo
                 setLogoImage("immagini/logo.png");
+                cercaLabel.setIcon(iconaLenteDark);
                 isDarkMode = false;
             } else {
                 UIManager.setLookAndFeel(new FlatMacDarkLaf());
                 bottoneTema.setIcon(iconaSole);
+                cercaLabel.setIcon(iconaLenteLight);
                 setLogoImage("immagini/logo_white.png");
                 isDarkMode = true;
             }
