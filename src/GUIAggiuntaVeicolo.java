@@ -113,7 +113,7 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         salvaVeicolo = new JButton("Salva veicolo");
         
         // Selezione colore per il pulsante di salvataggio
-        salvaVeicolo.setBackground(new java.awt.Color(55, 90, 129));
+        salvaVeicolo.setBackground(new java.awt.Color(52, 120, 247));
         salvaVeicolo.setForeground(Color.WHITE);
 
         //aggiunta action Listener ai bottoni

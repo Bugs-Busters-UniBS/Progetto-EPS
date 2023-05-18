@@ -126,7 +126,7 @@ public class GUI extends JFrame{
         botAggiungi = new JButton("Aggiungi nuovo veicolo");
 
         // Selezione colori
-        botAggiungi.setBackground(new java.awt.Color(55, 90, 129));
+        botAggiungi.setBackground(new java.awt.Color(52, 120, 247));
         botAggiungi.setForeground(Color.WHITE);
 
         //Azione di botAggiungi
@@ -152,7 +152,7 @@ public class GUI extends JFrame{
         botSalva = new JButton("Salva modifiche all'inventario");
         
         // Selezione Colori
-        botSalva.setBackground(new java.awt.Color(55, 90, 129));
+        botSalva.setBackground(new java.awt.Color(52, 120, 247));
         botSalva.setForeground(Color.WHITE);
 
         // Azione di botSalva
