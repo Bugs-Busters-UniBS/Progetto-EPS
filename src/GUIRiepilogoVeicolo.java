@@ -34,7 +34,7 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         this.veicolo=veicolo;
         this.setLayout(new BorderLayout(10,0));
         this.setSize(650,300);
-        this.setResizable(false);
+        
 
         //creazione label
         JLabel titoloGUI = new JLabel("Dettagli Veicolo");
@@ -116,13 +116,21 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         //aggiunta dell'immagine al panel
         try {
             BufferedImage immagineAuto = ImageIO.read(new File(veicolo.getImgFilename()));
-            Image immagineScal = immagineAuto.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+            int h = immagineAuto.getHeight();
+            double rapporto = h/300.0;
+            int w = (int) (immagineAuto.getWidth()/rapporto);
+            
+            Image immagineScal = immagineAuto.getScaledInstance(w,300, Image.SCALE_SMOOTH);
             JLabel labelImmagine = new JLabel(new ImageIcon(immagineScal));
+            this.setSize(w+350,300);
             pannelloImmagine.add(labelImmagine);
         }
         catch(Exception e ) {
             e.printStackTrace();
             System.out.println("Errore immagine non trovata");
+        }
+        finally{
+            this.setResizable(false);
         }
 
         //aggiunta del panel alla gui
