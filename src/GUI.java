@@ -12,6 +12,8 @@ import javax.swing.table.TableRowSorter;
 // event import
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.event.DocumentEvent;
@@ -93,8 +95,26 @@ public class GUI extends JFrame{
 
         //================================CREAZIONE LOGO===============================================================
         picLabel = new JLabel();
-        setLogoImage("immagini/logo.png");
+        setLogoImagePng("immagini/logo.png");
         logoPanel.add(picLabel);
+        // Scambio Logo con gif quando il mouse e' sopra all'immagine
+        picLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if(isDarkMode)
+                    setLogoImageGif("immagini/chad_logo_white.gif");
+                else
+                    setLogoImageGif("immagini/chad_logo.gif");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(isDarkMode)
+                    setLogoImagePng("immagini/logo_white.png");
+                else
+                    setLogoImagePng("immagini/logo.png");
+            }
+        });
         //===========================================================================================================
 
 
@@ -330,14 +350,14 @@ public class GUI extends JFrame{
                 bottoneTema.setIcon(iconaLuna);
                 
                 // Swiching del logo
-                setLogoImage("immagini/logo.png");
+                setLogoImagePng("immagini/logo.png");
                 cercaLabel.setIcon(iconaLenteDark);
                 isDarkMode = false;
             } else {
                 UIManager.setLookAndFeel(new FlatMacDarkLaf());
                 bottoneTema.setIcon(iconaSole);
                 cercaLabel.setIcon(iconaLenteLight);
-                setLogoImage("immagini/logo_white.png");
+                setLogoImagePng("immagini/logo_white.png");
                 isDarkMode = true;
             }
 
@@ -350,8 +370,8 @@ public class GUI extends JFrame{
         }
     }
 
-    // Metodo per il settaggio del Logo del programma
-    private void setLogoImage(String path){
+    // Metodo per il settaggio del Logo del programma in caso di immagini .png
+    private void setLogoImagePng(String path){
         try {
             // Import del logo
             BufferedImage logo = ImageIO.read(new File(path));
@@ -361,6 +381,27 @@ public class GUI extends JFrame{
             picLabel.setIcon(new ImageIcon(logoScal));
         }
         // Catch di eventuali errori con il logo
+        catch(Exception e ) {
+            System.out.println("Errore nel caricamento del logo!");
+        }
+    }
+
+    // Metodo per il settaggio del Logo del programma in caso di immagini .gif
+    private void setLogoImageGif(String path){
+        try {
+            ImageIcon logo = new ImageIcon(path);
+
+            // Scale the ImageIcon to the desired size
+            Image originalImage = logo.getImage();
+            Image scaledLogo = originalImage.getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+    
+            // Create a new ImageIcon with the scaled Image
+            ImageIcon scaledIcon = new ImageIcon(scaledLogo);
+    
+            // Set the scaled ImageIcon as the icon for the label
+            picLabel.setIcon(scaledIcon);    
+            
+        }
         catch(Exception e ) {
             System.out.println("Errore nel caricamento del logo!");
         }
