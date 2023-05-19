@@ -153,7 +153,7 @@ public class GUI extends JFrame{
         botAggiungi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 // Aggiunta di un nuovo veicolo
-                GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta veicolo", inVeicoli);
+                GUIAggiuntaVeicolo addGUI = new GUIAggiuntaVeicolo("Aggiunta veicolo", inVeicoli, botAggiungi);
 
                 // Aggiorno la tabella dopo aver aggiunto il veicolo
                 addGUI.addWindowListener(new WindowAdapter() {
@@ -179,7 +179,7 @@ public class GUI extends JFrame{
         botSalva.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 inVeicoli.salvaInventario("database.xml");
-                JOptionPane.showMessageDialog(null,"Inventario salvato correttamente");
+                JOptionPane.showMessageDialog(tabellaPanel,"Inventario salvato correttamente");
         }});
         //=====================================================================================================
 

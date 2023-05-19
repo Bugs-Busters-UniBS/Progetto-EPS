@@ -53,10 +53,13 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JButton aggiungiImmagine;
 
     // INIZIO COSTRUTTORE
-    public GUIAggiuntaVeicolo(String titolo, Inventario inv) {
+    public GUIAggiuntaVeicolo(String titolo, Inventario inv, Component parent) {
         // Richiamo al costruttore della super classe
         super(titolo);
         this.inv = inv;
+
+        // Settaggio posizione relativa rispetto al component passato
+        setLocationRelativeTo(parent);
         
         // Seleziopne dimensione finestra e blocco della dimensionamento di quest'ultima e selezione del Layout
         this.setSize(400,300);
