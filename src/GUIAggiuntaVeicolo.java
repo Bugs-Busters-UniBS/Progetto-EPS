@@ -252,10 +252,12 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         else if(e.getSource() == aggiungiImmagine){
             // Finestra di Scelta del file
             final JFileChooser file = new JFileChooser();
+            file.setAcceptAllFileFilterUsed(false);
             FileFilter pngFileFilter = new FileTypeFilter(".png", "Immagine PNG");
             FileFilter jpgFileFilter = new FileTypeFilter(".jpg", "Immagine JPG");
             file.addChoosableFileFilter(jpgFileFilter);
             file.addChoosableFileFilter(pngFileFilter);
+            
             file.showOpenDialog(this);
 
             try {
