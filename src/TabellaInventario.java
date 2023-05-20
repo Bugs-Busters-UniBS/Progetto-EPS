@@ -11,6 +11,10 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+/***
+ * Classe per la realizzazione della tabella che mostra tutti i veicoli
+ */
+
 public class TabellaInventario extends JTable{
     private TabellaInventarioModel modello;
     private Inventario inv;

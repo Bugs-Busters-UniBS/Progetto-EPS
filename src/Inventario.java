@@ -190,10 +190,13 @@ public class Inventario {
         return this.listaVeicoli;
     }
 
+    //getter di un veicolo passando la targa
     public Veicolo getVeicoloDaTarga(Targa targa) {
-        for(Veicolo veic : listaVeicoli){
-            if(veic.getTarga().compareTo(targa)==0)
-                return veic;
+        if(listaTarghe.contains(targa)){ //cerco nella lista di veicoli solo se la targa è nell'inventario
+            for(Veicolo veic : listaVeicoli){
+                if(veic.getTarga().compareTo(targa)==0)
+                    return veic;
+            }
         }
         return null;
     }
