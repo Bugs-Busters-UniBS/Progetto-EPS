@@ -17,7 +17,8 @@
 *da essere ripreso ogni volta che si lancia l’applicazione.*
 
 ### UML
-ins foto
+ins foto.
+
 uml che mostra in modo schematico il diagramma delle classi.
 
 ### Gui
@@ -36,6 +37,6 @@ Per l'aggiunta del veicolo seguire le richeste del programma all'interno della a
 
 ![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/fb082128-af89-4284-9e63-1b036a44bf4e)
 
-Per Mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepilogo e fare doppio click su una qualsiasi colonna che non sia quella di eliminazione.
+Per mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepilogo e fare doppio click su una qualsiasi colonna che non sia quella di eliminazione.
 
 ![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/f026a309-0d03-4750-9816-b1d70f1c90bb)
