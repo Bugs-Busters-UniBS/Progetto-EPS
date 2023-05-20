@@ -52,7 +52,7 @@ public class TabellaInventario extends JTable{
             //Trovo l'indice di ciò che sto visualizzando in tabella
             int modelIndex = this.convertRowIndexToModel(row);
             Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(modelIndex, 3).toString());
-            GUIRiepilogoVeicolo guiDettagli = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v, inv, this.getColumnModel().getColomn(1));
+            GUIRiepilogoVeicolo guiDettagli = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v, inv, this);
             //aggiorna la tabella dopo aver eliminato il veicolo
             guiDettagli.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
