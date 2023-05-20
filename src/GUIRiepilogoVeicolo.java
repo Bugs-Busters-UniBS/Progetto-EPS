@@ -28,10 +28,14 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
     //inventario
     private Inventario inv;
 
-    public <T extends Veicolo> GUIRiepilogoVeicolo(String titolo, T veicolo, Inventario inv) {
+    public <T extends Veicolo> GUIRiepilogoVeicolo(String titolo, T veicolo, Inventario inv, Component parent) {
         super(titolo);
         this.inv= inv;
         this.veicolo=veicolo;
+
+        // Settaggio Posizione relativa rispetto al parent
+        setLocationRelativeTo(parent);
+
         this.setLayout(new BorderLayout(10,0));
         this.setSize(650,300);
         
