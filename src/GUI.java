@@ -120,7 +120,8 @@ public class GUI extends JFrame{
 
         //============================CREAZIONE LABEL CON NOME GRUPPO===============================================
         titoloProg = new JLabel("<html>Gestionale Veicoli<br/>By BugsBusters UniBS</html>");
-        titoloProg.setFont(new Font("Arial", Font.ITALIC, 30));
+        titoloProg.setFont(new Font("Comic Sans MS", Font.BOLD, 36));
+        
         logoPanel.add(titoloProg);
         //==========================================================================================================
 

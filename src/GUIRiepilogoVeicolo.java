@@ -50,15 +50,16 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
         //aggiunta delle label costanti al panel
         gbcDati.anchor = GridBagConstraints.FIRST_LINE_START;
         // gbcDati.fill = GridBagConstraints.BOTH;
-        gbcDati.insets = new Insets(5, 0, 0, 10);
+        gbcDati.insets = new Insets(2, 0, 10, 10);
 
-        titoloGUI.setFont(new Font("Lucida Grande", Font.ITALIC, 20));
+        titoloGUI.setFont(new Font("Serif", Font.PLAIN, 20));
         gbcDati.gridx = 0;
         gbcDati.gridy = 0;
         pannelloDati.add(titoloGUI, gbcDati);
         // pannelloDati.add(titoloGUI);
         tipo.setFont(new Font("Serif", Font.PLAIN, 16));
         gbcDati.gridy += 1;
+        gbcDati.insets = new Insets(2, 0, 0, 10);
         pannelloDati.add(tipo,gbcDati);
         marca.setFont(new Font("Serif", Font.PLAIN, 16));
         gbcDati.gridy += 1;
@@ -88,8 +89,10 @@ public class GUIRiepilogoVeicolo extends JFrame implements ActionListener {
 
         gbcDati.gridy+=1;
         gbcDati.gridwidth = 2;
+        gbcDati.insets = new Insets(2, 0, 5, 10);
         TargaPanel targa = new TargaPanel(veicolo.getTarga());
         pannelloDati.add(targa, gbcDati);
+        gbcDati.insets = new Insets(0, 0, 0, 10);
         gbcDati.gridwidth = 1;
         //aggiunta del bottone di chiusura e della sua azione
         JButton closeButton = new JButton("Chiudi");

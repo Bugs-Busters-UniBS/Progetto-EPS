@@ -71,11 +71,6 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         insertionPanel.setLayout(new GridLayout(8,2));
         pulsantieraLabel.setLayout(new BorderLayout());
 
-        // Istanziamento e aggiunta del del Titolo al panel
-        titoloGUI = new JLabel("Aggiunta Veicoli",  SwingConstants.CENTER);
-        titoloGUI.setFont(new Font("Lucida Grande", Font.ITALIC, 20));
-        this.add(titoloGUI, BorderLayout.PAGE_START);
-
         // Istanziamnto delle Label
         labelTipoVeicolo = new JLabel("Tipo Veicolo", SwingConstants.CENTER);
         labelMarca = new JLabel("Marca", SwingConstants.CENTER);
