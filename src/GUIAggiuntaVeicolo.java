@@ -26,7 +26,6 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
     private JPanel labelPanel = new JPanel();
     
     // Creazione di tutte le label necessarie
-    private JLabel titoloGUI;
     private JLabel labelTipoVeicolo;
     private JLabel labelMarca;
     private JLabel labelModello;

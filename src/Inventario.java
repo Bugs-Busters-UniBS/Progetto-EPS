@@ -30,12 +30,12 @@ import java.io.IOException;
  */
 public class Inventario {
     private LinkedList<Veicolo> listaVeicoli;
-    private TreeSet<Targa> listaTarghe;
+    private TreeSet<Targa> listaTarghe; //Usato per garantire unicità targhe nell'inventario
 
     //Unico costruttore inventario
     public Inventario() {
         listaVeicoli = new LinkedList<Veicolo>();
-        listaTarghe = new TreeSet<Targa>();
+        listaTarghe = new TreeSet<Targa>(); 
 
     }
 
