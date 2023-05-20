@@ -30,9 +30,9 @@ Il programma si mostra come nelle seguente foto dopo l'avvio:
 Ci sono 3 tasti principali, uno per l'aggiunta, uno per la rimozione, e uno per il salvataggio, inoltre,
 ci sono e una JTextField per la ricerca nella tabella e un tasto per cambiare il tema.
 
-Per eliminare un veicolo premere prima sulle checkbox dei veicoli ch si desidra eliminare dalla tabella poi preme il tasto di eliminazione e dare la conferma.
+Per eliminare un veicolo premere prima sulle checkbox dei veicoli ch si desidera eliminare dalla tabella poi preme il tasto di eliminazione e dare la conferma.
 
-Per l'Aggiunta del veicolo seguire le richeste del programma all'interno della apposita GUI.
+Per l'aggiunta del veicolo seguire le richeste del programma all'interno della apposita GUI.
 
 ![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/fb082128-af89-4284-9e63-1b036a44bf4e)
 
