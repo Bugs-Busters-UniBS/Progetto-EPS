@@ -1,5 +1,6 @@
 // Import GUI
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 
 import enumerazioni.Paese;
 import enumerazioni.VeicoloEnum;
@@ -248,6 +249,10 @@ public class GUIAggiuntaVeicolo extends JFrame implements ActionListener{
         else if(e.getSource() == aggiungiImmagine){
             // Finestra di Scelta del file
             final JFileChooser file = new JFileChooser();
+            FileFilter pngFileFilter = new FileTypeFilter(".png", "Immagine PNG");
+            FileFilter jpgFileFilter = new FileTypeFilter(".jpg", "Immagine JPG");
+            file.addChoosableFileFilter(jpgFileFilter);
+            file.addChoosableFileFilter(pngFileFilter);
             file.showOpenDialog(this);
 
             try {
