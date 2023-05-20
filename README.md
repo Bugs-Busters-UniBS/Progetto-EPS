@@ -17,23 +17,26 @@
 *da essere ripreso ogni volta che si lancia l’applicazione.*
 
 ### UML
-ins foto
-uml che mostra in modo schematico il diagramma delle classi.
+ins foto.
+
+UML che mostra in modo schematico il diagramma delle classi.
 
 ### Gui
 Il programma si mostra come nelle seguente foto dopo l'avvio:
 
-ins foto.
+![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/6f293943-6c37-4ec4-a319-6a2526eb3f6e)
+![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/02c170d6-d9cd-4c00-bd3e-cae232302def)
+
 
 Ci sono 3 tasti principali, uno per l'aggiunta, uno per la rimozione, e uno per il salvataggio, inoltre,
 ci sono e una JTextField per la ricerca nella tabella e un tasto per cambiare il tema.
 
-Per eliminare un veicolo premere prima sulle checkbox dei veicoli ch si desidra eliminare dalla tabella poi preme il tasto di eliminazione e dare la conferma.
+Per eliminare uno o più veicoli spuntare le checkbox dei veicoli che si desidera eliminare e successivamente premere il tasto di eliminazione e dare la conferma.
 
-Per l'Aggiunta del veicolo seguire le richeste del programma all'interno della apposita GUI.
+Per l'aggiunta del veicolo seguire le richeste del programma all'interno della apposita GUI.
 
-ins foto.
+![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/fb082128-af89-4284-9e63-1b036a44bf4e)
 
-Per Mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepilogo e fare doppio click su una qualsiasi colonna che non sia quella di eliminazione.
+Per mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepilogo e fare doppio click su una qualsiasi colonna che non sia quella di eliminazione.
 
-ins foto.
+![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/assets/46071804/f026a309-0d03-4750-9816-b1d70f1c90bb)
