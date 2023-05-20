@@ -1,86 +1,86 @@
-// import GUI
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+// // import GUI
+// import javax.swing.ImageIcon;
+// import javax.swing.JFrame;
 
-// import LAF
-import javax.swing.UIManager;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import javax.swing.UnsupportedLookAndFeelException;
+// // import LAF
+// import javax.swing.UIManager;
+// import com.formdev.flatlaf.themes.FlatMacLightLaf;
+// import javax.swing.UnsupportedLookAndFeelException;
 
-/***
- * Classe Destinata al testing delle funzionalità del programma
- */
-public class Tester {
-    public static void main(String[] args) {
-        //=================TESTING CARICAMENTO==========================================================
-        /* Inventario inventario = new Inventario();
-        inventario.caricaInventario("Inventario.xml");
+// /***
+//  * Classe Destinata al testing delle funzionalità del programma
+//  */
+// public class Tester {
+//     public static void main(String[] args) {
+//         //=================TESTING CARICAMENTO==========================================================
+//         /* Inventario inventario = new Inventario();
+//         inventario.caricaInventario("Inventario.xml");
 
-        for(Veicolo vec : inventario.getLista()) {
-            System.out.printf("Veicolo: %s, marca: %s, modello: %s\n", vec.getTipo(), vec.getMarca(), vec.getModello());
-            System.out.printf("Ha targa: %s del paese: %s\n", vec.getTarga().getNumero(), vec.getTarga().getPaese().toString());
-        } */
+//         for(Veicolo vec : inventario.getLista()) {
+//             System.out.printf("Veicolo: %s, marca: %s, modello: %s\n", vec.getTipo(), vec.getMarca(), vec.getModello());
+//             System.out.printf("Ha targa: %s del paese: %s\n", vec.getTarga().getNumero(), vec.getTarga().getPaese().toString());
+//         } */
 
 
-        //================TESTING SALVATAGGIO===========================================================
-        /* Inventario inv = new Inventario();
+//         //================TESTING SALVATAGGIO===========================================================
+//         /* Inventario inv = new Inventario();
 
-        Targa targa1 = new Targa("ADGSBS", "Italia");
-        Targa targa2 = new Targa("FFFSAB", "Germania");
-        Targa targa3 = new Targa("AAAAAV", "Italia");
-        Targa targa4 = new Targa("QWERTY", "Germania");
+//         Targa targa1 = new Targa("ADGSBS", "Italia");
+//         Targa targa2 = new Targa("FFFSAB", "Germania");
+//         Targa targa3 = new Targa("AAAAAV", "Italia");
+//         Targa targa4 = new Targa("QWERTY", "Germania");
 
-        Veicolo auto1 = new Automobile("Fiat", "500", targa1, 5);
-        Veicolo auto2 = new Automobile("Audi", "boh", targa2, 150);
-        Veicolo camion = new Camion("Coso", "modello1", targa3, 40.23);
-        Veicolo moto = new Moto("Honda", "nonoloso", targa4, 1235);
+//         Veicolo auto1 = new Automobile("Fiat", "500", targa1, 5);
+//         Veicolo auto2 = new Automobile("Audi", "boh", targa2, 150);
+//         Veicolo camion = new Camion("Coso", "modello1", targa3, 40.23);
+//         Veicolo moto = new Moto("Honda", "nonoloso", targa4, 1235);
 
-        inv.aggiungiVeicolo(auto1);
-        inv.aggiungiVeicolo(auto2);
-        inv.aggiungiVeicolo(camion);
-        inv.aggiungiVeicolo(moto);
+//         inv.aggiungiVeicolo(auto1);
+//         inv.aggiungiVeicolo(auto2);
+//         inv.aggiungiVeicolo(camion);
+//         inv.aggiungiVeicolo(moto);
 
-        inv.salvaInventario("Inv1.xml");
+//         inv.salvaInventario("Inv1.xml");
 
-        Inventario inv2 = new Inventario();
-        inv2.caricaInventario("Inv1.xml");
-        inv2.rimuoviVeicolo("FFFSAB");
-        inv2.salvaInventario("Inv2.xml"); */
+//         Inventario inv2 = new Inventario();
+//         inv2.caricaInventario("Inv1.xml");
+//         inv2.rimuoviVeicolo("FFFSAB");
+//         inv2.salvaInventario("Inv2.xml"); */
        
-        //======================TESTING GUI=================================================================
+//         //======================TESTING GUI=================================================================
         
-        // Settaggio tema di Default all'apertura
-        FlatMacLightLaf.setup();
+//         // Settaggio tema di Default all'apertura
+//         FlatMacLightLaf.setup();
         
-        // Settaggio immagine logo del programma
-        ImageIcon logo = new ImageIcon("immagini/logo.png");
-        try {
-            UIManager.setLookAndFeel(new FlatMacLightLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            throw new RuntimeException(e);
-        }
+//         // Settaggio immagine logo del programma
+//         ImageIcon logo = new ImageIcon("immagini/logo.png");
+//         try {
+//             UIManager.setLookAndFeel(new FlatMacLightLaf());
+//         } catch (UnsupportedLookAndFeelException e) {
+//             throw new RuntimeException(e);
+//         }
 
-        // GUI principale e completa
-        GUI myGui = new GUI("Gestionale Veicoli");
-        myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myGui.setVisible(true);
-        myGui.setIconImage(logo.getImage());
+//         // GUI principale e completa
+//         GUI myGui = new GUI("Gestionale Veicoli");
+//         myGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//         myGui.setVisible(true);
+//         myGui.setIconImage(logo.getImage());
 
-        // Gui di aggiunta veicolo
-        // GUIVeicolo addGUI = new GUIVeicolo();
-        // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // addGUI.setVisible(true);
+//         // Gui di aggiunta veicolo
+//         // GUIVeicolo addGUI = new GUIVeicolo();
+//         // addGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//         // addGUI.setVisible(true);
         
-        // Gui di riepilogo veicolo
-        // try{
-        //     Automobile auto = new Automobile("Fiat", "500", new Targa("GK178MM", "Italia"), 3, "Fiaat500.png");
-        //     GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
-        //     riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //     riepGUI.setVisible(true);
-        // }
-        // catch(TargaException e){
-        //     e.printStackTrace();
-        // }
+//         // Gui di riepilogo veicolo
+//         // try{
+//         //     Automobile auto = new Automobile("Fiat", "500", new Targa("GK178MM", "Italia"), 3, "Fiaat500.png");
+//         //     GUIRiepilogoVeicolo riepGUI = new GUIRiepilogoVeicolo("Test",auto);
+//         //     riepGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//         //     riepGUI.setVisible(true);
+//         // }
+//         // catch(TargaException e){
+//         //     e.printStackTrace();
+//         // }
        
-    }
-}
+//     }
+// }
