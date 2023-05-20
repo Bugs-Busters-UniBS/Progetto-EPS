@@ -1,6 +1,8 @@
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
- 
+/***
+ * Classe per filtraggio sul tipo di file nelle finestre di dialogo con file explorer
+ */
 public class FileTypeFilter extends FileFilter {
     private String extension;
     private String description;

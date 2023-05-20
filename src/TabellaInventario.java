@@ -51,7 +51,14 @@ public class TabellaInventario extends JTable{
         if(col != 5){
             //Trovo l'indice di ciò che sto visualizzando in tabella
             int modelIndex = this.convertRowIndexToModel(row);
-            Veicolo v = inv.getVeicoloDaTarga(modello.getValueAt(modelIndex, 3).toString());
+            Targa t;
+            try {
+                t = new Targa(modello.getValueAt(modelIndex, 3).toString(),modello.getValueAt(modelIndex, 4).toString());
+            } catch (TargaException e) {
+                //Impossibile che non ci sia la targa
+                t = null;
+            }
+            Veicolo v = inv.getVeicoloDaTarga(t);
             GUIRiepilogoVeicolo guiDettagli = new GUIRiepilogoVeicolo(v.getMarca()+" "+v.getModello(), v, inv, this);
             //aggiorna la tabella dopo aver eliminato il veicolo
             guiDettagli.addWindowListener(new WindowAdapter() {

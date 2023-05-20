@@ -190,9 +190,9 @@ public class Inventario {
         return this.listaVeicoli;
     }
 
-    public Veicolo getVeicoloDaTarga(String targa) {
+    public Veicolo getVeicoloDaTarga(Targa targa) {
         for(Veicolo veic : listaVeicoli){
-            if(veic.getTarga().getNumero().equalsIgnoreCase(targa))
+            if(veic.getTarga().compareTo(targa)==0)
                 return veic;
         }
         return null;
