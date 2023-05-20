@@ -31,7 +31,7 @@ Il programma si mostra come nelle seguente foto dopo l'avvio:
 Ci sono 3 tasti principali, uno per l'aggiunta, uno per la rimozione, e uno per il salvataggio, inoltre,
 ci sono e una JTextField per la ricerca nella tabella e un tasto per cambiare il tema.
 
-Per eliminare un veicolo premere prima sulle checkbox dei veicoli che si desidera eliminare dalla tabella poi preme il tasto di eliminazione e dare la conferma.
+Per eliminare uno o più veicoli spuntare le checkbox dei veicoli che si desidera eliminare e successivamente premere il tasto di eliminazione e dare la conferma.
 
 Per l'aggiunta del veicolo seguire le richeste del programma all'interno della apposita GUI.
 
