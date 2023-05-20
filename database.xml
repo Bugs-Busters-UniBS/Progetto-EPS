@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Inventario>
-    <Veicolo Numero_Porte="5" marca="Fiat" modello="500" tipo="Automobile">
-        <Targa numero="AAAAAAA" paese="ITALIA"/>
-        <immagine filename="placeholder.png"/>
+    <Veicolo marca="TEST" modello="TEST" portata="124123.0" tipo="Camion">
+        <Targa numero="AA444AA" paese="FRANCIA"/>
+        <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
-    <Veicolo marca="Volkswagen" modello="Modellowagen" portata="1433.0" tipo="Camion">
-        <Targa numero="RRRRRRR" paese="GERMANIA"/>
-        <immagine filename="placeholder.png"/>
+    <Veicolo marca="Boh1" modello="Boh1" portata="4444.0" tipo="Camion">
+        <Targa numero="AA444AA" paese="GERMANIA"/>
+        <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="Ferrari" modello="Boh" tipo="Automobile">
-        <Targa numero="ASFAASF" paese="ITALIA"/>
-        <immagine filename="placeholder.png"/>
+    <Veicolo cilindrata="125" marca="Boh2" modello="Boh2" tipo="Moto">
+        <Targa numero="RR555RR" paese="FRANCIA"/>
+        <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="PROVA" modello="PROVA" tipo="Automobile">
-        <Targa numero="123" paese="ITALIA"/>
-        <immagine filename="PROVAPROVA.png"/>
+    <Veicolo marca="Fiat" modello="500" numero_porte="5" tipo="Automobile">
+        <Targa numero="RR444RR" paese="ITALIA"/>
+        <immagine filename="immagini/auto_place_holder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="PROVA" modello="FUNZIONATUTTO" tipo="Automobile">
-        <Targa numero="SperoFunzioniTutto" paese="ITALIA"/>
-        <immagine filename="PROVAFUNZIONATUTTOSperoFunzioniTutto.png"/>
+    <Veicolo cilindrata="125" marca="MptoMarca" modello="Moto1" tipo="Moto">
+        <Targa numero="TT666TT" paese="FRANCIA"/>
+        <immagine filename="immagini/moto_place_holder.png"/>
     </Veicolo>
-    <Veicolo Numero_Porte="3" marca="giacomo" modello="franco" tipo="Automobile">
-        <Targa numero="friajbsd" paese="GERMANIA"/>
-        <immagine filename="immagini/giacomofrancofriajbsd.png"/>
+    <Veicolo marca="AutoMarca" modello="Auto1" numero_porte="5" tipo="Automobile">
+        <Targa numero="HH888HH" paese="GERMANIA"/>
+        <immagine filename="immagini/auto_place_holder.png"/>
+    </Veicolo>
+    <Veicolo marca="eee" modello="eee" portata="667.34" tipo="Camion">
+        <Targa numero="EE444EE" paese="GERMANIA"/>
+        <immagine filename="immagini/camion_place_holder.png"/>
     </Veicolo>
 </Inventario>
