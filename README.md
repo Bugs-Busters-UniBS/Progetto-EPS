@@ -1,7 +1,7 @@
 # Progetto-EPS
 ## Progetto EPS - Inventario Veicoli
 
-*Descrizione:*
+### Descrizione:
 *Creare un’applicazione per visualizzare, aggiungere e eliminare i veicoli*
 *all’interno di un inventario.*
 
@@ -16,4 +16,24 @@
 *L’inventario dovrà essere salvato in modo consistente, così*
 *da essere ripreso ogni volta che si lancia l’applicazione.*
 
+### UML
+ins foto
+uml che mostra in modo schematico il diagramma delle classi.
+
+### Gui
 Il programma si mostra come nelle seguente foto dopo l'avvio:
+
+ins foto.
+
+Ci sono 3 tasti principali, uno per l'aggiunta, uno per la rimozione, e uno per il salvataggio, inoltre,
+ci sono e una JTextField per la ricerca nella tabella e un tasto per cambiare il tema.
+
+Per eliminare un veicolo premere prima sulle checkbox dei veicoli ch si desidra eliminare dalla tabella poi preme il tasto di eliminazione e dare la conferma.
+
+Per l'Aggiunta del veicolo seguire le richeste del programma all'interno della apposita GUI.
+
+ins foto.
+
+Per Mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepilogo e fare doppio click su una qualsiasi colonna che non sia quella di eliminazione.
+
+ins foto.
