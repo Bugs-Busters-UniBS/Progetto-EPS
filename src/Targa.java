@@ -3,7 +3,7 @@ import org.w3c.dom.Element;
 
 import enumerazioni.Paese;
 
-public class Targa implements Comparable  {
+public class Targa implements Comparable<Targa>  {
 
     private Paese paese;
     private String numero;
@@ -99,13 +99,12 @@ public class Targa implements Comparable  {
     }
 
     @Override
-    public int compareTo(Object o) {
-        Targa altro = (Targa) o;
-        if (numero.equals(altro.getNumero())){
-            return this.paese.compareTo(altro.getPaese());
+    public int compareTo(Targa other) {
+        if (numero.equals(other.getNumero())){
+            return this.paese.compareTo(other.getPaese());
         }
         else{
-            return this.numero.compareTo(altro.getNumero());
+            return this.numero.compareTo(other.getNumero());
         }
     }
 }
