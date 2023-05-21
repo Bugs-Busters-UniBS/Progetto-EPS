@@ -129,22 +129,6 @@ public class TabellaInventario extends JTable{
         return targhe;
     }
 
-    public int howManyChecked() {
-        int num = 0;
-        int rowNum = getRowCount();
-
-        for(int i=0; i<rowNum; i++) {
-            if((Boolean)getValueAt(i, 5) == true) {
-                num++;
-            }
-        }
-        
-        return num;
-    }
-
-    /* public void removeRow(int i) {
-        this.modello.removeRow(i);
-    } */
 
     static class ColoreAlternatoRigheTabella extends DefaultTableCellRenderer {
 

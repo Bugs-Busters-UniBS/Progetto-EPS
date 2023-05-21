@@ -42,7 +42,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
  * Classe GUI principale destinata alle aperture degli altri panel di interazione con l'utente
  */
 public class GUI extends JFrame{
-    public int targaDEBUG = 0;
+    //public int targaDEBUG = 0;
 
     // Titolo, logo
     private JLabel picLabel;
@@ -120,7 +120,7 @@ public class GUI extends JFrame{
 
         //============================CREAZIONE LABEL CON NOME GRUPPO===============================================
         titoloProg = new JLabel("<html>Gestionale Veicoli<br/>By BugsBusters UniBS</html>");
-        titoloProg.setFont(new Font("Comic Sans MS", Font.BOLD, 36));
+        titoloProg.setFont(new Font("Times New Roman", Font.BOLD, 36));
         
         logoPanel.add(titoloProg);
         //==========================================================================================================
@@ -134,10 +134,7 @@ public class GUI extends JFrame{
         // Instanziamento tabella
         tabella = new TabellaInventario(inVeicoli);
 
-        TabellaInventario tabella = new TabellaInventario(inVeicoli);
-        //impostazione dimensioni dei pulsanti elimina e dettagli
-        // TableColumn colonna = tabella.getColumnModel().getColumn(5);
-        // colonna.setPreferredWidth(20);
+        //Creazione del pannello JScrollPane che contiene la tabella
         tabellaPanel = new JScrollPane(tabella);
         //==========================================================================================================
 
@@ -150,7 +147,7 @@ public class GUI extends JFrame{
         botAggiungi.setBackground(new java.awt.Color(52, 120, 247));
         botAggiungi.setForeground(Color.WHITE);
 
-        //Azione di botAggiungi
+        // Azione di botAggiungi
         botAggiungi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 // Aggiunta di un nuovo veicolo
@@ -184,7 +181,8 @@ public class GUI extends JFrame{
         }});
         //=====================================================================================================
 
-        //====================BOTTONE SWICH TEMA INVENTARIO====================================================
+
+        //====================BOTTONE SWITCH TEMA INVENTARIO====================================================
         // Istanziamento libreria da cui prelevare l'icona
         IconFontSwing.register(Iconic.getIconFont());
 
@@ -207,6 +205,7 @@ public class GUI extends JFrame{
             }
         });
         //===================================================================================================
+
 
         //====================CASELLA DI RICERCA E BOTTONI E ICONA===========================================
         // Istanziamento libreria da cui prelevare l'icona
@@ -234,7 +233,9 @@ public class GUI extends JFrame{
                 if(cercaField.getText().equalsIgnoreCase("RickRoll")){
                     getVideo("https://www.youtube.com/watch?v=dQw4w9WgXcQ");    
                 }
-                filterRows(cercaField.getText());
+                else {
+                    filterRows(cercaField.getText());
+                }
             }
 
             @Override
@@ -271,7 +272,10 @@ public class GUI extends JFrame{
         // Azione bottone rimuovi
         botRimuovi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                if(tabella.howManyChecked() > 0) {
+                // Ottiene una lista dei veicoli selezionati e ne controlla la lunghezza
+                ArrayList<Targa> targheRimozione = tabella.getCheckedTarghe();
+                
+                if(targheRimozione.size() > 0) {
                     // Istanziamento scelte per il JOptionPane
                     String[] opzioni = {"Si, Sono sicuro", "No"};
                     int scelta = JOptionPane.showOptionDialog(tabellaPanel, "Sei sicuro di voler rimuovere i veicoli selezionati?", "Scelta", 
@@ -279,9 +283,6 @@ public class GUI extends JFrame{
                     
                     // Analisi della scelta
                     if(scelta == JOptionPane.YES_OPTION) {
-                        // Ottiene una lista delle righe dalla tabella
-                        ArrayList<Targa> targheRimozione = tabella.getCheckedTarghe();
-
                         // Cicla su tutte le righe selezionate dalla checkbox
                         for(Targa targa : targheRimozione) {
                             inVeicoli.rimuoviVeicolo(targa);
@@ -292,7 +293,8 @@ public class GUI extends JFrame{
                 }
 
                 else {
-                    JOptionPane.showMessageDialog(tabellaPanel, "Selezionare almeno un veicolo", "", JOptionPane.INFORMATION_MESSAGE);
+                    // Se nessun veicolo è stato selezionato mostra un messaggio di errore
+                    JOptionPane.showMessageDialog(tabellaPanel, "Selezionare almeno un veicolo", "Errore rimozione", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
