@@ -17,7 +17,7 @@
 *da essere ripreso ogni volta che si lancia l’applicazione.*
 
 ### UML
-ins foto.
+![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/blob/master/UML-Progetto-EPS-Immagine.png)
 
 UML che mostra in modo schematico il diagramma delle classi.
 
