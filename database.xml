@@ -2,35 +2,35 @@
 <Inventario>
     <Veicolo marca="Peugeot" modello="208" numero_porte="5" tipo="Automobile">
         <Targa numero="K069CWX" paese="GERMANIA"/>
-        <immagine filename="immagini\peugeot_208.jpg"/>
+        <immagine filename="immagini/peugeot_208.jpg"/>
     </Veicolo>
     <Veicolo marca="Peugeot" modello="308" numero_porte="5" tipo="Automobile">
         <Targa numero="CX246GL" paese="FRANCIA"/>
-        <immagine filename="immagini\peugeot_308.jpg"/>
+        <immagine filename="immagini/peugeot_308.jpg"/>
     </Veicolo>
     <Veicolo marca="Fiat" modello="500" numero_porte="3" tipo="Automobile">
         <Targa numero="ET817XP" paese="ITALIA"/>
-        <immagine filename="immagini\fiat_500.jpg"/>
+        <immagine filename="immagini/fiat_500.jpg"/>
     </Veicolo>
     <Veicolo marca="Fiat" modello="Panda" numero_porte="5" tipo="Automobile">
         <Targa numero="FK939AF" paese="ITALIA"/>
-        <immagine filename="immagini\fiat_panda.jpg"/>
+        <immagine filename="immagini/fiat_panda.jpg"/>
     </Veicolo>
     <Veicolo cilindrata="1084" marca="Honda" modello="CMX1100REBEL" tipo="Moto">
         <Targa numero="TT746BC" paese="GERMANIA"/>
-        <immagine filename="immagini\honda_Cmx_1100_rebel.jpg"/>
+        <immagine filename="immagini/honda_Cmx_1100_rebel.jpg"/>
     </Veicolo>
     <Veicolo marca="Ferrari" modello="812-GTS" numero_porte="3" tipo="Automobile">
         <Targa numero="GC563VB" paese="ITALIA"/>
-        <immagine filename="immagini\ferrari-812-gts.jpg"/>
+        <immagine filename="immagini/ferrari-812-gts.jpg"/>
     </Veicolo>
     <Veicolo marca="Mercedes" modello="Actros L" portata="250000.0" tipo="Camion">
         <Targa numero="963MBC" paese="GERMANIA"/>
-        <immagine filename="immagini\mercedes-actros-L.jpg"/>
+        <immagine filename="immagini/mercedes-actros-L.jpg"/>
     </Veicolo>
     <Veicolo marca="Rolls Royce" modello="Phantom" numero_porte="5" tipo="Automobile">
         <Targa numero="ZH573431" paese="GERMANIA"/>
-        <immagine filename="immagini\rolls_royce_phantom.jpg"/>
+        <immagine filename="immagini/rolls_royce_phantom.jpg"/>
     </Veicolo>
     <Veicolo marca="Automobile" modello="Placeholder" numero_porte="5" tipo="Automobile">
         <Targa numero="VV777VV" paese="ITALIA"/>
@@ -46,26 +46,26 @@
     </Veicolo>
     <Veicolo marca="Bugatti" modello="Chiron" numero_porte="3" tipo="Automobile">
         <Targa numero="VN454MM" paese="FRANCIA"/>
-        <immagine filename="immagini\bugatti_chiron.jpg"/>
+        <immagine filename="immagini/bugatti_chiron.jpg"/>
     </Veicolo>
     <Veicolo cilindrata="975" marca="Harley Davidson" modello="Nightster" tipo="Moto">
         <Targa numero="BC745GC" paese="ITALIA"/>
-        <immagine filename="immagini\harley_davidson_nightster.jpg"/>
+        <immagine filename="immagini/harley_davidson_nightster.jpg"/>
     </Veicolo>
     <Veicolo cilindrata="800" marca="Yamaha" modello="XSR900" tipo="Moto">
         <Targa numero="FV765XV" paese="ITALIA"/>
-        <immagine filename="immagini\yamaha_xsr900.jpg"/>
+        <immagine filename="immagini/yamaha_xsr900.jpg"/>
     </Veicolo>
     <Veicolo marca="Bugatti" modello="Veyron" numero_porte="3" tipo="Automobile">
         <Targa numero="DR567CC" paese="ITALIA"/>
-        <immagine filename="immagini\bugatti_veyron.jpg"/>
+        <immagine filename="immagini/bugatti_veyron.jpg"/>
     </Veicolo>
     <Veicolo cilindrata="874" marca="Yamaha" modello="NikenGT" tipo="Moto">
         <Targa numero="AS567VC" paese="FRANCIA"/>
-        <immagine filename="immagini\yamaha_nikenGT.jpg"/>
+        <immagine filename="immagini/yamaha_nikenGT.jpg"/>
     </Veicolo>
     <Veicolo marca="IVECO" modello="Daily" portata="7000.0" tipo="Camion">
         <Targa numero="UY866DB" paese="GERMANIA"/>
-        <immagine filename="immagini\iveco-daily.png"/>
+        <immagine filename="immagini/iveco-daily.png"/>
     </Veicolo>
 </Inventario>
