@@ -44,7 +44,7 @@ Per mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepil
 ### Live view
 Il programma può essere utilizzato e visionato online andando all'indirizzo:
 
-[webswing.dserverone.duckdns.org](webswing.dserverone.duckdns.org)
+[webswing.dserverone.duckdns.org](https://webswing.dserverone.duckdns.org)
 
 utente: user
 
