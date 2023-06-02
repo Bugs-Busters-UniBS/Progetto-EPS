@@ -40,13 +40,3 @@ Per l'aggiunta del veicolo seguire le richeste del programma all'interno della a
 Per mostrare i dettagli di ciascun veicolo: selezionarlo dalla tabella di riepilogo e fare doppio click su una qualsiasi colonna che non sia quella di eliminazione.
 
 ![image](https://github.com/Bugs-Busters-UniBS/Progetto-EPS/blob/master/dettagli.png)
-
-### Live view
-Il programma può essere utilizzato e visionato online andando all'indirizzo:
-
-[webswing.dserverone.duckdns.org](https://webswing.dserverone.duckdns.org)
-
-utente: user
-
-password: pass
-
